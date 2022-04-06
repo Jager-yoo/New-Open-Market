@@ -18,6 +18,9 @@ struct Item: Codable {
     let bargainPrice: Double
     let discountedPrice: Double
     let stock: Int
+    let description: String? // 상품 상세에만 있는 요소는 옵셔널 처리
+    let images: [Image]?
+    let vendor: Vendor?
     let createdAt: Date
     let issuedAt: Date
     
@@ -26,8 +29,9 @@ struct Item: Codable {
         case vendorID = "vendor_id"
         case bargainPrice = "bargain_price"
         case discountedPrice = "discounted_price"
+        case vendor = "vendors"
         case createdAt = "created_at"
         case issuedAt = "issued_at"
-        case id, name, thumbnail, currency, price, stock
+        case id, name, thumbnail, currency, price, stock, description, images
     }
 }
