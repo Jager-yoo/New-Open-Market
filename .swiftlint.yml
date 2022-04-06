@@ -1,0 +1,29 @@
+disabled_rules:
+ - line_length
+ - trailing_whitespace
+
+included:
+ - NewOpenMarket
+
+opt_in_rules:
+ - file_name_no_space
+ - force_unwrapping
+ - let_var_whitespace
+ - empty_count
+ - empty_string
+ - empty_collection_literal
+ - collection_alignment
+ - first_where
+ - last_where
+ - toggle_bool
+ - weak_delegate
+ - closure_spacing
+ - unneeded_parentheses_in_closure_argument
+ - prefer_self_in_static_references
+ - prohibited_super_call
+ - anyobject_protocol
+ - fallthrough
+
+excluded:
+ - Pods
+ - NewOpenMarket/NewOpenMarketApp.swift
