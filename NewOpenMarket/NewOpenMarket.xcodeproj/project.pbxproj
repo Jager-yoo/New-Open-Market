@@ -10,7 +10,6 @@
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
 		C1F5A83C27FD70CB00AEDF67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83B27FD70CB00AEDF67 /* ContentView.swift */; };
 		C1F5A83E27FD70CC00AEDF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */; };
-		C1F5A84127FD70CC00AEDF67 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A84027FD70CC00AEDF67 /* Preview Assets.xcassets */; };
 		C1F5A84827FD756700AEDF67 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A84727FD756700AEDF67 /* Launch Screen.storyboard */; };
 		C1F5A84C27FD784E00AEDF67 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A84B27FD784E00AEDF67 /* Item.swift */; };
 		C1F5A84E27FD7C5D00AEDF67 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */; };
@@ -18,14 +17,25 @@
 		C1F5A85327FD8D7600AEDF67 /* ItemsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */; };
 		C1F5A85727FD93DA00AEDF67 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85627FD93DA00AEDF67 /* Vendor.swift */; };
 		C1F5A85927FD943B00AEDF67 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85827FD943B00AEDF67 /* Image.swift */; };
+		C1F5A86127FD986E00AEDF67 /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A86027FD986E00AEDF67 /* JSONParsingTests.swift */; };
+		C1F5A88827FDC78000AEDF67 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A88727FDC78000AEDF67 /* JSONManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1F5A86227FD986E00AEDF67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1F5A82E27FD70CB00AEDF67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1F5A83527FD70CB00AEDF67;
+			remoteInfo = NewOpenMarket;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOpenMarketApp.swift; sourceTree = "<group>"; };
 		C1F5A83B27FD70CB00AEDF67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C1F5A84027FD70CC00AEDF67 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C1F5A84727FD756700AEDF67 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C1F5A84B27FD784E00AEDF67 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -33,10 +43,20 @@
 		C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPage.swift; sourceTree = "<group>"; };
 		C1F5A85627FD93DA00AEDF67 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		C1F5A85827FD943B00AEDF67 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		C1F5A85E27FD986E00AEDF67 /* JSONParsingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONParsingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F5A86027FD986E00AEDF67 /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
+		C1F5A88727FDC78000AEDF67 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C1F5A83327FD70CB00AEDF67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1F5A85B27FD986E00AEDF67 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +71,7 @@
 			children = (
 				C1F5A85027FD7FE400AEDF67 /* .swiftlint.yml */,
 				C1F5A83827FD70CB00AEDF67 /* NewOpenMarket */,
+				C1F5A85F27FD986E00AEDF67 /* JSONParsingTests */,
 				C1F5A83727FD70CB00AEDF67 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */,
+				C1F5A85E27FD986E00AEDF67 /* JSONParsingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,19 +90,11 @@
 			children = (
 				C1F5A84A27FD77A200AEDF67 /* View */,
 				C1F5A84927FD779C00AEDF67 /* Model */,
+				C1F5A88627FDC76600AEDF67 /* Utility */,
 				C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */,
 				C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */,
-				C1F5A83F27FD70CC00AEDF67 /* Preview Content */,
 			);
 			path = NewOpenMarket;
-			sourceTree = "<group>";
-		};
-		C1F5A83F27FD70CC00AEDF67 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C1F5A84027FD70CC00AEDF67 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C1F5A84927FD779C00AEDF67 /* Model */ = {
@@ -104,6 +118,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C1F5A85F27FD986E00AEDF67 /* JSONParsingTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1F5A86027FD986E00AEDF67 /* JSONParsingTests.swift */,
+			);
+			path = JSONParsingTests;
+			sourceTree = "<group>";
+		};
+		C1F5A88627FDC76600AEDF67 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				C1F5A88727FDC78000AEDF67 /* JSONManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +155,24 @@
 			productReference = C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C1F5A85D27FD986E00AEDF67 /* JSONParsingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1F5A86427FD986E00AEDF67 /* Build configuration list for PBXNativeTarget "JSONParsingTests" */;
+			buildPhases = (
+				C1F5A85A27FD986E00AEDF67 /* Sources */,
+				C1F5A85B27FD986E00AEDF67 /* Frameworks */,
+				C1F5A85C27FD986E00AEDF67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1F5A86327FD986E00AEDF67 /* PBXTargetDependency */,
+			);
+			name = JSONParsingTests;
+			productName = JSONParsingTests;
+			productReference = C1F5A85E27FD986E00AEDF67 /* JSONParsingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -137,6 +185,10 @@
 				TargetAttributes = {
 					C1F5A83527FD70CB00AEDF67 = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					C1F5A85D27FD986E00AEDF67 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = C1F5A83527FD70CB00AEDF67;
 					};
 				};
 			};
@@ -154,6 +206,7 @@
 			projectRoot = "";
 			targets = (
 				C1F5A83527FD70CB00AEDF67 /* NewOpenMarket */,
+				C1F5A85D27FD986E00AEDF67 /* JSONParsingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -165,8 +218,14 @@
 			files = (
 				C1F5A85127FD7FE400AEDF67 /* .swiftlint.yml in Resources */,
 				C1F5A84827FD756700AEDF67 /* Launch Screen.storyboard in Resources */,
-				C1F5A84127FD70CC00AEDF67 /* Preview Assets.xcassets in Resources */,
 				C1F5A83E27FD70CC00AEDF67 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1F5A85C27FD986E00AEDF67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1F5A85927FD943B00AEDF67 /* Image.swift in Sources */,
+				C1F5A88827FDC78000AEDF67 /* JSONManager.swift in Sources */,
 				C1F5A84E27FD7C5D00AEDF67 /* Currency.swift in Sources */,
 				C1F5A83C27FD70CB00AEDF67 /* ContentView.swift in Sources */,
 				C1F5A85327FD8D7600AEDF67 /* ItemsPage.swift in Sources */,
@@ -207,7 +267,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1F5A85A27FD986E00AEDF67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1F5A86127FD986E00AEDF67 /* JSONParsingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1F5A86327FD986E00AEDF67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1F5A83527FD70CB00AEDF67 /* NewOpenMarket */;
+			targetProxy = C1F5A86227FD986E00AEDF67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C1F5A84227FD70CC00AEDF67 /* Debug */ = {
@@ -331,7 +407,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"NewOpenMarket/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = A5LBYGCGKX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -361,7 +437,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"NewOpenMarket/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = A5LBYGCGKX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -384,6 +460,44 @@
 			};
 			name = Release;
 		};
+		C1F5A86527FD986E00AEDF67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A5LBYGCGKX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.bicycleforthemind.JSONParsingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewOpenMarket.app/NewOpenMarket";
+			};
+			name = Debug;
+		};
+		C1F5A86627FD986E00AEDF67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A5LBYGCGKX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.bicycleforthemind.JSONParsingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewOpenMarket.app/NewOpenMarket";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -401,6 +515,15 @@
 			buildConfigurations = (
 				C1F5A84527FD70CC00AEDF67 /* Debug */,
 				C1F5A84627FD70CC00AEDF67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1F5A86427FD986E00AEDF67 /* Build configuration list for PBXNativeTarget "JSONParsingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1F5A86527FD986E00AEDF67 /* Debug */,
+				C1F5A86627FD986E00AEDF67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

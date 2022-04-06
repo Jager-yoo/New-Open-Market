@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "items_page_sample.json",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
