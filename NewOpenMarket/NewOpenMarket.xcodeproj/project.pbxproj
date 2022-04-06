@@ -66,11 +66,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C13BA19927FDF99200E07107 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		C13BA19A27FDF99B00E07107 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		C1F5A82D27FD70CB00AEDF67 = {
 			isa = PBXGroup;
 			children = (
 				C1F5A85027FD7FE400AEDF67 /* .swiftlint.yml */,
-				C1F5A83827FD70CB00AEDF67 /* NewOpenMarket */,
+				C1F5A83827FD70CB00AEDF67 /* Source */,
 				C1F5A85F27FD986E00AEDF67 /* JSONParsingTests */,
 				C1F5A83727FD70CB00AEDF67 /* Products */,
 			);
@@ -85,16 +101,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C1F5A83827FD70CB00AEDF67 /* NewOpenMarket */ = {
+		C1F5A83827FD70CB00AEDF67 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				C1F5A84A27FD77A200AEDF67 /* View */,
 				C1F5A84927FD779C00AEDF67 /* Model */,
 				C1F5A88627FDC76600AEDF67 /* Utility */,
-				C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */,
-				C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */,
+				C13BA19927FDF99200E07107 /* AppDelegate */,
+				C13BA19A27FDF99B00E07107 /* Resource */,
 			);
-			path = NewOpenMarket;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		C1F5A84927FD779C00AEDF67 /* Model */ = {
@@ -234,7 +250,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		C1F5A84F27FD7F6800AEDF67 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -245,7 +261,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
