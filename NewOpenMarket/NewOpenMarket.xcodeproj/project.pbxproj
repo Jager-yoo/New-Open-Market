@@ -15,6 +15,7 @@
 		C1F5A84C27FD784E00AEDF67 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A84B27FD784E00AEDF67 /* Item.swift */; };
 		C1F5A84E27FD7C5D00AEDF67 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */; };
 		C1F5A85127FD7FE400AEDF67 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A85027FD7FE400AEDF67 /* .swiftlint.yml */; };
+		C1F5A85327FD8D7600AEDF67 /* ItemsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		C1F5A84B27FD784E00AEDF67 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		C1F5A85027FD7FE400AEDF67 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		C1F5A84927FD779C00AEDF67 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */,
 				C1F5A84B27FD784E00AEDF67 /* Item.swift */,
 				C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */,
 			);
@@ -190,6 +193,7 @@
 			files = (
 				C1F5A84E27FD7C5D00AEDF67 /* Currency.swift in Sources */,
 				C1F5A83C27FD70CB00AEDF67 /* ContentView.swift in Sources */,
+				C1F5A85327FD8D7600AEDF67 /* ItemsPage.swift in Sources */,
 				C1F5A84C27FD784E00AEDF67 /* Item.swift in Sources */,
 				C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */,
 			);
