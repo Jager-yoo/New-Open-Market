@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C13BA19527FDDC4900E07107 /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA19427FDDC4900E07107 /* JSONParsingTests.swift */; };
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
 		C1F5A83C27FD70CB00AEDF67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83B27FD70CB00AEDF67 /* ContentView.swift */; };
 		C1F5A83E27FD70CC00AEDF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */; };
@@ -17,7 +18,6 @@
 		C1F5A85327FD8D7600AEDF67 /* ItemsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */; };
 		C1F5A85727FD93DA00AEDF67 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85627FD93DA00AEDF67 /* Vendor.swift */; };
 		C1F5A85927FD943B00AEDF67 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85827FD943B00AEDF67 /* Image.swift */; };
-		C1F5A86127FD986E00AEDF67 /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A86027FD986E00AEDF67 /* JSONParsingTests.swift */; };
 		C1F5A88827FDC78000AEDF67 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A88727FDC78000AEDF67 /* JSONManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C13BA19427FDDC4900E07107 /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOpenMarketApp.swift; sourceTree = "<group>"; };
 		C1F5A83B27FD70CB00AEDF67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		C1F5A85627FD93DA00AEDF67 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		C1F5A85827FD943B00AEDF67 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		C1F5A85E27FD986E00AEDF67 /* JSONParsingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONParsingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1F5A86027FD986E00AEDF67 /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
 		C1F5A88727FDC78000AEDF67 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +121,7 @@
 		C1F5A85F27FD986E00AEDF67 /* JSONParsingTests */ = {
 			isa = PBXGroup;
 			children = (
-				C1F5A86027FD986E00AEDF67 /* JSONParsingTests.swift */,
+				C13BA19427FDDC4900E07107 /* JSONParsingTests.swift */,
 			);
 			path = JSONParsingTests;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1F5A86127FD986E00AEDF67 /* JSONParsingTests.swift in Sources */,
+				C13BA19527FDDC4900E07107 /* JSONParsingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
