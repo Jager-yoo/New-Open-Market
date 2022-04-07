@@ -21,7 +21,7 @@ extension API {
         }
         var body: Data? = nil
         var headers: [String: String] {
-            return ["Content-Type": "multipart/form-data; boundary=\(boundary)"]
+            ["Content-Type": "multipart/form-data; boundary=\(boundary)"]
         }
         var responseType = ItemsPage.self
         

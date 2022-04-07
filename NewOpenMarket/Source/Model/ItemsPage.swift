@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ItemsPage: Codable {
+struct ItemsPage: Decodable {
     
     let pageNo: Int
     let itemsPerPage: Int

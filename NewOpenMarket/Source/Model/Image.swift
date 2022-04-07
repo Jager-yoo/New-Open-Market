@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Image: Codable {
+struct Image: Decodable { // SwiftUI 에서의 Image 구조체와 충돌 가능성 있음
     
     let id: Int
     let url: String
