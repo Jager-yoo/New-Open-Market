@@ -1,0 +1,82 @@
+//
+//  APIRequest.swift
+//  JSONParsingTests
+//
+//  Created by 유재호 on 2022/04/07.
+//
+
+import Foundation
+
+protocol APIRequest {
+    
+    associatedtype APIResponse: Decodable
+    
+    var httpMethod: HTTPMethod { get }
+    var baseURLString: String { get }
+    var path: String { get }
+    var query: [String: Any] { get }
+    var body: Data? { get }
+    var headers: [String: String] { get }
+    var responseType: APIResponse.Type { get }
+    var jsonManager: JSONManager { get }
+}
+
+extension APIRequest {
+    
+    var url: URL? {
+        var urlComponents = URLComponents(string: baseURLString + path)
+        urlComponents?.queryItems = query.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
+        return urlComponents?.url
+    }
+    
+    var urlRequest: URLRequest? {
+        guard let url = url else {
+            return nil
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = httpMethod.rawValue
+        urlRequest.httpBody = body
+        headers.forEach { (key, value) in
+            urlRequest.addValue(value, forHTTPHeaderField: key)
+        }
+        
+        return urlRequest
+    }
+    
+    func execute(_ completion: @escaping (Result<APIResponse, Error>) -> Void) {
+        guard let urlRequest = urlRequest else {
+            // @escaping 키워드를 사용하면 completion 뒤에 옵셔널 체이닝이 불필요함!
+            // completion?(.failure(APIError.invalidURL))
+            completion(.failure(APIError.invalidURL))
+            return
+        }
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(APIError.invalidResponseData))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(APIError.invalidResponseData))
+                return
+            }
+            
+            do {
+                let decodedData: APIResponse = try jsonManager.decode(from: data)
+                completion(.success(decodedData))
+            } catch(let error) {
+                completion(.failure(error))
+            }
+        }
+        dataTask.resume()
+    }
+}
