@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  ImageForResponse.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/06.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Image: Decodable { // SwiftUI 에서의 Image 구조체와 충돌 가능성 있음
+struct ImageForResponse: Decodable {
     
     let id: Int
     let url: String

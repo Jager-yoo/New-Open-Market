@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1F5A85D27FD986E00AEDF67"
-               BuildableName = "JSONParsingTests.xctest"
+               BuildableName = "UnitTests.xctest"
                BlueprintName = "UnitTests"
                ReferencedContainer = "container:NewOpenMarket.xcodeproj">
             </BuildableReference>

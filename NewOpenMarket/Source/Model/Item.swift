@@ -19,7 +19,7 @@ struct Item: Decodable {
     let discountedPrice: Double
     let stock: Int
     let description: String? // 상품 상세에만 있는 요소는 옵셔널 처리
-    let images: [Image]?
+    let images: [ImageForResponse]?
     let vendor: Vendor?
     let createdAt: Date
     let issuedAt: Date
