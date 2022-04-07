@@ -14,7 +14,7 @@ protocol APIRequest {
     var httpMethod: HTTPMethod { get }
     var baseURLString: String { get }
     var path: String { get }
-    var query: [String: Any] { get }
+    var query: [String: Int] { get }
     var body: Data? { get }
     var headers: [String: String] { get }
     var responseType: APIResponse.Type { get }
@@ -22,6 +22,16 @@ protocol APIRequest {
 }
 
 extension APIRequest {
+    
+    var identifier: String {
+        // !!!: [설정] 화면에서 이걸 변경할 수 있게 해도 좋을 듯. 로그인 하는 느낌으로!
+        return "a3daae1d-7215-11ec-abfa-57090eab9093"
+    }
+    
+    var boundary: String {
+        // !!!: 호출될 때 마다 boundary 가 달라지면, 에러날 수도 있음!
+        return UUID().uuidString
+    }
     
     var url: URL? {
         var urlComponents = URLComponents(string: baseURLString + path)
@@ -48,7 +58,7 @@ extension APIRequest {
     func execute(_ completion: @escaping (Result<APIResponse, Error>) -> Void) {
         guard let urlRequest = urlRequest else {
             // @escaping 키워드를 사용하면 completion 뒤에 옵셔널 체이닝이 불필요함!
-            // completion?(.failure(APIError.invalidURL))
+            // -> completion?(.failure(APIError.invalidURL)) 이렇게 써야 하거든
             completion(.failure(APIError.invalidURL))
             return
         }
