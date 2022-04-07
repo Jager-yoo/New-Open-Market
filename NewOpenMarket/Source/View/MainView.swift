@@ -9,35 +9,30 @@ import SwiftUI
 
 struct MainView: View {
     
+    @State private var listMode: Bool = true
+    
     var body: some View {
         NavigationView {
             ItemsListView()
-                .navigationTitle("뉴 오픈 마켓!")
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button {
-                            print("리스트 버튼 눌림!")
-                        } label: {
-                            Image(systemName: "rectangle.grid.1x2")
+                    ToolbarItem(placement: .principal) {
+                        Picker("", selection: $listMode) {
+                            Image(systemName: "rectangle.grid.1x2").tag(true)
+                            Image(systemName: "rectangle.grid.2x2").tag(false)
                         }
-
-                        Button {
-                            print("그리드 버튼 눌림!")
-                        } label: {
-                            Image(systemName: "rectangle.grid.2x2")
-                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 200)
                     }
                     
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             print("설정 버튼 눌림!")
                         } label: {
                             Image(systemName: "gearshape")
+                                .tint(Color.primary)
                         }
                     }
                 }
-                .tint(Color.primary)
         }
     }
 }
