@@ -33,6 +33,10 @@ extension APIRequest {
         return UUID().uuidString
     }
     
+    var baseURLString: String {
+        return "https://market-training.yagom-academy.kr"
+    }
+    
     var url: URL? {
         var urlComponents = URLComponents(string: baseURLString + path)
         urlComponents?.queryItems = query.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
@@ -53,6 +57,10 @@ extension APIRequest {
         }
         
         return urlRequest
+    }
+    
+    var jsonManager: JSONManager {
+        return JSONManager()
     }
     
     func execute(_ completion: @escaping (Result<APIResponse, Error>) -> Void) {
