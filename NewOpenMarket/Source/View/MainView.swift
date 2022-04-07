@@ -21,7 +21,7 @@ struct MainView: View {
                             Image(systemName: "rectangle.grid.2x2").tag(false)
                         }
                         .pickerStyle(.segmented)
-                        .frame(width: 200)
+                        .frame(width: 180)
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {

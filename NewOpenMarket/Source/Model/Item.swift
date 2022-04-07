@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Item: Decodable {
+struct Item: Decodable, Identifiable {
     
     let id: Int
     let vendorID: Int

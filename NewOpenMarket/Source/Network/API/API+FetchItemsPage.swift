@@ -15,10 +15,10 @@ extension API {
         var path: String = "/api/products"
         var query: [String: Int] {
             [
-                "pageNo": pageNo,
-                "itemsPerPage": itemsPerPage
+                "page_no": pageNo,
+                "items_per_page": itemsPerPage
             ]
-        }
+        } // 쿼리 딕셔너리는 작성된 순서와 반대로 URL 뒤에 달라붙게 됨!
         var body: Data? = nil
         var headers: [String: String] {
             ["Content-Type": "multipart/form-data; boundary=\(boundary)"]
