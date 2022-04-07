@@ -14,6 +14,7 @@
 		C13BA1AA27FEF1A300E07107 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1A827FEF18100E07107 /* API.swift */; };
 		C13BA1AF27FEF5FB00E07107 /* API+HealthChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1AE27FEF5FB00E07107 /* API+HealthChecker.swift */; };
 		C13BA1B127FEF95900E07107 /* APIRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1B027FEF95900E07107 /* APIRequestTests.swift */; };
+		C13BA1B327FEFC6F00E07107 /* API+FetchItemsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1B227FEFC6F00E07107 /* API+FetchItemsPage.swift */; };
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
 		C1F5A83C27FD70CB00AEDF67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83B27FD70CB00AEDF67 /* ContentView.swift */; };
 		C1F5A83E27FD70CC00AEDF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		C13BA1A827FEF18100E07107 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C13BA1AE27FEF5FB00E07107 /* API+HealthChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+HealthChecker.swift"; sourceTree = "<group>"; };
 		C13BA1B027FEF95900E07107 /* APIRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestTests.swift; sourceTree = "<group>"; };
+		C13BA1B227FEFC6F00E07107 /* API+FetchItemsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+FetchItemsPage.swift"; sourceTree = "<group>"; };
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOpenMarketApp.swift; sourceTree = "<group>"; };
 		C1F5A83B27FD70CB00AEDF67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				C13BA1A827FEF18100E07107 /* API.swift */,
 				C13BA1AE27FEF5FB00E07107 /* API+HealthChecker.swift */,
+				C13BA1B227FEFC6F00E07107 /* API+FetchItemsPage.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */,
 				C13BA1AA27FEF1A300E07107 /* API.swift in Sources */,
 				C13BA1A627FECE6100E07107 /* APIError.swift in Sources */,
+				C13BA1B327FEFC6F00E07107 /* API+FetchItemsPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

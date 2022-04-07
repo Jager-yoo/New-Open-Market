@@ -15,4 +15,11 @@ final class APIRequestTests: XCTestCase {
             XCTAssertEqual(try! result.get(), "OK")
         }
     }
+    
+    func test_API_FetchItemsPage_response_검증() {
+        API.FetchItemsPage(pageNo: 1, itemsPerPage: 10).execute { result in
+            XCTAssertEqual(try! result.get().pageNo, 1)
+            XCTAssertFalse(try! result.get().hasPrev)
+        }
+    }
 }
