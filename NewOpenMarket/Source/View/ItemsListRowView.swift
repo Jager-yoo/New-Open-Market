@@ -23,33 +23,16 @@ struct ItemsListRowView: View {
             VStack(spacing: 15) {
                 HStack {
                     Text("\(item.name)")
-                        .font(.headline)
+                        .bold()
                     Spacer()
-                    if item.stock == 0 {
-                        Text("품절")
-                            .font(.headline)
-                            .foregroundColor(.yellow)
-                    } else {
-                        Text("잔여수량 : \(item.stock)")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                    }
-                    
+                    ItemStockComponent(itemStock: item.stock)
                     Image(systemName: "chevron.right")
                         .foregroundColor(.secondary)
                 }
+                .font(.body)
                 
                 HStack {
-                    if item.discountedPrice == 0 {
-                        Text("\(item.formattedPrice)")
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("\(item.formattedPrice)")
-                            .foregroundColor(.red)
-                            .strikethrough()
-                        Text("\(item.formattedBargainPrice)")
-                            .foregroundColor(.secondary)
-                    }
+                    ItemPriceComponent(item: item)
                     Spacer()
                 }
                 .font(.callout)

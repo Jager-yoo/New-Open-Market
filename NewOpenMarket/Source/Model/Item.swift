@@ -42,6 +42,10 @@ struct Item: Decodable, Identifiable {
     var formattedBargainPrice: String {
         return "\(currency.rawValue) \(bargainPrice.money)"
     }
+    
+    var imagesCount: String {
+        return "\(images?.count ?? 1)"
+    }
 }
 
 private extension Double {
