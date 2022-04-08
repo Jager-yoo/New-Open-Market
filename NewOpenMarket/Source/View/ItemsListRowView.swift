@@ -19,6 +19,7 @@ struct ItemsListRowView: View {
                 ProgressView()
             }
             .frame(width: 80, height: 80)
+            .cornerRadius(10)
             
             VStack(spacing: 15) {
                 HStack {
@@ -26,10 +27,7 @@ struct ItemsListRowView: View {
                         .bold()
                     Spacer()
                     ItemStockComponent(itemStock: item.stock)
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.secondary)
                 }
-                .font(.body)
                 
                 HStack {
                     ItemPriceComponent(item: item)

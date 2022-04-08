@@ -29,7 +29,6 @@ struct MainView: View {
                             print("설정 버튼 눌림!")
                         } label: {
                             Image(systemName: "gearshape")
-                                .tint(Color.primary)
                         }
                     }
                 }

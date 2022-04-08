@@ -15,20 +15,26 @@ struct ItemDetailView: View {
     private let placeholderURL = URL(string: "")
     
     var body: some View {
-        VStack(spacing: 10) {
-            AsyncImage(url: itemDetail?.thumbnail ?? placeholderURL) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
+        ScrollView {
+            VStack(spacing: 10) {
+                AsyncImage(url: itemDetail?.thumbnail ?? placeholderURL) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .scaledToFit()
+                Text("1 / \(itemDetail?.imagesCount ?? placeholderText)")
+                    .foregroundColor(.teal)
+                Text("(상품 번호 : \(item.id.description))")
+                    .foregroundColor(.secondary)
+                ItemStockComponent(itemStock: item.stock)
+                ItemPriceComponent(item: item)
+                Text("게시자 : \(itemDetail?.vendor?.name ?? placeholderText)")
+                Text("업로드 날짜 : \(item.createdAt.formatted())")
+                Divider()
+                Text("\(itemDetail?.description ?? placeholderText)")
+                Spacer()
             }
-            .scaledToFit()
-            ItemStockComponent(itemStock: item.stock)
-            ItemPriceComponent(item: item)
-            Text("1 / \(itemDetail?.imagesCount ?? placeholderText)")
-            Text("게시자 : \(itemDetail?.vendor?.name ?? placeholderText)")
-            Text("업로드 날짜 : \(item.createdAt.formatted())")
-            Text("내용 : \(itemDetail?.description ?? placeholderText)")
-            Spacer()
         }
         .font(.title2)
         .navigationTitle("\(item.name)")
@@ -37,7 +43,6 @@ struct ItemDetailView: View {
                 print("수정/삭제 버튼 눌림!")
             } label: {
                 Image(systemName: "square.and.pencil")
-                    .tint(Color.primary)
             }
         }
         .onAppear {
