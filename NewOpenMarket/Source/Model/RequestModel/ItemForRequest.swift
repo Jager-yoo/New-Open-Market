@@ -15,7 +15,7 @@ struct ItemForRequest: Encodable {
     let currency: Currency
     let discountedPrice: Double // 디폴트 0
     let stock: Int // 디폴트 0
-    let thumbnailID: Int? // 상품 수정할 때만 필요한 프로퍼티
+    let thumbnailID: URL? // 상품 수정할 때만 필요한 프로퍼티
     let secret: String
     
     private enum CodingKeys: String, CodingKey {

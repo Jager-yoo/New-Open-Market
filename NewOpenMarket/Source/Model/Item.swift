@@ -12,7 +12,7 @@ struct Item: Decodable, Identifiable {
     let id: Int
     let vendorID: Int
     let name: String
-    let thumbnail: String
+    let thumbnail: URL
     let currency: Currency
     let price: Double
     let bargainPrice: Double

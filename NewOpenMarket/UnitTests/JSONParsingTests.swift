@@ -40,7 +40,7 @@ final class JSONParsingTests: XCTestCase {
         let firstItem = sut.items.first!
         XCTAssertEqual(firstItem.id, 20)
         XCTAssertEqual(firstItem.vendorID, 3)
-        XCTAssertEqual(firstItem.thumbnail, "https://s3.ap-northeast-2.amazonaws.com/media.yagom-academy.kr/training-resources/3/thumb/5a0cd56b6d3411ecabfa97fd953cf965.jpg")
+        XCTAssertEqual(firstItem.thumbnail, URL(string: "https://s3.ap-northeast-2.amazonaws.com/media.yagom-academy.kr/training-resources/3/thumb/5a0cd56b6d3411ecabfa97fd953cf965.jpg"))
         XCTAssertEqual(firstItem.currency, Currency.krw)
         XCTAssertEqual(firstItem.price, 0)
         XCTAssertEqual(firstItem.bargainPrice, 0)

@@ -10,8 +10,8 @@ import Foundation
 struct ImageForResponse: Decodable {
     
     let id: Int
-    let url: String
-    let thumbnailURL: String
+    let url: URL
+    let thumbnailURL: URL
     let succeed: Bool
     let issuedAt: Date
     
