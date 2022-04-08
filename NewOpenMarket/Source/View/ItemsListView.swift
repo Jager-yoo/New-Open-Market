@@ -15,17 +15,48 @@ struct ItemsListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    HStack {
-                        AsyncImage(url: item.thumbnail) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
+            List(items) { item in
+                HStack(spacing: 10) {
+                    AsyncImage(url: item.thumbnail) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: 80, height: 80)
+                    
+                    VStack(spacing: 15) {
+                        HStack {
+                            Text("\(item.name)")
+                                .font(.headline)
+                            Spacer()
+                            if item.stock == 0 {
+                                Text("품절")
+                                    .font(.headline)
+                                    .foregroundColor(.yellow)
+                            } else {
+                                Text("잔여수량 : \(item.stock)")
+                                    .font(.body)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
                         }
-                        .frame(width: 80, height: 80)
                         
-                        Text("\(item.name)")
+                        HStack {
+                            if item.discountedPrice == 0 {
+                                Text("\(item.formattedPrice)")
+                                    .foregroundColor(.secondary)
+                            } else {
+                                Text("\(item.formattedPrice)")
+                                    .foregroundColor(.red)
+                                    .strikethrough()
+                                Text("\(item.formattedBargainPrice)")
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }
+                        .font(.callout)
                     }
                 }
             }
@@ -50,5 +81,12 @@ struct ItemsListView: View {
                 return
             }
         }
+    }
+}
+
+struct ItemsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+            .preferredColorScheme(.dark)
     }
 }

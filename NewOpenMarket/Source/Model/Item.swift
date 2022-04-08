@@ -34,4 +34,23 @@ struct Item: Decodable, Identifiable {
         case issuedAt = "issued_at"
         case id, name, thumbnail, currency, price, stock, description, images
     }
+    
+    var formattedPrice: String {
+        return "\(currency.rawValue) \(price.money)"
+    }
+    
+    var formattedBargainPrice: String {
+        return "\(currency.rawValue) \(bargainPrice.money)"
+    }
+}
+
+private extension Double {
+    
+    private static let numberFormatter = NumberFormatter()
+    
+    var money: String {
+        Self.numberFormatter.numberStyle = .decimal
+        let result = Self.numberFormatter.string(for: self) ?? self.description
+        return result
+    }
 }
