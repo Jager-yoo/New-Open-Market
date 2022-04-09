@@ -14,14 +14,19 @@ struct ItemsListView: View {
     @State private var items: [Item] = []
     
     var body: some View {
-        List($items) { item in
-            NavigationLink {
-                ItemDetailView(item: item)
-            } label: {
-                ItemsListRowView(item: item)
+        ScrollView {
+            LazyVStack {
+                ForEach($items) { item in
+                    NavigationLink {
+                        ItemDetailView(item: item)
+                    } label: {
+                        ItemsListRowView(item: item)
+                    }
+
+                }
             }
+            .padding()
         }
-        .listStyle(.plain)
         .onAppear {
             // FIXME: DetailView 들어갔다가 나오면 계속 호출되는 이슈 있음
             fetchItems(page: 1)
@@ -31,7 +36,7 @@ struct ItemsListView: View {
     
     private func fetchItems(page: Int) {
         // [weak self] 신경쓰기! -> 근데 여긴 class 타입의 뷰컨이 아니고 구조체라서 상관 없나? 🤔
-        API.FetchItemsPage(pageNo: page, itemsPerPage: 20).execute { result in
+        API.FetchItemsPage(pageNo: page, itemsPerPage: 500).execute { result in
             switch result {
             case .success(let itemsPage):
                 currentPage = itemsPage.pageNo

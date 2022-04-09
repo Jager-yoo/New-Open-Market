@@ -12,29 +12,34 @@ struct ItemsListRowView: View {
     @Binding var item: Item
     
     var body: some View {
-        HStack(spacing: 10) {
-            AsyncImage(url: item.thumbnail) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
-            }
-            .frame(width: 80, height: 80)
-            .cornerRadius(10)
-            
-            VStack(spacing: 15) {
-                HStack {
-                    Text("\(item.name)")
-                        .bold()
-                    Spacer()
-                    ItemStockComponent(itemStock: item.stock)
+        VStack {
+            HStack(spacing: 10) {
+                AsyncImage(url: item.thumbnail) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
                 }
+                .frame(width: 80, height: 80)
+                .cornerRadius(10)
                 
-                HStack {
-                    ItemPriceComponent(item: item)
-                    Spacer()
+                VStack(spacing: 15) {
+                    HStack {
+                        Text("\(item.name)")
+                            .bold()
+                        Spacer()
+                        ItemStockComponent(itemStock: item.stock)
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
+                        ItemPriceComponent(item: item)
+                        Spacer()
+                    }
+                    .font(.callout)
                 }
-                .font(.callout)
             }
+            Divider()
         }
     }
 }
