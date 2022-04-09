@@ -27,13 +27,13 @@ struct ItemsListRowView: View {
                         Text("\(item.name)")
                             .bold()
                         Spacer()
-                        ItemStockComponent(itemStock: item.stock)
+                        ItemStockUI(itemStock: item.stock)
                         Image(systemName: "chevron.right")
                             .foregroundColor(.secondary)
                     }
                     
                     HStack {
-                        ItemPriceComponent(item: item)
+                        ItemPriceUI(item: item)
                         Spacer()
                     }
                     .font(.callout)

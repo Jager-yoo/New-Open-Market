@@ -1,5 +1,5 @@
 //
-//  ItemPriceComponent.swift
+//  ItemPriceUI.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/09.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ItemPriceComponent: View {
+struct ItemPriceUI: View {
     
     let item: Item
     
