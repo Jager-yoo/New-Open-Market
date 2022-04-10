@@ -51,6 +51,7 @@ struct ItemsListView: View {
             items.append(contentsOf: itemsPage.items)
             print("💚 \(itemsPage.pageNo)번째 페이지 append 완료!")
         } catch {
+            // Alert 띄우기
             print("⚠️ ItemsPage 통신 중 에러 발생! -> \(error.localizedDescription)")
             return
         }

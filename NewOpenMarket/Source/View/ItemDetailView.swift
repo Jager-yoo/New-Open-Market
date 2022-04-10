@@ -46,22 +46,20 @@ struct ItemDetailView: View {
                 Image(systemName: "square.and.pencil")
             }
         }
-        .onAppear {
-            fetchItemDetail(itemID: item.id)
-            print("💛 ItemDetailView onAppear 발생!")
+        .task {
+            await fetchItemDetail(itemID: item.id)
+            print("💛 ItemDetailView appears task 작동!")
         }
     }
     
-    private func fetchItemDetail(itemID: Int) {
-        API.FetchItemDetail(itemID: itemID).execute { result in
-            switch result {
-            case .success(let itemDetail):
-                self.itemDetail = itemDetail
-            case .failure(let error):
-                // Alert 띄우기
-                print("⚠️ ItemDetail 통신 중 에러 발생! -> \(error.localizedDescription)")
-                return
-            }
+    private func fetchItemDetail(itemID: Int) async {
+        do {
+            let itemDetail = try await API.FetchItemDetail(itemID: itemID).asyncExecute()
+            self.itemDetail = itemDetail
+        } catch {
+            // Alert 띄우기
+            print("⚠️ ItemDetail 통신 중 에러 발생! -> \(error.localizedDescription)")
+            return
         }
     }
 }
