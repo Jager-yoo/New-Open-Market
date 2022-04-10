@@ -9,13 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var listMode: Bool = true
-    @State private var isServerOn: Bool = true
+    @StateObject private var viewModel = MainViewModel()
     
     var body: some View {
         NavigationView {
             Group {
-                if isServerOn {
+                if viewModel.isServerOn {
                     ItemsListView()
                 } else {
                     NetworkDisabledUI()
@@ -23,7 +22,7 @@ struct MainView: View {
             } // if문으로 화면이 분기된 구조를 Group 으로 묶으면, modifier 적용할 수 있음!
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Picker("", selection: $listMode) {
+                    Picker("", selection: $viewModel.listMode) {
                         Image(systemName: "rectangle.grid.1x2").tag(true)
                         Image(systemName: "rectangle.grid.2x2").tag(false)
                     }
@@ -42,17 +41,30 @@ struct MainView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .task {
-            isServerOn = await checkServerStatus()
+            await viewModel.checkServerStatus()
         }
     }
+}
+
+private extension MainView {
     
-    private func checkServerStatus() async -> Bool {
-        do {
-            let message = try await API.HealthChecker().asyncExecute()
-            return message == "OK"
-        } catch {
-            print("⚠️ HealthChecker 통신 중 에러 발생! -> \(error.localizedDescription)")
-            return false
+    class MainViewModel: ObservableObject {
+        
+        @Published var listMode: Bool = true
+        @Published var isServerOn: Bool = true
+        
+        func checkServerStatus() async {
+            do {
+                let message = try await API.HealthChecker().asyncExecute()
+                DispatchQueue.main.async {
+                    self.isServerOn = (message == "OK")
+                }
+            } catch {
+                print("⚠️ HealthChecker 통신 중 에러 발생! -> \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.isServerOn = false
+                }
+            }
         }
     }
 }
