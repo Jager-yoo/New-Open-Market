@@ -23,10 +23,10 @@ struct ItemsListView: View {
                         ItemDetailView(item: item)
                     } label: {
                         ItemsListRowView(item: item)
-                            .onAppear {
+                            .task {
                                 // 무한 스크롤 로직
                                 if hasNextPage, item.id == items[items.count - Self.paginationBuffer].id {
-                                    fetchItems(page: currentPage + 1)
+                                    await fetchItems(page: currentPage + 1)
                                 }
                             }
                     }
@@ -35,27 +35,24 @@ struct ItemsListView: View {
             }
             .padding()
         }
-        .onAppear {
+        .task {
             if items.isEmpty {
-                fetchItems(page: 1) // 최초 다운로드
+                await fetchItems(page: 1) // 최초 다운로드
             }
         }
     }
     
-    private func fetchItems(page: Int) {
+    private func fetchItems(page: Int) async {
         // [weak self] 신경쓰기! -> 근데 여긴 class 타입의 뷰컨이 아니고 구조체라서 상관 없나? 🤔
-        API.FetchItemsPage(pageNo: page, itemsPerPage: 20).execute { result in
-            switch result {
-            case .success(let itemsPage):
-                currentPage = itemsPage.pageNo
-                hasNextPage = itemsPage.hasNext
-                items.append(contentsOf: itemsPage.items)
-                print("💚 \(itemsPage.pageNo)번째 페이지 append 완료!")
-            case .failure(let error):
-                // Alert 띄우기
-                print("⚠️ ItemsPage 통신 중 에러 발생! -> \(error.localizedDescription)")
-                return
-            }
+        do {
+            let itemsPage = try await API.FetchItemsPage(pageNo: page, itemsPerPage: 20).asyncExecute()
+            currentPage = itemsPage.pageNo
+            hasNextPage = itemsPage.hasNext
+            items.append(contentsOf: itemsPage.items)
+            print("💚 \(itemsPage.pageNo)번째 페이지 append 완료!")
+        } catch {
+            print("⚠️ ItemsPage 통신 중 에러 발생! -> \(error.localizedDescription)")
+            return
         }
     }
 }
