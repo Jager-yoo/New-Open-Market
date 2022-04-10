@@ -9,51 +9,67 @@ import SwiftUI
 
 struct ItemsListView: View {
     
-    @State private var currentPage: Int = 1
-    @State private var hasNextPage: Bool = false
-    @State private var items: [Item] = []
-    
-    private static let paginationBuffer: Int = 3
+    @StateObject private var viewModel = ItemsListViewModel()
     
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach($items) { item in
+                ForEach($viewModel.items) { item in
                     NavigationLink {
                         ItemDetailView(item: item)
                     } label: {
                         ItemsListRowView(item: item)
                             .task {
                                 // 무한 스크롤 로직
-                                if hasNextPage, item.id == items[items.count - Self.paginationBuffer].id {
-                                    await fetchItems(page: currentPage + 1)
-                                }
+                                await viewModel.runInfiniteScroll(via: item.id)
                             }
                     }
-
                 }
             }
             .padding()
         }
         .task {
-            if items.isEmpty {
-                await fetchItems(page: 1) // 최초 다운로드
-            }
+            await viewModel.fetchFirstItemsPage()
         }
     }
+}
+
+private extension ItemsListView {
     
-    private func fetchItems(page: Int) async {
-        // [weak self] 신경쓰기! -> 근데 여긴 class 타입의 뷰컨이 아니고 구조체라서 상관 없나? 🤔
-        do {
-            let itemsPage = try await API.FetchItemsPage(pageNo: page, itemsPerPage: 20).asyncExecute()
-            currentPage = itemsPage.pageNo
-            hasNextPage = itemsPage.hasNext
-            items.append(contentsOf: itemsPage.items)
-            print("💚 \(itemsPage.pageNo)번째 페이지 append 완료!")
-        } catch {
-            // Alert 띄우기
-            print("⚠️ ItemsPage 통신 중 에러 발생! -> \(error.localizedDescription)")
-            return
+    final class ItemsListViewModel: ObservableObject {
+        
+        @Published var currentPage: Int = 1
+        @Published var hasNextPage: Bool = false
+        @Published var items: [Item] = []
+        
+        private static let paginationBuffer: Int = 3
+        
+        func runInfiniteScroll(via itemID: Int) async {
+            if hasNextPage, itemID == items[items.count - Self.paginationBuffer].id {
+                await fetchItems(page: currentPage + 1)
+            }
+        }
+        
+        func fetchItems(page: Int) async {
+            do {
+                let itemsPage = try await API.FetchItemsPage(pageNo: page, itemsPerPage: 20).asyncExecute()
+                DispatchQueue.main.async { [weak self] in
+                    self?.currentPage = itemsPage.pageNo
+                    self?.hasNextPage = itemsPage.hasNext
+                    self?.items.append(contentsOf: itemsPage.items)
+                }
+                print("💚 \(itemsPage.pageNo)번째 페이지 append 완료!")
+            } catch {
+                // Alert 띄우기
+                print("⚠️ ItemsPage 통신 중 에러 발생! -> \(error.localizedDescription)")
+                return
+            }
+        }
+        
+        func fetchFirstItemsPage() async {
+            if items.isEmpty {
+                await fetchItems(page: 1)
+            }
         }
     }
 }

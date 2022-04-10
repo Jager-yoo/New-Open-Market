@@ -48,7 +48,7 @@ struct MainView: View {
 
 private extension MainView {
     
-    class MainViewModel: ObservableObject {
+    final class MainViewModel: ObservableObject {
         
         @Published var listMode: Bool = true
         @Published var isServerOn: Bool = true
@@ -56,13 +56,13 @@ private extension MainView {
         func checkServerStatus() async {
             do {
                 let message = try await API.HealthChecker().asyncExecute()
-                DispatchQueue.main.async {
-                    self.isServerOn = (message == "OK")
+                DispatchQueue.main.async { [weak self] in
+                    self?.isServerOn = (message == "OK")
                 }
             } catch {
                 print("⚠️ HealthChecker 통신 중 에러 발생! -> \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    self.isServerOn = false
+                DispatchQueue.main.async { [weak self] in
+                    self?.isServerOn = false
                 }
             }
         }
