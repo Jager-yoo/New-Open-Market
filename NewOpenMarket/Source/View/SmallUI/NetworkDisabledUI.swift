@@ -17,7 +17,9 @@ struct NetworkDisabledUI: View {
                 .padding(.horizontal, 120)
             Text("네트워크 상태가 좋지 않아요\n연결상태를 확인하고\n다시 시도해주세요 😉")
                 .lineSpacing(10)
+                .multilineTextAlignment(.center) // \n 으로 구분한 여러 줄의 Text 의 alignment 조정하는 modifier
         }
         .font(.title)
+        .foregroundColor(.secondary)
     }
 }

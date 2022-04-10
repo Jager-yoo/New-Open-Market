@@ -41,19 +41,18 @@ struct MainView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onAppear {
-            checkServerStatus()
+        .task {
+            isServerOn = await checkServerStatus()
         }
     }
     
-    private func checkServerStatus() {
-        API.HealthChecker().execute { result in
-            switch result {
-            case .success:
-                isServerOn = true
-            case .failure:
-                isServerOn = false
-            }
+    private func checkServerStatus() async -> Bool {
+        do {
+            let message = try await API.HealthChecker().asyncExecute()
+            return message == "OK"
+        } catch {
+            print("⚠️ HealthChecker 통신 중 에러 발생! -> \(error.localizedDescription)")
+            return false
         }
     }
 }

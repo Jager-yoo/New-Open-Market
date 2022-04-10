@@ -97,4 +97,15 @@ extension APIRequest {
         }
         dataTask.resume()
     }
+    
+    func asyncExecute() async throws -> APIResponse {
+        guard let urlRequest = urlRequest else {
+            throw APIError.invalidURLRequest
+        }
+        
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+        let decodedData: APIResponse = try jsonManager.decode(from: data)
+        
+        return decodedData
+    }
 }
