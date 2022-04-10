@@ -103,7 +103,12 @@ extension APIRequest {
             throw APIError.invalidURLRequest
         }
         
-        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+        
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            throw APIError.invalidResponseData
+        }
+        
         let decodedData: APIResponse = try jsonManager.decode(from: data)
         
         return decodedData
