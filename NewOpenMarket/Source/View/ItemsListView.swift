@@ -12,6 +12,7 @@ struct ItemsListView: View {
     @State private var currentPage: Int = 1
     @State private var hasNextPage: Bool = false
     @State private var items: [Item] = []
+    
     private static let paginationBuffer: Int = 3
     
     var body: some View {

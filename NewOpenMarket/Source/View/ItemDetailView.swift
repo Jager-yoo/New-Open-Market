@@ -11,28 +11,29 @@ struct ItemDetailView: View {
     
     @Binding var item: Item
     @State private var itemDetail: Item? = nil
-    private let placeholderText = "로딩 중"
-    private let placeholderURL = URL(string: "")
+    
+    private static let placeholderText = "로딩 중"
+    private static let placeholderURL = URL(string: "")
     
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                AsyncImage(url: itemDetail?.thumbnail ?? placeholderURL) { image in
+                AsyncImage(url: itemDetail?.thumbnail ?? Self.placeholderURL) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
                 }
                 .scaledToFit()
-                Text("1 / \(itemDetail?.imagesCount ?? placeholderText)")
+                Text("1 / \(itemDetail?.imagesCount ?? Self.placeholderText)")
                     .foregroundColor(.teal)
                 Text("(상품 번호 : \(item.id.description))")
                     .foregroundColor(.secondary)
                 ItemStockUI(itemStock: item.stock)
                 ItemPriceUI(item: item)
-                Text("게시자 : \(itemDetail?.vendor?.name ?? placeholderText)")
+                Text("게시자 : \(itemDetail?.vendor?.name ?? Self.placeholderText)")
                 Text("업로드 날짜 : \(item.createdAt.formatted())")
                 Divider()
-                Text("\(itemDetail?.description ?? placeholderText)")
+                Text("\(itemDetail?.description ?? Self.placeholderText)")
                 Spacer()
             }
         }
