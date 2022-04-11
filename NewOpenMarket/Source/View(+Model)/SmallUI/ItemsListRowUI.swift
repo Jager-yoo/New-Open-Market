@@ -1,5 +1,5 @@
 //
-//  ItemsListRowView.swift
+//  ItemsListRowUI.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/08.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ItemsListRowView: View {
+struct ItemsListRowUI: View {
     
     let item: Item
     
@@ -41,11 +41,5 @@ struct ItemsListRowView: View {
             }
             Divider()
         }
-    }
-}
-
-struct ItemsListRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }

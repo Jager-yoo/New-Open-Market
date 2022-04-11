@@ -1,5 +1,5 @@
 //
-//  ItemsListView.swift
+//  ItemsListView+Model.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/08.
@@ -18,7 +18,7 @@ struct ItemsListView: View {
                     NavigationLink {
                         ItemDetailView(item: item.wrappedValue)
                     } label: {
-                        ItemsListRowView(item: item.wrappedValue)
+                        ItemsListRowUI(item: item.wrappedValue)
                             .task {
                                 // 무한 스크롤 로직
                                 await viewModel.runInfiniteScroll(via: item.id)
