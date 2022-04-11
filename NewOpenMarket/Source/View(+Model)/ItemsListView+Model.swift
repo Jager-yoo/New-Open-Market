@@ -68,6 +68,7 @@ private extension ItemsListView {
         @Published var refreshDelay: Bool = false
         
         private static let paginationBuffer: Int = 3
+        private static let refreshDelaySecond: Double = 1.5
         
         func runInfiniteScroll(via itemID: Int) async {
             if hasNextPage, itemID == items[items.count - Self.paginationBuffer].id {
@@ -101,7 +102,7 @@ private extension ItemsListView {
             resetItemsList()
             refreshDelay = true
             await fetchFirstItemsPage()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Self.refreshDelaySecond) {
                 self.refreshDelay = false
             }
         }
