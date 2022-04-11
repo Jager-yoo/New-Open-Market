@@ -9,36 +9,36 @@ import SwiftUI
 
 struct ItemDetailView: View {
     
-    @Binding var item: Item
-    @State private var itemDetail: Item? = nil
+    @StateObject private var viewModel: ItemDetailViewModel
     
-    private static let placeholderText = "로딩 중"
-    private static let placeholderURL = URL(string: "")
+    init(item: Item) {
+        _viewModel = StateObject(wrappedValue: ItemDetailViewModel(item: item))
+    }
     
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                AsyncImage(url: itemDetail?.thumbnail ?? Self.placeholderURL) { image in
+                AsyncImage(url: viewModel.thumbnailURL) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
                 }
                 .scaledToFit()
-                Text("1 / \(itemDetail?.imagesCount ?? Self.placeholderText)")
+                Text(viewModel.imagesCount)
                     .foregroundColor(.teal)
-                Text("(상품 번호 : \(item.id.description))")
+                Text(viewModel.itemID)
                     .foregroundColor(.secondary)
-                ItemStockUI(itemStock: item.stock)
-                ItemPriceUI(item: item)
-                Text("게시자 : \(itemDetail?.vendor?.name ?? Self.placeholderText)")
-                Text("업로드 날짜 : \(item.createdAt.formatted())")
+                ItemStockUI(itemStock: viewModel.item.stock)
+                ItemPriceUI(item: viewModel.item)
+                Text(viewModel.uploaderName)
+                Text(viewModel.uploadDate)
                 Divider()
-                Text("\(itemDetail?.description ?? Self.placeholderText)")
+                Text(viewModel.itemDescription)
                 Spacer()
             }
         }
         .font(.title2)
-        .navigationTitle("\(item.name)")
+        .navigationTitle("\(viewModel.item.name)")
         .toolbar {
             Button {
                 print("수정/삭제 버튼 눌림!")
@@ -47,19 +47,61 @@ struct ItemDetailView: View {
             }
         }
         .task {
-            await fetchItemDetail(itemID: item.id)
+            await viewModel.fetchItemDetail()
             print("💛 ItemDetailView appears task 작동!")
         }
     }
+}
+
+private extension ItemDetailView {
     
-    private func fetchItemDetail(itemID: Int) async {
-        do {
-            let itemDetail = try await API.FetchItemDetail(itemID: itemID).asyncExecute()
-            self.itemDetail = itemDetail
-        } catch {
-            // Alert 띄우기
-            print("⚠️ ItemDetail 통신 중 에러 발생! -> \(error.localizedDescription)")
-            return
+    final class ItemDetailViewModel: ObservableObject {
+        
+        @Published var itemDetail: Item? = nil
+        let item: Item
+        
+        private static let placeholderText = "로딩 중"
+        private static let placeholderURL = URL(string: "https://blog.yagom.net/wp-content/uploads/2020/02/yagom_icon.png")!
+        
+        init(item: Item) {
+            self.item = item
+        }
+        
+        var thumbnailURL: URL {
+            return itemDetail?.thumbnail ?? Self.placeholderURL
+        }
+        
+        var imagesCount: String {
+            return "1 / \(itemDetail?.imagesCount ?? Self.placeholderText)"
+        }
+        
+        var itemID: String {
+            return "(상품 번호 : \(item.id.description))"
+        }
+        
+        var uploaderName: String {
+            return "게시자 : \(itemDetail?.vendor?.name ?? Self.placeholderText)"
+        }
+        
+        var uploadDate: String {
+            return "업로드 날짜 : \(item.createdAt.formatted())"
+        }
+        
+        var itemDescription: String {
+            return "\(itemDetail?.description ?? Self.placeholderText)"
+        }
+        
+        func fetchItemDetail() async {
+            do {
+                let itemDetail = try await API.FetchItemDetail(itemID: item.id).asyncExecute()
+                DispatchQueue.main.async { [weak self] in
+                    self?.itemDetail = itemDetail
+                }
+            } catch {
+                // Alert 띄우기
+                print("⚠️ ItemDetail 통신 중 에러 발생! -> \(error.localizedDescription)")
+                return
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ItemsListRowView: View {
     
-    @Binding var item: Item
+    let item: Item
     
     var body: some View {
         VStack {

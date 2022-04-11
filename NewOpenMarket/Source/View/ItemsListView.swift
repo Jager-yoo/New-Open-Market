@@ -16,9 +16,9 @@ struct ItemsListView: View {
             LazyVStack {
                 ForEach($viewModel.items) { item in
                     NavigationLink {
-                        ItemDetailView(item: item)
+                        ItemDetailView(item: item.wrappedValue)
                     } label: {
-                        ItemsListRowView(item: item)
+                        ItemsListRowView(item: item.wrappedValue)
                             .task {
                                 // 무한 스크롤 로직
                                 await viewModel.runInfiniteScroll(via: item.id)
