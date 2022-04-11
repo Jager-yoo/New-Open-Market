@@ -48,6 +48,7 @@ struct ItemsListView: View {
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
+                .disabled(viewModel.refreshDelay)
             }
         }
         .task {
@@ -64,6 +65,7 @@ private extension ItemsListView {
         @Published var hasNextPage: Bool = false
         @Published var items: [Item] = []
         @Published var listMode: Bool = true
+        @Published var refreshDelay: Bool = false
         
         private static let paginationBuffer: Int = 3
         
@@ -97,7 +99,11 @@ private extension ItemsListView {
         
         func refreshItemsList() async {
             resetItemsList()
+            refreshDelay = true
             await fetchFirstItemsPage()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.refreshDelay = false
+            }
         }
         
         private func resetItemsList() {
