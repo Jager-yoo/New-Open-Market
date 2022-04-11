@@ -28,6 +28,28 @@ struct ItemsListView: View {
             }
             .padding()
         }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Picker("", selection: $viewModel.listMode) {
+                    Image(systemName: "rectangle.grid.1x2").tag(true)
+                    Image(systemName: "rectangle.grid.2x2").tag(false)
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 180)
+            }
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    Task {
+                        print("♻️ 리프레시 작동!")
+                        await viewModel.refreshItemsList()
+                        // FIXME: 어떻게 하면 스크롤 관성을 멈출 수 있을까?
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
+        }
         .task {
             await viewModel.fetchFirstItemsPage()
         }
@@ -41,6 +63,7 @@ private extension ItemsListView {
         @Published var currentPage: Int = 1
         @Published var hasNextPage: Bool = false
         @Published var items: [Item] = []
+        @Published var listMode: Bool = true
         
         private static let paginationBuffer: Int = 3
         
@@ -70,6 +93,17 @@ private extension ItemsListView {
             if items.isEmpty {
                 await fetchItems(page: 1)
             }
+        }
+        
+        func refreshItemsList() async {
+            resetItemsList()
+            await fetchFirstItemsPage()
+        }
+        
+        private func resetItemsList() {
+            items.removeAll()
+            currentPage = 1
+            hasNextPage = false
         }
     }
 }
