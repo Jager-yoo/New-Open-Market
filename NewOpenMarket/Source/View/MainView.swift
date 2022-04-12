@@ -17,7 +17,7 @@ struct MainView: View {
                 if isServerOn {
                     ItemsListView()
                 } else {
-                    NetworkDisabledUI()
+                    ErrorUI()
                 }
             } // if문으로 화면이 분기된 구조를 Group 으로 묶으면, modifier 적용할 수 있음!
             .toolbar {

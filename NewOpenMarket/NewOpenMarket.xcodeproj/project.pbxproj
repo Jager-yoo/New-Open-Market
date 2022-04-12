@@ -35,7 +35,7 @@
 		C1F5A85727FD93DA00AEDF67 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85627FD93DA00AEDF67 /* Vendor.swift */; };
 		C1F5A85927FD943B00AEDF67 /* ImageForResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85827FD943B00AEDF67 /* ImageForResponse.swift */; };
 		C1F5A88827FDC78000AEDF67 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A88727FDC78000AEDF67 /* JSONManager.swift */; };
-		C1FBDBDC280229E70091D910 /* NetworkDisabledUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FBDBDB280229E70091D910 /* NetworkDisabledUI.swift */; };
+		C1FBDBDC280229E70091D910 /* ErrorUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FBDBDB280229E70091D910 /* ErrorUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +79,7 @@
 		C1F5A85827FD943B00AEDF67 /* ImageForResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageForResponse.swift; sourceTree = "<group>"; };
 		C1F5A85E27FD986E00AEDF67 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F5A88727FDC78000AEDF67 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
-		C1FBDBDB280229E70091D910 /* NetworkDisabledUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDisabledUI.swift; sourceTree = "<group>"; };
+		C1FBDBDB280229E70091D910 /* ErrorUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +155,7 @@
 				C13BA1C2280027CF00E07107 /* ItemsListRowUI.swift */,
 				C13BA1C82800A25400E07107 /* ItemStockUI.swift */,
 				C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */,
-				C1FBDBDB280229E70091D910 /* NetworkDisabledUI.swift */,
+				C1FBDBDB280229E70091D910 /* ErrorUI.swift */,
 			);
 			path = SmallUI;
 			sourceTree = "<group>";
@@ -369,7 +369,7 @@
 				C13BA1C3280027CF00E07107 /* ItemsListRowUI.swift in Sources */,
 				C1F5A85727FD93DA00AEDF67 /* Vendor.swift in Sources */,
 				C1F5A84C27FD784E00AEDF67 /* Item.swift in Sources */,
-				C1FBDBDC280229E70091D910 /* NetworkDisabledUI.swift in Sources */,
+				C1FBDBDC280229E70091D910 /* ErrorUI.swift in Sources */,
 				C13BA1A227FEC3CD00E07107 /* APIRequest.swift in Sources */,
 				C13BA1A327FEC3D000E07107 /* HTTPMethod.swift in Sources */,
 				C13BA1C72800355700E07107 /* API+FetchItemDetail.swift in Sources */,

@@ -45,7 +45,7 @@ struct ItemsListView: View {
                 if let preparedItemDetail = preparedItemDetail {
                     ItemDetailView(itemDetail: preparedItemDetail)
                 } else {
-                    NetworkDisabledUI()
+                    ErrorUI()
                 }
             }
         }
@@ -83,7 +83,7 @@ struct ItemsListView: View {
             currentPage = itemsPage.pageNo
             hasNextPage = itemsPage.hasNext
             items.append(contentsOf: itemsPage.items)
-            print("💚 \(itemsPage.pageNo)번째 페이지 append 완료!")
+            print("📃 \(itemsPage.pageNo)번째 페이지 append 완료!")
         } catch {
             // Alert 띄우기
             print("⚠️ ItemsPage 통신 중 에러 발생! -> \(error.localizedDescription)")
@@ -133,7 +133,12 @@ struct ItemsListView: View {
 
 struct ItemsListView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
-            .preferredColorScheme(.dark)
+        Group {
+            MainView()
+                .previewDevice("iPhone 11")
+            
+            MainView()
+                .previewDevice("iPhone SE (3rd generation)")
+        }
     }
 }
