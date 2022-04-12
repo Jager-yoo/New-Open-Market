@@ -18,7 +18,7 @@
 		C13BA1B527FF023800E07107 /* API+AddItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1B427FF023800E07107 /* API+AddItem.swift */; };
 		C13BA1BB27FF2DB500E07107 /* ItemForRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1BA27FF2DB500E07107 /* ItemForRequest.swift */; };
 		C13BA1BD27FF3B9D00E07107 /* ImageForRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1BC27FF3B9D00E07107 /* ImageForRequest.swift */; };
-		C13BA1BF27FF44DE00E07107 /* ItemsListView+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1BE27FF44DE00E07107 /* ItemsListView+Model.swift */; };
+		C13BA1BF27FF44DE00E07107 /* ItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1BE27FF44DE00E07107 /* ItemsListView.swift */; };
 		C13BA1C3280027CF00E07107 /* ItemsListRowUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1C2280027CF00E07107 /* ItemsListRowUI.swift */; };
 		C13BA1C528002A2200E07107 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1C428002A2200E07107 /* ItemDetailView.swift */; };
 		C13BA1C72800355700E07107 /* API+FetchItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1C62800355700E07107 /* API+FetchItemDetail.swift */; };
@@ -60,7 +60,7 @@
 		C13BA1B427FF023800E07107 /* API+AddItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+AddItem.swift"; sourceTree = "<group>"; };
 		C13BA1BA27FF2DB500E07107 /* ItemForRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemForRequest.swift; sourceTree = "<group>"; };
 		C13BA1BC27FF3B9D00E07107 /* ImageForRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageForRequest.swift; sourceTree = "<group>"; };
-		C13BA1BE27FF44DE00E07107 /* ItemsListView+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemsListView+Model.swift"; sourceTree = "<group>"; };
+		C13BA1BE27FF44DE00E07107 /* ItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListView.swift; sourceTree = "<group>"; };
 		C13BA1C2280027CF00E07107 /* ItemsListRowUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListRowUI.swift; sourceTree = "<group>"; };
 		C13BA1C428002A2200E07107 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		C13BA1C62800355700E07107 /* API+FetchItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+FetchItemDetail.swift"; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				C13BA19D27FEB7FE00E07107 /* Network */,
-				C1F5A84A27FD77A200AEDF67 /* View(+Model) */,
+				C1F5A84A27FD77A200AEDF67 /* View */,
 				C1F5A84927FD779C00AEDF67 /* Model */,
 				C1F5A88627FDC76600AEDF67 /* Utility */,
 				C13BA19927FDF99200E07107 /* AppDelegate */,
@@ -205,15 +205,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C1F5A84A27FD77A200AEDF67 /* View(+Model) */ = {
+		C1F5A84A27FD77A200AEDF67 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				C1F5A83B27FD70CB00AEDF67 /* MainView.swift */,
-				C13BA1BE27FF44DE00E07107 /* ItemsListView+Model.swift */,
+				C13BA1BE27FF44DE00E07107 /* ItemsListView.swift */,
 				C13BA1C428002A2200E07107 /* ItemDetailView.swift */,
 				C13BA1CC2800A62700E07107 /* SmallUI */,
 			);
-			path = "View(+Model)";
+			path = View;
 			sourceTree = "<group>";
 		};
 		C1F5A85F27FD986E00AEDF67 /* UnitTests */ = {
@@ -358,7 +358,7 @@
 				C13BA1C528002A2200E07107 /* ItemDetailView.swift in Sources */,
 				C1F5A85927FD943B00AEDF67 /* ImageForResponse.swift in Sources */,
 				C13BA1CB2800A47A00E07107 /* ItemPriceUI.swift in Sources */,
-				C13BA1BF27FF44DE00E07107 /* ItemsListView+Model.swift in Sources */,
+				C13BA1BF27FF44DE00E07107 /* ItemsListView.swift in Sources */,
 				C1F5A88827FDC78000AEDF67 /* JSONManager.swift in Sources */,
 				C1F5A84E27FD7C5D00AEDF67 /* Currency.swift in Sources */,
 				C13BA1B527FF023800E07107 /* API+AddItem.swift in Sources */,
