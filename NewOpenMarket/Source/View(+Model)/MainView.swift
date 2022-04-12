@@ -1,5 +1,5 @@
 //
-//  MainView+Model.swift
+//  MainView.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/06.
@@ -9,12 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     
-    @StateObject private var viewModel = MainViewModel()
+    @State private var isServerOn: Bool = true
     
     var body: some View {
         NavigationView {
             Group {
-                if viewModel.isServerOn {
+                if isServerOn {
                     ItemsListView()
                 } else {
                     NetworkDisabledUI()
@@ -32,29 +32,17 @@ struct MainView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .task {
-            await viewModel.checkServerStatus()
+            await checkServerStatus()
         }
     }
-}
-
-private extension MainView {
     
-    final class MainViewModel: ObservableObject {
-        
-        @Published var isServerOn: Bool = true
-        
-        func checkServerStatus() async {
-            do {
-                let message = try await API.HealthChecker().asyncExecute()
-                DispatchQueue.main.async { [weak self] in
-                    self?.isServerOn = (message == "OK")
-                }
-            } catch {
-                print("⚠️ HealthChecker 통신 중 에러 발생! -> \(error.localizedDescription)")
-                DispatchQueue.main.async { [weak self] in
-                    self?.isServerOn = false
-                }
-            }
+    private func checkServerStatus() async {
+        do {
+            let message = try await API.HealthChecker().asyncExecute()
+            isServerOn = (message == "OK")
+        } catch {
+            print("⚠️ HealthChecker 통신 중 에러 발생! -> \(error.localizedDescription)")
+            isServerOn = false
         }
     }
 }
