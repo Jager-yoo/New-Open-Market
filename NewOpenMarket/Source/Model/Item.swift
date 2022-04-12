@@ -36,11 +36,11 @@ struct Item: Decodable, Identifiable {
     }
     
     var formattedPrice: String {
-        return "\(currency.rawValue) \(price.money)"
+        return "\(currency.rawValue) \(price.asMoney)"
     }
     
     var formattedBargainPrice: String {
-        return "\(currency.rawValue) \(bargainPrice.money)"
+        return "\(currency.rawValue) \(bargainPrice.asMoney)"
     }
     
     var imagesCount: String {
@@ -52,7 +52,7 @@ private extension Double {
     
     private static let numberFormatter = NumberFormatter()
     
-    var money: String {
+    var asMoney: String {
         Self.numberFormatter.numberStyle = .decimal
         let result = Self.numberFormatter.string(for: self) ?? self.description
         return result
