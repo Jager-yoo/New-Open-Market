@@ -15,14 +15,23 @@ struct ItemDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
-                AsyncImage(url: itemDetail.thumbnail) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+            TabView {
+                // FIXME: force unwrapping
+                ForEach(itemDetail.images!) { image in
+                    AsyncImage(url: image.url) { eachImage in
+                        eachImage.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .border(.red, width: 3)
                 }
-                .scaledToFit()
-                
+            }
+            .scaledToFit()
+            .border(.blue, width: 3)
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            
+            VStack(alignment: .leading, spacing: 10) {
                 Text("1 / \(itemDetail.imagesCount)")
                     .foregroundColor(.teal)
                 Text("(상품 번호 : \(itemDetail.id.description))")
@@ -33,7 +42,6 @@ struct ItemDetailView: View {
                 Text("업로드 날짜 : \(itemDetail.createdAt.formatted())")
                 Divider()
                 Text(itemDetail.description ?? Self.placeholderText)
-                Spacer()
             }
         }
         .font(.title2)

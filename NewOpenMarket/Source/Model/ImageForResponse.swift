@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageForResponse: Decodable {
+struct ImageForResponse: Decodable, Identifiable {
     
     let id: Int
     let url: URL
