@@ -38,19 +38,22 @@ struct ItemsListView: View {
                 }
             }
             .padding()
-            
-            // ForEach 또는 LazyVStack 내부에 있게 되면, ListRow 하나가 화면에 그려질 때마다, 계속해서 인스턴스가 불필요하게 생성됨
-            // 따라서, 같은 ScrollView 내부로 분리만 해두면, 스크롤 뷰가 늘어날 때(페이지네이션)랑, 사용자에 의해 눌릴 때만 인스턴스가 생성됨
-            NavigationLink("", isActive: $goingDetail) {
+        }
+        .task {
+            await fetchFirstItemsPage()
+        }
+        .background {
+            // NavigationLink 의 Label 을 EmptyView() 로 두고, background 를 통해 View 뒤로 숨기는 방법
+            // 인스턴스 생성을 최소화할 수 있지만, View 구조체 자체가 새롭게 갱신되는 경우에는 다시 생성된다. (toolbar 도 마찬가지)
+            NavigationLink(isActive: $goingDetail) {
                 if let preparedItemDetail = preparedItemDetail {
                     ItemDetailView(itemDetail: preparedItemDetail)
                 } else {
                     ErrorUI()
                 }
+            } label: {
+                EmptyView()
             }
-        }
-        .task {
-            await fetchFirstItemsPage()
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
