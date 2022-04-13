@@ -25,7 +25,6 @@ struct ItemsListView: View {
             LazyVStack {
                 ForEach($items) { item in
                     Button {
-                        print("✋🏻 탭!!!!")
                         Task {
                             await fetchDetail(itemID: item.id)
                         }
