@@ -54,6 +54,7 @@ struct ItemsListView: View {
             } label: {
                 EmptyView()
             }
+            .hidden() // NavigationLink 자체를 hidden 처리하면, [버튼 모양] 켰을 때 나타나는 작은 사각형이 사라짐!
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
