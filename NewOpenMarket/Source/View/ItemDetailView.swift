@@ -37,7 +37,7 @@ struct ItemDetailView: View {
                 ItemStockUI(itemStock: itemDetail.stock)
                 ItemPriceUI(item: itemDetail)
                 Text("게시자 : \(itemDetail.vendor?.name ?? Self.placeholderText)")
-                Text("업로드 날짜 : \(itemDetail.createdAt.formatted(date: .complete, time: .omitted))")
+                Text("업로드 날짜 : \(itemDetail.createdAt.asDateOnly)")
                 Divider()
                 Text(itemDetail.description ?? Self.placeholderText)
             }
@@ -52,5 +52,16 @@ struct ItemDetailView: View {
                 Image(systemName: "square.and.pencil")
             }
         }
+    }
+}
+
+private extension Date {
+    
+    private static let dateFormatter = DateFormatter()
+    
+    var asDateOnly: String {
+        Self.dateFormatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
+        Self.dateFormatter.dateStyle = .full
+        return Self.dateFormatter.string(from: self)
     }
 }
