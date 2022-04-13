@@ -3,8 +3,8 @@ disabled_rules:
  - trailing_whitespace
 
 included:
- - NewOpenMarket
-
+ - Source
+ 
 opt_in_rules:
  - array_init
  - attributes
@@ -30,4 +30,3 @@ opt_in_rules:
 excluded:
  - Carthage
  - Pods
- - NewOpenMarket/NewOpenMarketApp.swift

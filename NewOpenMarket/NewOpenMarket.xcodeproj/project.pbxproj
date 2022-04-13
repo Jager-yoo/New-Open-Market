@@ -24,13 +24,13 @@
 		C13BA1C72800355700E07107 /* API+FetchItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1C62800355700E07107 /* API+FetchItemDetail.swift */; };
 		C13BA1C92800A25400E07107 /* ItemStockUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1C82800A25400E07107 /* ItemStockUI.swift */; };
 		C13BA1CB2800A47A00E07107 /* ItemPriceUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */; };
+		C1CBED5A2807450E00F783E2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1CBED592807450E00F783E2 /* .swiftlint.yml */; };
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
 		C1F5A83C27FD70CB00AEDF67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83B27FD70CB00AEDF67 /* MainView.swift */; };
 		C1F5A83E27FD70CC00AEDF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */; };
 		C1F5A84827FD756700AEDF67 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A84727FD756700AEDF67 /* Launch Screen.storyboard */; };
 		C1F5A84C27FD784E00AEDF67 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A84B27FD784E00AEDF67 /* Item.swift */; };
 		C1F5A84E27FD7C5D00AEDF67 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */; };
-		C1F5A85127FD7FE400AEDF67 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A85027FD7FE400AEDF67 /* .swiftlint.yml */; };
 		C1F5A85327FD8D7600AEDF67 /* ItemsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */; };
 		C1F5A85727FD93DA00AEDF67 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85627FD93DA00AEDF67 /* Vendor.swift */; };
 		C1F5A85927FD943B00AEDF67 /* ImageForResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A85827FD943B00AEDF67 /* ImageForResponse.swift */; };
@@ -66,6 +66,7 @@
 		C13BA1C62800355700E07107 /* API+FetchItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+FetchItemDetail.swift"; sourceTree = "<group>"; };
 		C13BA1C82800A25400E07107 /* ItemStockUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStockUI.swift; sourceTree = "<group>"; };
 		C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPriceUI.swift; sourceTree = "<group>"; };
+		C1CBED592807450E00F783E2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOpenMarketApp.swift; sourceTree = "<group>"; };
 		C1F5A83B27FD70CB00AEDF67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		C1F5A84727FD756700AEDF67 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C1F5A84B27FD784E00AEDF67 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		C1F5A85027FD7FE400AEDF67 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPage.swift; sourceTree = "<group>"; };
 		C1F5A85627FD93DA00AEDF67 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		C1F5A85827FD943B00AEDF67 /* ImageForResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageForResponse.swift; sourceTree = "<group>"; };
@@ -100,12 +100,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C13BA19927FDF99200E07107 /* AppDelegate */ = {
+		C13BA19927FDF99200E07107 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */,
 			);
-			path = AppDelegate;
+			path = App;
 			sourceTree = "<group>";
 		};
 		C13BA19A27FDF99B00E07107 /* Resource */ = {
@@ -163,7 +163,7 @@
 		C1F5A82D27FD70CB00AEDF67 = {
 			isa = PBXGroup;
 			children = (
-				C1F5A85027FD7FE400AEDF67 /* .swiftlint.yml */,
+				C1CBED592807450E00F783E2 /* .swiftlint.yml */,
 				C1F5A83827FD70CB00AEDF67 /* Source */,
 				C1F5A85F27FD986E00AEDF67 /* UnitTests */,
 				C1F5A83727FD70CB00AEDF67 /* Products */,
@@ -182,11 +182,11 @@
 		C1F5A83827FD70CB00AEDF67 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C13BA19927FDF99200E07107 /* App */,
 				C13BA19D27FEB7FE00E07107 /* Network */,
 				C1F5A84A27FD77A200AEDF67 /* View */,
 				C1F5A84927FD779C00AEDF67 /* Model */,
 				C1F5A88627FDC76600AEDF67 /* Utility */,
-				C13BA19927FDF99200E07107 /* AppDelegate */,
 				C13BA19A27FDF99B00E07107 /* Resource */,
 			);
 			path = Source;
@@ -243,7 +243,7 @@
 				C1F5A83227FD70CB00AEDF67 /* Sources */,
 				C1F5A83327FD70CB00AEDF67 /* Frameworks */,
 				C1F5A83427FD70CB00AEDF67 /* Resources */,
-				C1F5A84F27FD7F6800AEDF67 /* ShellScript */,
+				C1CBED582807426D00F783E2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -315,7 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1F5A85127FD7FE400AEDF67 /* .swiftlint.yml in Resources */,
+				C1CBED5A2807450E00F783E2 /* .swiftlint.yml in Resources */,
 				C1F5A84827FD756700AEDF67 /* Launch Screen.storyboard in Resources */,
 				C1F5A83E27FD70CC00AEDF67 /* Assets.xcassets in Resources */,
 			);
@@ -331,9 +331,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C1F5A84F27FD7F6800AEDF67 /* ShellScript */ = {
+		C1CBED582807426D00F783E2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -344,7 +344,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};

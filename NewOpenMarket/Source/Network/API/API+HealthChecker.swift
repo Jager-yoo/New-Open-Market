@@ -14,7 +14,7 @@ extension API {
         var httpMethod: HTTPMethod = .get
         var path: String = "/healthChecker"
         var query: [String: Int] = [:]
-        var body: Data? = nil
+        var body: Data?
         var headers: [String: String] = [:]
         var responseType = String.self
         

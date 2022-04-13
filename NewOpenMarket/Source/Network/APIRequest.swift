@@ -52,7 +52,7 @@ extension APIRequest {
         
         urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.httpBody = body
-        headers.forEach { (key, value) in
+        headers.forEach { key, value in
             urlRequest.addValue(value, forHTTPHeaderField: key)
         }
         
@@ -91,7 +91,7 @@ extension APIRequest {
             do {
                 let decodedData: APIResponse = try jsonManager.decode(from: data)
                 completion(.success(decodedData))
-            } catch(let error) {
+            } catch {
                 completion(.failure(error))
             }
         }

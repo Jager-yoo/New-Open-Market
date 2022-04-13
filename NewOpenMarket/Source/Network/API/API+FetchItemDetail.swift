@@ -16,7 +16,7 @@ extension API {
             return "/api/products/\(itemID)"
         }
         var query: [String: Int] = [:]
-        var body: Data? = nil
+        var body: Data?
         var headers: [String: String] {
             ["Content-Type": "multipart/form-data; boundary=\(boundary)"]
         }

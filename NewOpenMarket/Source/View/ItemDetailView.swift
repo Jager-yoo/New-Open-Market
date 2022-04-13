@@ -16,18 +16,32 @@ struct ItemDetailView: View {
     var body: some View {
         ScrollView {
             TabView {
-                // FIXME: force unwrapping
-                ForEach(itemDetail.images!) { image in
-                    AsyncImage(url: image.url) { eachImage in
-                        eachImage.resizable()
-                    } placeholder: {
-                        ProgressView()
+                if let itemImages = itemDetail.images {
+                    ForEach(itemImages) { image in
+                        AsyncImage(url: image.url) { eachImage in
+                            eachImage.resizable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .border(.red, width: 3) // TODO: 다음 리팩토링
                     }
-                    .border(.red, width: 3)
+                } else {
+                    Color.secondary
+                        .overlay {
+                            VStack(spacing: 10) {
+                                Image(systemName: "photo.on.rectangle.angled")
+                                    .resizable()
+                                    .scaledToFit()
+                                Text("이미지가 없어요 🥺")
+                            }
+                            .foregroundColor(.black)
+                            .font(.title)
+                            .padding(.vertical, 40)
+                        }
                 }
             }
             .scaledToFit()
-            .border(.blue, width: 3)
+            .border(.blue, width: 3) // TODO: 다음 리팩토링
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             
@@ -58,9 +72,10 @@ struct ItemDetailView: View {
 private extension Date {
     
     private static let dateFormatter = DateFormatter()
+    private static let defaultPreferredLanguage = "ko-KR"
     
     var asDateOnly: String {
-        Self.dateFormatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
+        Self.dateFormatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? Self.defaultPreferredLanguage)
         Self.dateFormatter.dateStyle = .full
         return Self.dateFormatter.string(from: self)
     }

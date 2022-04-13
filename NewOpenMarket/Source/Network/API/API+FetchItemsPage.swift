@@ -19,7 +19,7 @@ extension API {
                 "items_per_page": itemsPerPage
             ]
         } // 쿼리 딕셔너리는 작성된 순서와 반대로 URL 뒤에 달라붙게 됨!
-        var body: Data? = nil
+        var body: Data?
         var headers: [String: String] {
             ["Content-Type": "multipart/form-data; boundary=\(boundary)"]
         }

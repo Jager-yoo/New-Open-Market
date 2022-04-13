@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct NewOpenMarketApp: App {
+    
     var body: some Scene {
         WindowGroup {
             MainView()
