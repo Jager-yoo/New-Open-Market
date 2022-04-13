@@ -28,21 +28,20 @@ struct ItemDetailView: View {
             }
             .scaledToFit()
             .border(.blue, width: 3)
-            .tabViewStyle(.page(indexDisplayMode: .always))
+            .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             
             VStack(alignment: .leading, spacing: 10) {
-                Text("1 / \(itemDetail.imagesCount)")
-                    .foregroundColor(.teal)
                 Text("(상품 번호 : \(itemDetail.id.description))")
                     .foregroundColor(.secondary)
                 ItemStockUI(itemStock: itemDetail.stock)
                 ItemPriceUI(item: itemDetail)
                 Text("게시자 : \(itemDetail.vendor?.name ?? Self.placeholderText)")
-                Text("업로드 날짜 : \(itemDetail.createdAt.formatted())")
+                Text("업로드 날짜 : \(itemDetail.createdAt.formatted(date: .complete, time: .omitted))")
                 Divider()
                 Text(itemDetail.description ?? Self.placeholderText)
             }
+            .padding()
         }
         .font(.title2)
         .navigationTitle("\(itemDetail.name)")
