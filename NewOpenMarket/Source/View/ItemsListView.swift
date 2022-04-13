@@ -24,17 +24,18 @@ struct ItemsListView: View {
         ScrollView {
             LazyVStack {
                 ForEach($items) { item in
-                    ItemsListRowUI(item: item.wrappedValue)
-                        .task {
-                            // 무한 스크롤 로직
-                            await runInfiniteScroll(via: item.id)
+                    Button {
+                        print("✋🏻 탭!!!!")
+                        Task {
+                            await fetchDetail(itemID: item.id)
                         }
-                        .onTapGesture {
-                            print("✋🏻 탭!!!!")
-                            Task {
-                                await fetchDetail(itemID: item.id)
+                    } label: {
+                        ItemsListRowUI(item: item.wrappedValue)
+                            .task {
+                                // 무한 스크롤 로직
+                                await runInfiniteScroll(via: item.id)
                             }
-                        }
+                    }
                 }
             }
             .padding()
