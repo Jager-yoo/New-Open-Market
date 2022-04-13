@@ -12,15 +12,26 @@ struct ItemPriceUI: View {
     let item: Item
     
     var body: some View {
-        if item.discountedPrice == 0 {
-            Text("\(item.formattedPrice)")
-                .foregroundColor(.secondary)
-        } else {
-            Text("\(item.formattedPrice)")
-                .foregroundColor(.red)
-                .strikethrough()
-            Text("\(item.formattedBargainPrice)")
-                .foregroundColor(.secondary)
+        Group {
+            if isFree {
+                Text("나눔 🧡")
+            } else if isDiscounted {
+                Text("\(item.formattedPrice)")
+                    .foregroundColor(.red)
+                    .strikethrough()
+                Text("\(item.formattedBargainPrice)")
+            } else {
+                Text("\(item.formattedPrice)") // 정상 가격
+            }
         }
+        .foregroundColor(.secondary)
+    }
+    
+    private var isDiscounted: Bool {
+        item.discountedPrice > 0
+    }
+    
+    private var isFree: Bool {
+        item.price.isZero || item.bargainPrice.isZero
     }
 }
