@@ -16,6 +16,7 @@ struct ItemsListView: View {
     @State private var delayingRefresh: Bool = false
     @State private var goingDetail: Bool = false
     @State private var preparedItemDetail: Item?
+    @State private var addingItem: Bool = false
     
     private static let paginationBuffer: Int = 3
     private static let refreshDelaySecond: Double = 1.5
@@ -58,10 +59,15 @@ struct ItemsListView: View {
         }
         .overlay(alignment: .bottomTrailing) {
             Button {
-                print("동그라미 눌림!!!")
+                print("🟡 동그라미 눌림!!!")
+                addingItem = true
             } label: {
-                AddItemButtonUI()
+                addItemButton
             }
+            .padding()
+        }
+        .fullScreenCover(isPresented: $addingItem) {
+            ItemAddView(isActive: $addingItem)
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -86,6 +92,19 @@ struct ItemsListView: View {
                 .disabled(delayingRefresh)
             }
         }
+    }
+    
+    private var addItemButton: some View {
+        Circle()
+            .fill(.orange)
+            .frame(width: 70, height: 70)
+            .shadow(radius: 3)
+            .overlay {
+                Image(systemName: "plus")
+                    .resizable()
+                    .foregroundColor(.white)
+                    .padding(20)
+            }
     }
     
     private func fetchItems(page: Int) async {
