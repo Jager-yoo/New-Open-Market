@@ -11,6 +11,8 @@ struct PageStyleImageViewerUI: View {
     
     let itemImages: [ImageForResponse]?
     
+    private static let screenWidth = UIScreen.main.bounds.width
+    
     var body: some View {
         TabView {
             if let itemImages = itemImages {
@@ -20,7 +22,6 @@ struct PageStyleImageViewerUI: View {
                     } placeholder: {
                         ProgressView()
                     }
-                    .border(.red, width: 3) // TODO: 다음 리팩토링
                 }
             } else {
                 Color.secondary
@@ -37,8 +38,7 @@ struct PageStyleImageViewerUI: View {
                     }
             }
         }
-        .scaledToFit()
-        .border(.blue, width: 3) // TODO: 다음 리팩토링
+        .frame(width: Self.screenWidth, height: Self.screenWidth)
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
