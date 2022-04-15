@@ -22,6 +22,10 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            // 이 코드는 메서드의 상단부에 있어야 함
+            // 왜냐면, 사용자가 사진을 선택하거나, 아니면 [취소] 버튼을 눌렀을 때 모두 이 메서드가 호출되거든. guard문 아래에 있으면 dismiss 되질 않음
+            picker.dismiss(animated: true)
+            
             guard let provider = results.first?.itemProvider else { return }
             
             if provider.canLoadObject(ofClass: UIImage.self) {
@@ -30,8 +34,6 @@ struct ImagePicker: UIViewControllerRepresentable {
                     self.parent.selectedImages.append(convertedAsUIImage)
                 }
             }
-            
-            picker.dismiss(animated: true)
         }
     }
     
