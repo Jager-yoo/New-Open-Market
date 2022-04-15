@@ -10,35 +10,51 @@ import SwiftUI
 struct ItemAddView: View {
     
     @Binding var isActive: Bool
+    @State private var isPicking: Bool = false
+    @State private var images: [UIImage] = []
+    
+    private static let maxImagesLimit = 5
     
     var body: some View {
         NavigationView {
             ScrollView {
-                ScrollView(.horizontal) {
-                    Button {
-                        print("📸 이미지 추가 버튼 눌림!")
-                    } label: {
-                        Color.clear
-                            .frame(width: 100, height: 100)
-                            .overlay {
-                                VStack {
-                                    Image(systemName: "camera.fill")
-                                    Text("1 / 5")
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        Button {
+                            isPicking = true
+                        } label: {
+                            Color.clear
+                                .frame(width: 100, height: 100)
+                                .overlay {
+                                    VStack {
+                                        Image(systemName: "camera.fill")
+                                        Text("\(images.count)")
+                                            .foregroundColor(.orange)
+                                        + Text(" / \(Self.maxImagesLimit)")
+                                    }
+                                    .font(.title3)
                                 }
-                                .font(.title3)
-                            }
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .strokeBorder()
-                            }
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .strokeBorder()
+                                }
+                        }
+                        .foregroundColor(.secondary)
+                        .sheet(isPresented: $isPicking) {
+                            ImagePicker(selectedImages: $images)
+                        }
+                        
+                        ForEach(images, id: \.self) { image in
+                            Image(uiImage: image)
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .cornerRadius(10)
+                        }
                     }
-                    .foregroundColor(.secondary)
-                    
-                    // 추가되는 이미지들
-                    
+                    .padding()
                 }
-                .padding()
                 
+                Divider()
             }
             .navigationTitle("상품 등록")
             .navigationBarTitleDisplayMode(.inline)

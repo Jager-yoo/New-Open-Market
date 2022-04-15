@@ -59,7 +59,6 @@ struct ItemsListView: View {
         }
         .overlay(alignment: .bottomTrailing) {
             Button {
-                print("🟡 동그라미 눌림!!!")
                 addingItem = true
             } label: {
                 addItemButton

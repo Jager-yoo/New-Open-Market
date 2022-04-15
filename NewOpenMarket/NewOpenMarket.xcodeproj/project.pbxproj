@@ -25,6 +25,7 @@
 		C13BA1C92800A25400E07107 /* ItemStockUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1C82800A25400E07107 /* ItemStockUI.swift */; };
 		C13BA1CB2800A47A00E07107 /* ItemPriceUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */; };
 		C1476A09280953A7007561CD /* ItemAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1476A08280953A7007561CD /* ItemAddView.swift */; };
+		C1476A0B28097119007561CD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1476A0A28097119007561CD /* ImagePicker.swift */; };
 		C1CBED5A2807450E00F783E2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1CBED592807450E00F783E2 /* .swiftlint.yml */; };
 		C1CBED5C2807651F00F783E2 /* PageStyleImageViewerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */; };
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
@@ -69,6 +70,7 @@
 		C13BA1C82800A25400E07107 /* ItemStockUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStockUI.swift; sourceTree = "<group>"; };
 		C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPriceUI.swift; sourceTree = "<group>"; };
 		C1476A08280953A7007561CD /* ItemAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAddView.swift; sourceTree = "<group>"; };
+		C1476A0A28097119007561CD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C1CBED592807450E00F783E2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageStyleImageViewerUI.swift; sourceTree = "<group>"; };
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				C1F5A88727FDC78000AEDF67 /* JSONManager.swift */,
+				C1476A0A28097119007561CD /* ImagePicker.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				C13BA1C528002A2200E07107 /* ItemDetailView.swift in Sources */,
 				C1F5A85927FD943B00AEDF67 /* ImageForResponse.swift in Sources */,
 				C13BA1CB2800A47A00E07107 /* ItemPriceUI.swift in Sources */,
+				C1476A0B28097119007561CD /* ImagePicker.swift in Sources */,
 				C13BA1BF27FF44DE00E07107 /* ItemsListView.swift in Sources */,
 				C1F5A88827FDC78000AEDF67 /* JSONManager.swift in Sources */,
 				C1F5A84E27FD7C5D00AEDF67 /* Currency.swift in Sources */,
