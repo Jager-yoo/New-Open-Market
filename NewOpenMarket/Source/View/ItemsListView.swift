@@ -56,6 +56,13 @@ struct ItemsListView: View {
             }
             .hidden() // NavigationLink 자체를 hidden 처리하면, [버튼 모양] 켰을 때 나타나는 작은 사각형이 사라짐!
         }
+        .overlay(alignment: .bottomTrailing) {
+            Button {
+                print("동그라미 눌림!!!")
+            } label: {
+                AddItemButtonUI()
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $listMode) {
