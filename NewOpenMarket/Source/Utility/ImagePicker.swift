@@ -42,8 +42,8 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
-        var configuration = PHPickerConfiguration() // photoLibrary: .shared()
-        configuration.filter = .images
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images // images 안에는 livePhotos 포함되어 있음!
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = context.coordinator

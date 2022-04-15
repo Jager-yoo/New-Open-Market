@@ -10,18 +10,19 @@ import SwiftUI
 struct ItemAddView: View {
     
     @Binding var isActive: Bool
-    @State private var isPicking: Bool = false
     @State private var images: [UIImage] = []
+    @State private var isPicking: Bool = false
     @State private var isReachedImagesLimit: Bool = false
     
     /// ImagePicker 로 선택할 수 있는 최대 이미지 개수
-    private static let imagesLimit = 5
+    private static let imagesLimit: Int = 5
+    private static let boxWidth: CGFloat = 100
+    private static let boxCornerRadius: CGFloat = 10
     
     var body: some View {
         NavigationView {
             ScrollView {
                 imagesController
-                
                 Divider()
             }
             .navigationTitle("상품 등록")
@@ -52,7 +53,7 @@ struct ItemAddView: View {
                         isReachedImagesLimit = true
                     }
                 } label: {
-                    addImageButton
+                    addImageBox
                 }
                 .foregroundColor(.secondary)
                 .sheet(isPresented: $isPicking) {
@@ -62,20 +63,15 @@ struct ItemAddView: View {
                     AlertManager.imagesCountReached(Self.imagesLimit)
                 }
                 
-                ForEach(images, id: \.self) { image in
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(10)
-                }
+                selectedImageBoxes
             }
             .padding()
         }
     }
     
-    private var addImageButton: some View {
+    private var addImageBox: some View {
         Color.clear
-            .frame(width: 100, height: 100)
+            .frame(width: Self.boxWidth, height: Self.boxWidth)
             .overlay {
                 VStack {
                     Image(systemName: "camera.fill")
@@ -83,12 +79,31 @@ struct ItemAddView: View {
                         .foregroundColor(.orange)
                     + Text(" / \(Self.imagesLimit)")
                 }
-                .font(.title3)
+                .font(Font.system(size: 20))
             }
             .overlay {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: Self.boxCornerRadius)
                     .strokeBorder()
             }
+    }
+    
+    private var selectedImageBoxes: some View {
+        ForEach(images.indices, id: \.self) { index in
+            Image(uiImage: images[index])
+                .resizable()
+                .frame(width: Self.boxWidth, height: Self.boxWidth)
+                .cornerRadius(Self.boxCornerRadius)
+                .overlay {
+                    Button {
+                        images.remove(at: index)
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .frame(width: Self.boxWidth / 4, height: Self.boxWidth / 4)
+                    }
+                    .offset(x: Self.boxWidth / 2, y: -Self.boxWidth / 2)
+                }
+        }
     }
 }
 
