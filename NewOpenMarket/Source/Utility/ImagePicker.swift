@@ -26,11 +26,13 @@ struct ImagePicker: UIViewControllerRepresentable {
             // 왜냐면, 사용자가 사진을 선택하거나, 아니면 [취소] 버튼을 눌렀을 때 모두 이 메서드가 호출되거든. guard문 아래에 있으면 dismiss 되질 않음
             picker.dismiss(animated: true)
             
-            guard let provider = results.first?.itemProvider else { return }
+            // results 배열을 forEach 를 돌리면서 append 하면, 이미지 5장 제한을 넘기면서 첨부할 수 있으므로, 1장 씩 첨부 가능하도록 함
+            // 아래 코드는 이미지 multi-selection 에도 대응할 수 있는 코드임. 이미지 제한 정책이 변경되어도 아래 코드는 수정할 필요 없음!
+            let providers = results.compactMap { $0.itemProvider }.filter { $0.canLoadObject(ofClass: UIImage.self) }
             
-            if provider.canLoadObject(ofClass: UIImage.self) {
-                provider.loadObject(ofClass: UIImage.self) { image, _ in
-                    guard let convertedAsUIImage = image as? UIImage else { return }
+            providers.forEach { provider in
+                provider.loadObject(ofClass: UIImage.self) { image, error in
+                    guard let convertedAsUIImage = image as? UIImage, error == nil else { return }
                     self.parent.selectedImages.append(convertedAsUIImage)
                 }
             }
