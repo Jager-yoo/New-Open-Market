@@ -13,6 +13,12 @@ struct ItemAddView: View {
     @State private var images: [UIImage] = []
     @State private var isPicking: Bool = false
     @State private var isReachedImagesLimit: Bool = false
+    @State private var itemName: String = ""
+    @State private var itemPrice: String = ""
+    @State private var itemCurrency: Currency = .krw
+    @State private var itemDiscount: String = ""
+    @State private var itemStock: String = ""
+    @State private var itemDescriptions: String = ""
     
     /// ImagePicker 로 선택할 수 있는 최대 이미지 개수
     private static let imagesLimit: Int = 5
@@ -22,8 +28,29 @@ struct ItemAddView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                imagesController
-                Divider()
+                VStack(spacing: 20) {
+                    imagesController
+                    
+                    TextField("상품 이름", text: $itemName)
+                    HStack {
+                        TextField("상품 가격", text: $itemPrice)
+                            .keyboardType(.numberPad)
+                        Picker("", selection: $itemCurrency) {
+                            Text(Currency.krw.rawValue).tag(Currency.krw)
+                            Text(Currency.usd.rawValue).tag(Currency.usd)
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 120)
+                    }
+                    TextField("할인 금액", text: $itemDiscount)
+                        .keyboardType(.numberPad)
+                    TextField("재고 수량", text: $itemStock)
+                        .keyboardType(.numberPad)
+                    
+                    TextEditorWithPlaceholder(text: $itemDescriptions, placeholder: "상품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!", minHeight: 250)
+                }
+                .textFieldStyle(.roundedBorder)
+                .padding()
             }
             .navigationTitle("상품 등록")
             .navigationBarTitleDisplayMode(.inline)
@@ -65,7 +92,6 @@ struct ItemAddView: View {
                 
                 selectedImageBoxes
             }
-            .padding()
         }
     }
     
