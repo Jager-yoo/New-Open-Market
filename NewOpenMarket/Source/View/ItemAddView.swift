@@ -62,7 +62,7 @@ struct ItemAddView: View {
                         .focused($isFocused, equals: .descriptions)
                 }
                 .textFieldStyle(.roundedBorder)
-                .padding()
+                .padding(.horizontal)
             }
             .navigationTitle("상품 등록")
             .navigationBarTitleDisplayMode(.inline)
@@ -135,6 +135,7 @@ struct ItemAddView: View {
                 
                 selectedImageBoxes
             }
+            .padding(.top, 10)
         }
     }
     
@@ -160,6 +161,7 @@ struct ItemAddView: View {
         ForEach(images.indices, id: \.self) { index in
             Image(uiImage: images[index])
                 .resizable()
+                .scaledToFill()
                 .frame(width: Self.boxWidth, height: Self.boxWidth)
                 .cornerRadius(Self.boxCornerRadius)
                 .overlay {
