@@ -19,6 +19,7 @@ struct ItemAddView: View {
     @State private var itemDiscount: String = ""
     @State private var itemStock: String = ""
     @State private var itemDescriptions: String = ""
+    @FocusState private var isFocused: Field?
     
     /// ImagePicker 로 선택할 수 있는 최대 이미지 개수
     private static let imagesLimit: Int = 5
@@ -32,9 +33,16 @@ struct ItemAddView: View {
                     imagesController
                     
                     TextField("상품 이름", text: $itemName)
+                        .focused($isFocused, equals: .name)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            isFocused = .price
+                        }
                     HStack {
                         TextField("상품 가격", text: $itemPrice)
                             .keyboardType(.numberPad)
+                            .focused($isFocused, equals: .price)
+                            .submitLabel(.next)
                         Picker("", selection: $itemCurrency) {
                             Text(Currency.krw.rawValue).tag(Currency.krw)
                             Text(Currency.usd.rawValue).tag(Currency.usd)
@@ -44,10 +52,13 @@ struct ItemAddView: View {
                     }
                     TextField("할인 금액", text: $itemDiscount)
                         .keyboardType(.numberPad)
+                        .focused($isFocused, equals: .discount)
                     TextField("재고 수량", text: $itemStock)
                         .keyboardType(.numberPad)
+                        .focused($isFocused, equals: .stock)
                     
                     TextEditorWithPlaceholder(text: $itemDescriptions, placeholder: "상품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!", minHeight: 250)
+                        .focused($isFocused, equals: .descriptions)
                 }
                 .textFieldStyle(.roundedBorder)
                 .padding()
@@ -65,6 +76,11 @@ struct ItemAddView: View {
                 
                 ToolbarItem(placement: .confirmationAction) {
                     Text("완료")
+                }
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    keyboardAddOn
                 }
             }
         }
@@ -129,6 +145,60 @@ struct ItemAddView: View {
                     }
                     .offset(x: Self.boxWidth / 2, y: -Self.boxWidth / 2)
                 }
+        }
+    }
+    
+    private var keyboardAddOn: some View {
+        HStack {
+            Button {
+                if isFocused?.rawValue == Field.first {
+                    isFocused = nil
+                } else {
+                    isFocused = Field(rawValue: (isFocused?.rawValue ?? Field.first) - 1) // 실패하면 nil 할당
+                }
+            } label: {
+                Image(systemName: "chevron.up")
+            }
+            
+            Divider()
+            
+            Button {
+                if isFocused?.rawValue == Field.last {
+                    isFocused = nil
+                } else {
+                    isFocused = Field(rawValue: (isFocused?.rawValue ?? Field.last) + 1) // 실패하면 nil 할당
+                }
+            } label: {
+                Image(systemName: "chevron.down")
+            }
+            
+            Spacer()
+            
+            Button {
+                isFocused = nil
+            } label: {
+                Image(systemName: "keyboard.chevron.compact.down")
+            }
+        }
+    }
+}
+
+private extension ItemAddView {
+    
+    enum Field: Int, CaseIterable, Hashable {
+        
+        case name
+        case price
+        case discount
+        case stock
+        case descriptions
+        
+        static var first: Int {
+            .zero
+        }
+        
+        static var last: Int {
+            Self.allCases.count - 1
         }
     }
 }
