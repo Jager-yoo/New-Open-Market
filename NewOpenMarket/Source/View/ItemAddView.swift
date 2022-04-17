@@ -58,7 +58,7 @@ struct ItemAddView: View {
                         .keyboardType(.numberPad)
                         .focused($isFocused, equals: .stock)
                     
-                    TextEditorWithPlaceholder(text: $itemDescriptions, placeholder: "상품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!", minHeight: 250)
+                    TextEditorCustom(text: $itemDescriptions, placeholder: "상품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!", textLimit: 1000, minHeight: 200)
                         .focused($isFocused, equals: .descriptions)
                 }
                 .textFieldStyle(.roundedBorder)

@@ -26,7 +26,7 @@
 		C13BA1CB2800A47A00E07107 /* ItemPriceUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */; };
 		C1476A09280953A7007561CD /* ItemAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1476A08280953A7007561CD /* ItemAddView.swift */; };
 		C1476A0B28097119007561CD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1476A0A28097119007561CD /* ImagePicker.swift */; };
-		C1476A0F280AFF2B007561CD /* TextEditorWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1476A0E280AFF2B007561CD /* TextEditorWithPlaceholder.swift */; };
+		C1476A0F280AFF2B007561CD /* TextEditorCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1476A0E280AFF2B007561CD /* TextEditorCustom.swift */; };
 		C1CBED5A2807450E00F783E2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1CBED592807450E00F783E2 /* .swiftlint.yml */; };
 		C1CBED5C2807651F00F783E2 /* PageStyleImageViewerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */; };
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
@@ -72,7 +72,7 @@
 		C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPriceUI.swift; sourceTree = "<group>"; };
 		C1476A08280953A7007561CD /* ItemAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAddView.swift; sourceTree = "<group>"; };
 		C1476A0A28097119007561CD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		C1476A0E280AFF2B007561CD /* TextEditorWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorWithPlaceholder.swift; sourceTree = "<group>"; };
+		C1476A0E280AFF2B007561CD /* TextEditorCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorCustom.swift; sourceTree = "<group>"; };
 		C1CBED592807450E00F783E2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageStyleImageViewerUI.swift; sourceTree = "<group>"; };
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +164,7 @@
 				C13BA1C82800A25400E07107 /* ItemStockUI.swift */,
 				C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */,
 				C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */,
-				C1476A0E280AFF2B007561CD /* TextEditorWithPlaceholder.swift */,
+				C1476A0E280AFF2B007561CD /* TextEditorCustom.swift */,
 				C1FBDBDB280229E70091D910 /* ErrorUI.swift */,
 			);
 			path = SmallUI;
@@ -387,7 +387,7 @@
 				C1476A09280953A7007561CD /* ItemAddView.swift in Sources */,
 				C13BA1A327FEC3D000E07107 /* HTTPMethod.swift in Sources */,
 				C13BA1C72800355700E07107 /* API+FetchItemDetail.swift in Sources */,
-				C1476A0F280AFF2B007561CD /* TextEditorWithPlaceholder.swift in Sources */,
+				C1476A0F280AFF2B007561CD /* TextEditorCustom.swift in Sources */,
 				C1CBED5C2807651F00F783E2 /* PageStyleImageViewerUI.swift in Sources */,
 				C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */,
 				C13BA1AA27FEF1A300E07107 /* API.swift in Sources */,
