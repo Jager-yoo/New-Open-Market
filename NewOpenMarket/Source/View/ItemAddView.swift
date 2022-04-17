@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemAddView: View {
     
     @Binding var isActive: Bool
+    @FocusState private var isFocused: Field?
     @State private var images: [UIImage] = []
     @State private var isPicking: Bool = false
     @State private var isReachedImagesLimit: Bool = false
@@ -20,7 +21,6 @@ struct ItemAddView: View {
     @State private var itemStock: String = ""
     @State private var itemDescriptions: String = ""
     @State private var isShowingAlert: ItemAlert?
-    @FocusState private var isFocused: Field?
     
     /// ImagePicker 로 선택할 수 있는 최대 이미지 개수
     private static let imagesLimit: Int = 5
@@ -76,29 +76,7 @@ struct ItemAddView: View {
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
-                    Button {
-                        if images.isEmpty {
-                            isShowingAlert = .emptyImages
-                        } else if !(3...100).contains(itemName.count) {
-                            isShowingAlert = .invalidName
-                            isFocused = .name
-                        } else if itemPrice.isEmpty {
-                            isShowingAlert = .invalidPrice
-                            isFocused = .price
-                        } else if Int(itemDiscount) ?? .zero > Int(itemPrice)! {
-                            isShowingAlert = .invalidDiscount
-                            itemDiscount = ""
-                            isFocused = .discount
-                        } else if !(10...1000).contains(itemDescriptions.count) {
-                            isShowingAlert = .invalidDescriptions
-                            isFocused = .descriptions
-                        }
-                    } label: {
-                        Text("완료")
-                    }
-                    .alert(using: $isShowingAlert) { alert in
-                        alert.show
-                    }
+                    validateButton
                 }
             }
             .toolbar {
@@ -174,6 +152,32 @@ struct ItemAddView: View {
                     }
                     .offset(x: Self.boxWidth / 2, y: -Self.boxWidth / 2)
                 }
+        }
+    }
+    
+    private var validateButton: some View {
+        Button {
+            if images.isEmpty {
+                isShowingAlert = .emptyImages
+            } else if !(3...100).contains(itemName.count) {
+                isShowingAlert = .invalidName
+                isFocused = .name
+            } else if itemPrice.isEmpty {
+                isShowingAlert = .invalidPrice
+                isFocused = .price
+            } else if Int(itemDiscount) ?? .zero > Int(itemPrice)! {
+                isShowingAlert = .invalidDiscount
+                itemDiscount = ""
+                isFocused = .discount
+            } else if !(10...1000).contains(itemDescriptions.count) {
+                isShowingAlert = .invalidDescriptions
+                isFocused = .descriptions
+            }
+        } label: {
+            Text("완료")
+        }
+        .alert(using: $isShowingAlert) { alert in
+            alert.show
         }
     }
     

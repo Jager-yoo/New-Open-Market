@@ -44,6 +44,5 @@ struct TextEditorCustom: View {
             .font(.footnote)
             .foregroundColor(Color(uiColor: .placeholderText))
         }
-        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
