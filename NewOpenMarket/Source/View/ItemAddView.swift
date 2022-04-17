@@ -19,6 +19,7 @@ struct ItemAddView: View {
     @State private var itemDiscount: String = ""
     @State private var itemStock: String = ""
     @State private var itemDescriptions: String = ""
+    @State private var isShowingAlert: ItemAlert?
     @FocusState private var isFocused: Field?
     
     /// ImagePicker 로 선택할 수 있는 최대 이미지 개수
@@ -29,7 +30,7 @@ struct ItemAddView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: 10) {
                     imagesController
                     
                     TextField("상품 이름", text: $itemName)
@@ -75,7 +76,29 @@ struct ItemAddView: View {
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
-                    Text("완료")
+                    Button {
+                        if images.isEmpty {
+                            isShowingAlert = .emptyImages
+                        } else if !(3...100).contains(itemName.count) {
+                            isShowingAlert = .invalidName
+                            isFocused = .name
+                        } else if itemPrice.isEmpty {
+                            isShowingAlert = .invalidPrice
+                            isFocused = .price
+                        } else if Int(itemDiscount) ?? .zero > Int(itemPrice)! {
+                            isShowingAlert = .invalidDiscount
+                            itemDiscount = ""
+                            isFocused = .discount
+                        } else if !(10...1000).contains(itemDescriptions.count) {
+                            isShowingAlert = .invalidDescriptions
+                            isFocused = .descriptions
+                        }
+                    } label: {
+                        Text("완료")
+                    }
+                    .alert(using: $isShowingAlert) { alert in
+                        alert.show
+                    }
                 }
             }
             .toolbar {
@@ -103,7 +126,11 @@ struct ItemAddView: View {
                     ImagePicker(selectedImages: $images)
                 }
                 .alert(isPresented: $isReachedImagesLimit) {
-                    AlertManager.imagesCountReached(Self.imagesLimit)
+                    Alert(
+                        title: Text("알림"),
+                        message: Text("이미지는 최대 \(Self.imagesLimit)장까지 첨부할 수 있어요 😅"),
+                        dismissButton: .default(Text("알겠어요"))
+                    )
                 }
                 
                 selectedImageBoxes
@@ -141,7 +168,7 @@ struct ItemAddView: View {
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .resizable()
-                            .frame(width: Self.boxWidth / 4, height: Self.boxWidth / 4)
+                            .frame(width: Self.boxWidth / 5, height: Self.boxWidth / 5)
                     }
                     .offset(x: Self.boxWidth / 2, y: -Self.boxWidth / 2)
                 }
@@ -199,6 +226,64 @@ private extension ItemAddView {
         
         static var last: Int {
             Self.allCases.count - 1
+        }
+    }
+    
+    enum ItemAlert {
+        
+        case emptyImages
+        case invalidName
+        case invalidPrice
+        case invalidDiscount
+        case invalidDescriptions
+        
+        var show: Alert {
+            switch self {
+            case .emptyImages:
+                return Alert(
+                    title: Text("알림"),
+                    message: Text("이미지는 최소 1장 첨부해주세요"),
+                    dismissButton: .default(Text("알겠어요"))
+                )
+            case .invalidName:
+                return Alert(
+                    title: Text("알림"),
+                    message: Text("상품 이름은 3 ~ 100 글자 사이로 입력해주세요"),
+                    dismissButton: .default(Text("알겠어요"))
+                )
+            case .invalidPrice:
+                return Alert(
+                    title: Text("알림"),
+                    message: Text("상품 가격을 입력해주세요"),
+                    dismissButton: .default(Text("알겠어요"))
+                )
+            case .invalidDiscount:
+                return Alert(
+                    title: Text("알림"),
+                    message: Text("할인가는 가격을 초과할 수 없어요"),
+                    dismissButton: .default(Text("알겠어요"))
+                )
+            case .invalidDescriptions:
+                return Alert(
+                    title: Text("알림"),
+                    message: Text("상품 정보는 10 ~ 1,000 글자 사이로 입력해주세요"),
+                    dismissButton: .default(Text("알겠어요"))
+                )
+            }
+        }
+    }
+}
+
+private extension View {
+    
+    func alert<Value>(using value: Binding<Value?>, content: (Value) -> Alert) -> some View {
+        let binding = Binding<Bool>(
+            get: { value.wrappedValue != nil },
+            set: { _ in value.wrappedValue = nil }
+        )
+        
+        return alert(isPresented: binding) {
+            content(value.wrappedValue!)
         }
     }
 }
