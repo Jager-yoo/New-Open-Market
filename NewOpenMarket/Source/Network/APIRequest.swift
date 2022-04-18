@@ -24,13 +24,16 @@ protocol APIRequest {
 extension APIRequest {
     
     var identifier: String {
-        // !!!: [설정] 화면에서 이걸 변경할 수 있게 해도 좋을 듯. 로그인 하는 느낌으로!
         return "a3daae1d-7215-11ec-abfa-57090eab9093"
     }
     
     var boundary: String {
-        // !!!: 호출될 때 마다 boundary 가 달라지면, 에러날 수도 있음!
-        return UUID().uuidString
+        // 호출될 때 마다 boundary 가 달라지면, 에러날 수도 있음! (연산 프로퍼티 주의)
+        return "XXXXXX"
+    }
+    
+    var lineBreak: String {
+        return "\r\n"
     }
     
     var baseURLString: String {
@@ -105,7 +108,9 @@ extension APIRequest {
         
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...201).contains(httpResponse.statusCode) else {
+            print("⚠️ status code -> \((response as? HTTPURLResponse)?.statusCode)")
             throw APIError.invalidResponseData
         }
         
