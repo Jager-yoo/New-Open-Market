@@ -17,6 +17,7 @@ struct ItemsListView: View {
     @State private var goingDetail: Bool = false
     @State private var preparedItemDetail: Item?
     @State private var addingItem: Bool = false
+    @State private var isItemAddSuccess: Bool = false
     
     private static let paginationBuffer: Int = 3
     private static let refreshDelaySecond: Double = 1.5
@@ -66,7 +67,15 @@ struct ItemsListView: View {
             .padding()
         }
         .fullScreenCover(isPresented: $addingItem) {
-            ItemAddView(isActive: $addingItem)
+            ItemAddView(isActive: $addingItem, isItemAddSuccess: $isItemAddSuccess)
+                .onDisappear {
+                    Task {
+                        if isItemAddSuccess {
+                            await refreshItemsList()
+                            isItemAddSuccess = false
+                        }
+                    }
+                }
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
