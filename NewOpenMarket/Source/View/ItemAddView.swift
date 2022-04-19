@@ -10,17 +10,22 @@ import SwiftUI
 struct ItemAddView: View {
     
     @Binding var isActive: Bool
+    @Binding var isItemAddSuccess: Bool
     @FocusState private var isFocused: Field?
     @State private var images: [UIImage] = []
     @State private var isPicking: Bool = false
-    @State private var isReachedImagesLimit: Bool = false
     @State private var itemName: String = ""
     @State private var itemPrice: String = ""
     @State private var itemCurrency: Currency = .krw
     @State private var itemDiscount: String = ""
     @State private var itemStock: String = ""
     @State private var itemDescriptions: String = ""
-    @State private var isShowingAlert: ItemAlert?
+    @State private var isShowingAlert: Bool = false
+    @State private var itemAlerts: ItemAlert? {
+        didSet {
+            isShowingAlert = true // itemAlerts 를 할당하면 바로 Alert 자동으로 띄움
+        }
+    }
     
     /// ImagePicker 로 선택할 수 있는 최대 이미지 개수
     private static let imagesLimit: Int = 5
@@ -76,7 +81,7 @@ struct ItemAddView: View {
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
-                    validateButton
+                    submitButton
                 }
             }
             .toolbar {
@@ -94,7 +99,7 @@ struct ItemAddView: View {
                     if images.count < Self.imagesLimit {
                         isPicking = true
                     } else {
-                        isReachedImagesLimit = true
+                        itemAlerts = .imagesCountLimit
                     }
                 } label: {
                     addImageBox
@@ -102,13 +107,6 @@ struct ItemAddView: View {
                 .foregroundColor(.secondary)
                 .sheet(isPresented: $isPicking) {
                     ImagePicker(selectedImages: $images)
-                }
-                .alert(isPresented: $isReachedImagesLimit) {
-                    Alert(
-                        title: Text("알림"),
-                        message: Text("이미지는 최대 \(Self.imagesLimit)장까지 첨부할 수 있어요 😅"),
-                        dismissButton: .default(Text("알겠어요"))
-                    )
                 }
                 
                 selectedImageBoxes
@@ -155,29 +153,26 @@ struct ItemAddView: View {
         }
     }
     
-    private var validateButton: some View {
+    private var submitButton: some View {
         Button {
-            if images.isEmpty {
-                isShowingAlert = .emptyImages
-            } else if !(3...100).contains(itemName.count) {
-                isShowingAlert = .invalidName
-                isFocused = .name
-            } else if itemPrice.isEmpty {
-                isShowingAlert = .invalidPrice
-                isFocused = .price
-            } else if Int(itemDiscount) ?? .zero > Int(itemPrice)! {
-                isShowingAlert = .invalidDiscount
-                itemDiscount = ""
-                isFocused = .discount
-            } else if !(10...1000).contains(itemDescriptions.count) {
-                isShowingAlert = .invalidDescriptions
-                isFocused = .descriptions
+            if validateItem() {
+                Task {
+                    await addItem()
+                }
             }
         } label: {
             Text("완료")
         }
-        .alert(using: $isShowingAlert) { alert in
-            alert.show
+        .alert("알림", isPresented: $isShowingAlert, presenting: itemAlerts) { alert in
+            Button {
+                if alert == .addItemSuccess {
+                    isActive = false
+                }
+            } label: {
+                Text(alert == .addItemSuccess ? "좋아요" : "알겠어요")
+            }
+        } message: { alert in
+            Text(alert.message)
         }
     }
     
@@ -214,6 +209,43 @@ struct ItemAddView: View {
             }
         }
     }
+    
+    private func addItem() async {
+        do {
+            _ = try await API.AddItem(images: images, name: itemName, descriptions: itemDescriptions, currency: itemCurrency, price: itemPrice, discount: itemDiscount, stock: itemStock).asyncExecute()
+            itemAlerts = .addItemSuccess
+            isItemAddSuccess = true // ListView 에 성공 여부 알림
+        } catch {
+            print("⚠️ AddItem 통신 중 에러 발생! -> \(error)")
+            itemAlerts = .addItemFail
+        }
+    }
+    
+    private func validateItem() -> Bool {
+        if images.isEmpty {
+            itemAlerts = .emptyImages
+            return false
+        } else if !(3...100).contains(itemName.count) {
+            itemAlerts = .invalidName
+            isFocused = .name
+            return false
+        } else if itemPrice.isEmpty {
+            itemAlerts = .invalidPrice
+            isFocused = .price
+            return false
+        } else if Double(itemDiscount) ?? .zero > Double(itemPrice)! {
+            itemAlerts = .invalidDiscount
+            itemDiscount = ""
+            isFocused = .discount
+            return false
+        } else if !(10...1000).contains(itemDescriptions.count) {
+            itemAlerts = .invalidDescriptions
+            isFocused = .descriptions
+            return false
+        }
+        
+        return true
+    }
 }
 
 private extension ItemAddView {
@@ -238,64 +270,39 @@ private extension ItemAddView {
     enum ItemAlert {
         
         case emptyImages
+        case imagesCountLimit
         case invalidName
         case invalidPrice
         case invalidDiscount
         case invalidDescriptions
+        case addItemFail
+        case addItemSuccess
         
-        var show: Alert {
+        var message: String {
             switch self {
             case .emptyImages:
-                return Alert(
-                    title: Text("알림"),
-                    message: Text("이미지는 최소 1장 첨부해주세요"),
-                    dismissButton: .default(Text("알겠어요"))
-                )
+                return "이미지는 최소 1장 첨부해주세요"
+            case .imagesCountLimit:
+                return "이미지는 최대 \(imagesLimit)장까지 첨부할 수 있어요 😅"
             case .invalidName:
-                return Alert(
-                    title: Text("알림"),
-                    message: Text("상품 이름은 3 ~ 100 글자 사이로 입력해주세요"),
-                    dismissButton: .default(Text("알겠어요"))
-                )
+                return "상품 이름은 3 ~ 100 글자 사이로 입력해주세요"
             case .invalidPrice:
-                return Alert(
-                    title: Text("알림"),
-                    message: Text("상품 가격을 입력해주세요"),
-                    dismissButton: .default(Text("알겠어요"))
-                )
+                return "상품 가격을 입력해주세요"
             case .invalidDiscount:
-                return Alert(
-                    title: Text("알림"),
-                    message: Text("할인가는 가격을 초과할 수 없어요"),
-                    dismissButton: .default(Text("알겠어요"))
-                )
+                return "할인가는 가격을 초과할 수 없어요"
             case .invalidDescriptions:
-                return Alert(
-                    title: Text("알림"),
-                    message: Text("상품 정보는 10 ~ 1,000 글자 사이로 입력해주세요"),
-                    dismissButton: .default(Text("알겠어요"))
-                )
+                return "상품 정보는 10 ~ 1,000 글자 사이로 입력해주세요"
+            case .addItemFail:
+                return "상품 등록에 실패했습니다 🥲"
+            case .addItemSuccess:
+                return "상품이 성공적으로 등록됐습니다 🥰"
             }
-        }
-    }
-}
-
-private extension View {
-    
-    func alert<Value>(using value: Binding<Value?>, content: (Value) -> Alert) -> some View {
-        let binding = Binding<Bool>(
-            get: { value.wrappedValue != nil },
-            set: { _ in value.wrappedValue = nil }
-        )
-        
-        return alert(isPresented: binding) {
-            content(value.wrappedValue!)
         }
     }
 }
 
 struct ItemAddView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemAddView(isActive: .constant(true))
+        ItemAddView(isActive: .constant(true), isItemAddSuccess: .constant(false))
     }
 }
