@@ -28,6 +28,7 @@
 		C1476A0F280AFF2B007561CD /* TextEditorCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1476A0E280AFF2B007561CD /* TextEditorCustom.swift */; };
 		C1CBED5A2807450E00F783E2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1CBED592807450E00F783E2 /* .swiftlint.yml */; };
 		C1CBED5C2807651F00F783E2 /* PageStyleImageViewerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */; };
+		C1F0946B28106E3A004BC28C /* FullCoverProgressUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F0946A28106E3A004BC28C /* FullCoverProgressUI.swift */; };
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
 		C1F5A83C27FD70CB00AEDF67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83B27FD70CB00AEDF67 /* MainView.swift */; };
 		C1F5A83E27FD70CC00AEDF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1F5A83D27FD70CC00AEDF67 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		C1476A0E280AFF2B007561CD /* TextEditorCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorCustom.swift; sourceTree = "<group>"; };
 		C1CBED592807450E00F783E2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageStyleImageViewerUI.swift; sourceTree = "<group>"; };
+		C1F0946A28106E3A004BC28C /* FullCoverProgressUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCoverProgressUI.swift; sourceTree = "<group>"; };
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOpenMarketApp.swift; sourceTree = "<group>"; };
 		C1F5A83B27FD70CB00AEDF67 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				C13BA1CA2800A47A00E07107 /* ItemPriceUI.swift */,
 				C1CBED5B2807651F00F783E2 /* PageStyleImageViewerUI.swift */,
 				C1476A0E280AFF2B007561CD /* TextEditorCustom.swift */,
+				C1F0946A28106E3A004BC28C /* FullCoverProgressUI.swift */,
 				C1FBDBDB280229E70091D910 /* ErrorUI.swift */,
 			);
 			path = SmallUI;
@@ -377,6 +380,7 @@
 				C1F5A85327FD8D7600AEDF67 /* ItemsPage.swift in Sources */,
 				C13BA1C3280027CF00E07107 /* ItemsListRowUI.swift in Sources */,
 				C1F5A85727FD93DA00AEDF67 /* Vendor.swift in Sources */,
+				C1F0946B28106E3A004BC28C /* FullCoverProgressUI.swift in Sources */,
 				C1F5A84C27FD784E00AEDF67 /* Item.swift in Sources */,
 				C1FBDBDC280229E70091D910 /* ErrorUI.swift in Sources */,
 				C13BA1A227FEC3CD00E07107 /* APIRequest.swift in Sources */,

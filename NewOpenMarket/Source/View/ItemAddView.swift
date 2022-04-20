@@ -20,6 +20,7 @@ struct ItemAddView: View {
     @State private var itemDiscount: String = ""
     @State private var itemStock: String = ""
     @State private var itemDescriptions: String = ""
+    @State private var isSubmitting: Bool = false
     @State private var isShowingAlert: Bool = false
     @State private var itemAlerts: ItemAlert? {
         didSet {
@@ -89,6 +90,9 @@ struct ItemAddView: View {
                     keyboardAddOn
                 }
             }
+        }
+        .overlay {
+            FullCoverProgressUI(task: $isSubmitting)
         }
     }
     
@@ -212,9 +216,11 @@ struct ItemAddView: View {
     
     private func addItem() async {
         do {
+            isSubmitting = true
             _ = try await API.AddItem(images: images, name: itemName, descriptions: itemDescriptions, currency: itemCurrency, price: itemPrice, discount: itemDiscount, stock: itemStock).asyncExecute()
             itemAlerts = .addItemSuccess
             isItemAddSuccess = true // ListView 에 성공 여부 알림
+            isSubmitting = false
         } catch {
             print("⚠️ AddItem 통신 중 에러 발생! -> \(error)")
             itemAlerts = .addItemFail
