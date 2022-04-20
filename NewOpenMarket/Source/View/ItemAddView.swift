@@ -224,6 +224,7 @@ struct ItemAddView: View {
         } catch {
             print("⚠️ AddItem 통신 중 에러 발생! -> \(error)")
             itemAlerts = .addItemFail
+            isSubmitting = false
         }
     }
     
