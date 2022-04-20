@@ -26,16 +26,16 @@ extension API {
             
             body.append("--\(boundary)" + lineBreak)
             body.append("Content-Disposition: form-data; name=\"params\"" + lineBreak)
-            body.append("Content-Type: application/json" + lineBreak + lineBreak)
+            body.append("Content-Type: application/json" + lineBreak + lineBreak) // 여기 반드시 lineBreak 2개 필요!
             body.append(encodedItem)
-            body.append(lineBreak + lineBreak)
+            body.append(lineBreak)
             
             imagesAsData.forEach { imageData in
                 body.append("--\(boundary)" + lineBreak)
                 body.append("Content-Disposition: form-data; name=\"images\"; filename=\"\(UUID().uuidString).jpeg\"" + lineBreak)
-                body.append("Content-Type: image/jpeg" + lineBreak + lineBreak)
+                body.append("Content-Type: image/jpeg" + lineBreak + lineBreak) // 여기 반드시 lineBreak 2개 필요!
                 body.append(imageData)
-                body.append(lineBreak + lineBreak)
+                body.append(lineBreak)
             }
             
             body.append("--\(boundary)--")
