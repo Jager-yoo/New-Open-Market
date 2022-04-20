@@ -104,7 +104,7 @@ struct ItemsListView: View {
     
     private var addItemButton: some View {
         Circle()
-            .fill(.orange)
+            .fill(AngularGradient(colors: [.orange, .yellow, .orange], center: .center))
             .frame(width: 70, height: 70)
             .shadow(radius: 3)
             .overlay {
