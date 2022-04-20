@@ -11,5 +11,5 @@ enum APIError: Error {
     
     case invalidURL
     case invalidURLRequest
-    case invalidResponseData
+    case invalidServerResponse
 }

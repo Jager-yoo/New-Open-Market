@@ -82,12 +82,12 @@ extension APIRequest {
             
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
-                completion(.failure(APIError.invalidResponseData))
+                completion(.failure(APIError.invalidServerResponse))
                 return
             }
             
             guard let data = data else {
-                completion(.failure(APIError.invalidResponseData))
+                completion(.failure(APIError.invalidServerResponse))
                 return
             }
             
@@ -108,10 +108,13 @@ extension APIRequest {
         
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200...201).contains(httpResponse.statusCode) else {
-            print("⚠️ status code -> \((response as? HTTPURLResponse)?.statusCode)")
-            throw APIError.invalidResponseData
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw APIError.invalidServerResponse
+        }
+        
+        guard (200...201).contains(httpResponse.statusCode) else {
+            print("⚠️ Status Code -> \(httpResponse.statusCode)")
+            throw APIError.invalidServerResponse
         }
         
         let decodedData: APIResponse = try jsonManager.decode(from: data)

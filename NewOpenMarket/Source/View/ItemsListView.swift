@@ -64,7 +64,7 @@ struct ItemsListView: View {
             } label: {
                 addItemButton
             }
-            .padding()
+            .padding(25)
         }
         .fullScreenCover(isPresented: $addingItem) {
             ItemAddView(isActive: $addingItem, isItemAddSuccess: $isItemAddSuccess)
