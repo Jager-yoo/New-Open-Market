@@ -19,27 +19,28 @@ extension API {
                 return nil
             }
             
-            var bodyTest = Data()
+            // FIXME: 이미지를 '압축' 하고 편집해서 POST 하는 과정에서 뭔가 왜곡이 일어나는 것 같음. 고화질 이미지의 경우, 아주 일부분만 편집돼 업로드되는 현상을 발견함!
+            // 사이즈가 굉장히 큰 이미지는 720px 정방형으로 잘리면서, 썸네일에 올라가는 반면, 원래 사이즈가 그대로 보존되면서 url 에 올라가는 현상도 관찰함
             
-            bodyTest.append("--\(boundary)\(lineBreak)".data(using: .utf8)!)
-            bodyTest.append("Content-Disposition: form-data; name=\"params\"\(lineBreak)".data(using: .utf8)!)
-            bodyTest.append("Content-Type: application/json\(lineBreak)".data(using: .utf8)!)
-            bodyTest.append(lineBreak.data(using: .utf8)!)
-            bodyTest.append(encodedItem)
-            bodyTest.append("\(lineBreak)\(lineBreak)".data(using: .utf8)!)
+            var body = Data()
             
-            images.forEach { imageData in
-                bodyTest.append("--\(boundary)\(lineBreak)".data(using: .utf8)!)
-                bodyTest.append("Content-Disposition: form-data; name=\"images\"; filename=\"\(UUID().uuidString).jpeg\"\(lineBreak)".data(using: .utf8)!)
-                bodyTest.append("Content-Type: image/jpeg\(lineBreak)".data(using: .utf8)!)
-                bodyTest.append(lineBreak.data(using: .utf8)!)
-                bodyTest.append(imageData)
-                bodyTest.append("\(lineBreak)\(lineBreak)".data(using: .utf8)!)
+            body.append("--\(boundary)" + lineBreak)
+            body.append("Content-Disposition: form-data; name=\"params\"" + lineBreak)
+            body.append("Content-Type: application/json" + lineBreak + lineBreak)
+            body.append(encodedItem)
+            body.append(lineBreak + lineBreak)
+            
+            imagesAsData.forEach { imageData in
+                body.append("--\(boundary)" + lineBreak)
+                body.append("Content-Disposition: form-data; name=\"images\"; filename=\"\(UUID().uuidString).jpeg\"" + lineBreak)
+                body.append("Content-Type: image/jpeg" + lineBreak + lineBreak)
+                body.append(imageData)
+                body.append(lineBreak + lineBreak)
             }
             
-            bodyTest.append("--\(boundary)--".data(using: .utf8)!)
+            body.append("--\(boundary)--")
             
-            return bodyTest
+            return body
         }
         var headers: [String: String] {
             [
@@ -50,11 +51,11 @@ extension API {
         var responseType = Item.self
         
         private let item: ItemForRequest
-        private let images: [Data]
+        private let imagesAsData: [Data]
         
         init(images: [UIImage], name: String, descriptions: String, currency: Currency, price: String, discount: String, stock: String) {
             self.item = ItemForRequest(name: name, descriptions: descriptions, currency: currency, price: price, discount: discount, stock: stock)
-            self.images = images.compactMap { $0.jpegData(compressionQuality: .zero) }
+            self.imagesAsData = images.compactMap { $0.jpegData(compressionQuality: .zero) }
         }
     }
 }
