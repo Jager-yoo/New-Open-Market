@@ -34,4 +34,11 @@ final class APIRequestTests: XCTestCase {
         XCTAssertNotNil(itemDetail.images)
         XCTAssertNotNil(itemDetail.vendor)
     }
+    
+    func test_API_FindItemSecret_response_검증() async throws {
+        let secretData = try await API.FindItemSecret(itemID: 1976).asyncExecute()
+        let secret = String(data: secretData, encoding: .utf8)!
+        
+        XCTAssertEqual(secret, "ff4fca09-c0dc-11ec-9676-859225f9cd04")
+    }
 }
