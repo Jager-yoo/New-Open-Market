@@ -27,6 +27,10 @@ extension APIRequest {
         return "a3daae1d-7215-11ec-abfa-57090eab9093"
     }
     
+    var vendorSecret: String {
+        return "#YAkY88u7cpy2K@9"
+    }
+    
     var boundary: String {
         // 호출될 때 마다 boundary 가 달라지면, 에러날 수도 있음! (연산 프로퍼티 주의)
         return "XXXXXX"
@@ -117,6 +121,8 @@ extension APIRequest {
             throw APIError.invalidServerResponse
         }
         
+        // 만약 APIResponse 가 Data 타입이라면, jsonManager.decode 메서드 내부에서 아무 처리를 하지 않고, data 파라미터를 바로 리턴하게 설계함
+        // Data 타입을, 다시 Data 타입으로 디코딩하게 되면 'The data couldn't be read because it isn't in the correct format.' 에러 뜸
         let decodedData: APIResponse = try jsonManager.decode(from: data)
         
         return decodedData
