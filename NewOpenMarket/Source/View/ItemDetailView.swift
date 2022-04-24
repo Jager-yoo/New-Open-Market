@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemDetailView: View {
     
     @State private var isEditable: Bool = false
+    @State private var isShowingSheet: Bool = false
     @State private var itemSecret: String?
     let itemDetail: Item
     
@@ -36,7 +37,7 @@ struct ItemDetailView: View {
         .toolbar {
             if isEditable {
                 Button {
-                    print("수정/삭제 버튼 눌림!")
+                    isShowingSheet = true
                 } label: {
                     Image(systemName: "square.and.pencil")
                 }
@@ -49,6 +50,31 @@ struct ItemDetailView: View {
                     isEditable = true
                     itemSecret = String(data: itemSecretData, encoding: .utf8)
                 }
+            }
+        }
+        .confirmationDialog("", isPresented: $isShowingSheet) {
+            sheetButtons
+        }
+    }
+    
+    private var sheetButtons: some View {
+        Group {
+            Button {
+                // 상품 수정 모달 올라옴
+            } label: {
+                Text("상품 수정")
+            }
+            
+            Button(role: .destructive) {
+                // 상품 삭제 작동
+            } label: {
+                Text("상품 삭제")
+            }
+            
+            Button(role: .cancel) {
+                isShowingSheet = false
+            } label: {
+                Text("취소")
             }
         }
     }
