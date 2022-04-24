@@ -43,14 +43,3 @@ struct Item: Decodable, Identifiable {
         return "\(currency.rawValue) \(bargainPrice.asMoney)"
     }
 }
-
-private extension Double {
-    
-    private static let numberFormatter = NumberFormatter()
-    
-    var asMoney: String {
-        Self.numberFormatter.numberStyle = .decimal
-        let result = Self.numberFormatter.string(for: self) ?? self.description
-        return result
-    }
-}
