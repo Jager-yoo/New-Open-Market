@@ -16,7 +16,7 @@ struct ItemsListView: View {
     @State private var delayingRefresh: Bool = false
     @State private var goingDetail: Bool = false
     @State private var preparedItemDetail: Item?
-    @State private var addingItem: Bool = false
+    @State private var isAddingItem: Bool = false
     @State private var shouldRefreshList: Bool = false
     
     private static let paginationBuffer: Int = 3
@@ -68,13 +68,13 @@ struct ItemsListView: View {
         }
         .overlay(alignment: .bottomTrailing) {
             Button {
-                addingItem = true
+                isAddingItem = true
             } label: {
                 addItemButton
             }
             .padding(25)
         }
-        .fullScreenCover(isPresented: $addingItem, onDismiss: {
+        .fullScreenCover(isPresented: $isAddingItem, onDismiss: {
             Task {
                 if shouldRefreshList {
                     await refreshItemsList()
@@ -82,7 +82,7 @@ struct ItemsListView: View {
                 }
             }
         }, content: {
-            ItemAddView(isActive: $addingItem, shouldRefreshList: $shouldRefreshList)
+            ItemAddView(isActive: $isAddingItem, shouldRefreshList: $shouldRefreshList)
         })
         .toolbar {
             ToolbarItem(placement: .principal) {
