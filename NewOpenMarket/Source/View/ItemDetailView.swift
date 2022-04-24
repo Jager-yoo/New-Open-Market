@@ -11,7 +11,10 @@ struct ItemDetailView: View {
     
     @State private var isEditable: Bool = false
     @State private var isShowingSheet: Bool = false
+    @State private var isShowingAlert: Bool = false
     @State private var itemSecret: String?
+    @Binding var isActive: Bool
+    @Binding var shouldRefreshList: Bool
     let itemDetail: Item
     
     private static let placeholderText = "로딩 실패"
@@ -55,6 +58,16 @@ struct ItemDetailView: View {
         .confirmationDialog("", isPresented: $isShowingSheet) {
             sheetButtons
         }
+        .alert("알림", isPresented: $isShowingAlert) {
+            Button {
+                isActive = false
+                shouldRefreshList = true
+            } label: {
+                Text("리스트로 돌아가요")
+            }
+        } message: {
+            Text("상품이 삭제됐어요")
+        }
     }
     
     private var sheetButtons: some View {
@@ -66,7 +79,19 @@ struct ItemDetailView: View {
             }
             
             Button(role: .destructive) {
-                // 상품 삭제 작동
+                Task {
+                    guard let itemSecret = itemSecret else {
+                        return
+                    }
+                    
+                    let deleteResponse = try await API.DeleteItem(itemID: itemDetail.id, itemSecret: itemSecret).asyncExecute()
+                    
+                    guard deleteResponse.id == itemDetail.id else {
+                        return
+                    }
+                    
+                    isShowingAlert = true
+                }
             } label: {
                 Text("상품 삭제")
             }

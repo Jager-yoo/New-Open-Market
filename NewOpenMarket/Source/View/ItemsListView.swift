@@ -17,7 +17,7 @@ struct ItemsListView: View {
     @State private var goingDetail: Bool = false
     @State private var preparedItemDetail: Item?
     @State private var addingItem: Bool = false
-    @State private var isItemAddSuccess: Bool = false
+    @State private var shouldRefreshList: Bool = false
     
     private static let paginationBuffer: Int = 3
     private static let refreshDelaySecond: Double = 1.5
@@ -49,7 +49,15 @@ struct ItemsListView: View {
             // 인스턴스 생성을 최소화할 수 있지만, View 구조체 자체가 새롭게 갱신되는 경우에는 다시 생성된다. (toolbar 도 마찬가지)
             NavigationLink(isActive: $goingDetail) {
                 if let preparedItemDetail = preparedItemDetail {
-                    ItemDetailView(itemDetail: preparedItemDetail)
+                    ItemDetailView(isActive: $goingDetail, shouldRefreshList: $shouldRefreshList, itemDetail: preparedItemDetail)
+                        .onDisappear {
+                            Task {
+                                if shouldRefreshList {
+                                    await refreshItemsList()
+                                    shouldRefreshList = false
+                                }
+                            }
+                        }
                 } else {
                     ErrorUI()
                 }
@@ -66,17 +74,16 @@ struct ItemsListView: View {
             }
             .padding(25)
         }
-        .fullScreenCover(isPresented: $addingItem) {
-            ItemAddView(isActive: $addingItem, isItemAddSuccess: $isItemAddSuccess)
-                .onDisappear {
-                    Task {
-                        if isItemAddSuccess {
-                            await refreshItemsList()
-                            isItemAddSuccess = false
-                        }
-                    }
+        .fullScreenCover(isPresented: $addingItem, onDismiss: {
+            Task {
+                if shouldRefreshList {
+                    await refreshItemsList()
+                    shouldRefreshList = false
                 }
-        }
+            }
+        }, content: {
+            ItemAddView(isActive: $addingItem, shouldRefreshList: $shouldRefreshList)
+        })
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $listMode) {

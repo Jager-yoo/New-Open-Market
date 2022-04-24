@@ -10,7 +10,7 @@ import SwiftUI
 struct ItemAddView: View {
     
     @Binding var isActive: Bool
-    @Binding var isItemAddSuccess: Bool
+    @Binding var shouldRefreshList: Bool
     @FocusState private var isFocused: Field?
     @State private var images: [UIImage] = []
     @State private var isPicking: Bool = false
@@ -219,7 +219,7 @@ struct ItemAddView: View {
             isSubmitting = true
             _ = try await API.AddItem(images: images, name: itemName, descriptions: itemDescriptions, currency: itemCurrency, price: itemPrice, discount: itemDiscount, stock: itemStock).asyncExecute()
             itemAlerts = .addItemSuccess
-            isItemAddSuccess = true // ListView 에 성공 여부 알림
+            shouldRefreshList = true // ListView 에 성공 여부 알림
             isSubmitting = false
         } catch {
             print("⚠️ AddItem 통신 중 에러 발생! -> \(error)")
@@ -310,6 +310,6 @@ private extension ItemAddView {
 
 struct ItemAddView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemAddView(isActive: .constant(true), isItemAddSuccess: .constant(false))
+        ItemAddView(isActive: .constant(true), shouldRefreshList: .constant(false))
     }
 }
