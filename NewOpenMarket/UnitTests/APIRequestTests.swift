@@ -35,10 +35,31 @@ final class APIRequestTests: XCTestCase {
         XCTAssertNotNil(itemDetail.vendor)
     }
     
-    func test_API_FindItemSecret_response_검증() async throws {
-        let secretData = try await API.FindItemSecret(itemID: 1976).asyncExecute()
+    func test_API_AddItem_FindItemSecret_DeleteItem_통합_검증() async throws {
+        // 서버에 아이템 등록
+        let testImage = [UIImage(named: "image_sample")!]
+        let addResponse = try await API.AddItem(
+            images: testImage,
+            name: "테스트",
+            descriptions: "유닛 테스트를 통한 자동 업로드입니다.",
+            currency: .krw,
+            price: "1000",
+            discount: "",
+            stock: ""
+        ).asyncExecute()
+        
+        XCTAssertEqual(addResponse.name, "테스트")
+        XCTAssertEqual(addResponse.description, "유닛 테스트를 통한 자동 업로드입니다.")
+        
+        // 등록한 아이템의 삭제를 위한 Secret 확인
+        let secretData = try await API.FindItemSecret(itemID: addResponse.id).asyncExecute()
         let secret = String(data: secretData, encoding: .utf8)!
         
-        XCTAssertEqual(secret, "ff4fca09-c0dc-11ec-9676-859225f9cd04")
+        XCTAssertFalse(secret.isEmpty)
+        
+        // 아이템 삭제 요청
+        let deleteResponse = try await API.DeleteItem(itemID: addResponse.id, itemSecret: secret).asyncExecute()
+        
+        XCTAssertEqual(deleteResponse.id, addResponse.id)
     }
 }
