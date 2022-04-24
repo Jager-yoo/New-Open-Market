@@ -37,9 +37,9 @@ final class APIRequestTests: XCTestCase {
     
     func test_API_AddItem_FindItemSecret_DeleteItem_통합_검증() async throws {
         // 서버에 아이템 등록
-        let testImage = [UIImage(named: "image_sample")!]
+        let sampleImages = [UIImage(named: "image1_sample")!, UIImage(named: "image2_sample")!]
         let addResponse = try await API.AddItem(
-            images: testImage,
+            images: sampleImages,
             name: "테스트",
             descriptions: "유닛 테스트를 통한 자동 업로드입니다.",
             currency: .krw,
