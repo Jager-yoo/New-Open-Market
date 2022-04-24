@@ -82,7 +82,7 @@ struct ItemsListView: View {
                 }
             }
         }, content: {
-            ItemAddView(isActive: $isAddingItem, shouldRefreshList: $shouldRefreshList)
+            ItemFormView(isActive: $isAddingItem, shouldRefreshList: $shouldRefreshList)
         })
         .toolbar {
             ToolbarItem(placement: .principal) {

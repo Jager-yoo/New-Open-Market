@@ -76,7 +76,7 @@ struct ItemDetailView: View {
             // 쉬운 루트 -> List 로 내보내고 리프레시
             // 어려운 루트 -> ItemDetailView 리프레시
         }, content: {
-            ItemAddView(isActive: $isEditingItem, shouldRefreshList: $shouldRefreshList)
+            ItemFormView(isActive: $isEditingItem, editableItem: itemDetail, shouldRefreshList: $shouldRefreshList)
         })
     }
     

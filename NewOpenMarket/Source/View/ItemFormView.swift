@@ -1,5 +1,5 @@
 //
-//  ItemAddView.swift
+//  ItemFormView.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/15.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ItemAddView: View {
+struct ItemFormView: View {
     
     @Binding var isActive: Bool
     @Binding var shouldRefreshList: Bool
@@ -27,11 +27,34 @@ struct ItemAddView: View {
             isShowingAlert = true // itemAlerts 를 할당하면 바로 Alert 자동으로 띄움
         }
     }
+    let editMode: Bool
     
     /// ImagePicker 로 선택할 수 있는 최대 이미지 개수
     private static let imagesLimit: Int = 5
     private static let boxWidth: CGFloat = 100
     private static let boxCornerRadius: CGFloat = 10
+    
+    init(isActive: Binding<Bool>, editableItem: Item? = nil, shouldRefreshList: Binding<Bool>) {
+        self._isActive = isActive
+        self._shouldRefreshList = shouldRefreshList
+        
+        guard let editableItem = editableItem, let uneditableImages = editableItem.images else {
+            editMode = false
+            return
+        }
+        
+        // 여기부터는 [상품 수정] 목적으로 사용할 경우
+        editMode = true
+        
+        let uneditableImagesData = uneditableImages.compactMap { try? Data(contentsOf: $0.thumbnailURL) }
+        _images = State(wrappedValue: uneditableImagesData.compactMap { UIImage(data: $0) })
+        _itemName = State(wrappedValue: editableItem.name)
+        _itemPrice = State(wrappedValue: editableItem.price.asString)
+        _itemCurrency = State(wrappedValue: editableItem.currency)
+        _itemDiscount = State(wrappedValue: editableItem.discountedPrice.asString)
+        _itemStock = State(wrappedValue: editableItem.stock.description)
+        _itemDescriptions = State(wrappedValue: editableItem.description ?? "")
+    }
     
     var body: some View {
         NavigationView {
@@ -99,18 +122,20 @@ struct ItemAddView: View {
     private var imagesController: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                Button {
-                    if images.count < Self.imagesLimit {
-                        isPicking = true
-                    } else {
-                        itemAlerts = .imagesCountLimit
+                if editMode == false {
+                    Button {
+                        if images.count < Self.imagesLimit {
+                            isPicking = true
+                        } else {
+                            itemAlerts = .imagesCountLimit
+                        }
+                    } label: {
+                        addImageBox
                     }
-                } label: {
-                    addImageBox
-                }
-                .foregroundColor(.secondary)
-                .sheet(isPresented: $isPicking) {
-                    ImagePicker(selectedImages: $images)
+                    .foregroundColor(.secondary)
+                    .sheet(isPresented: $isPicking) {
+                        ImagePicker(selectedImages: $images)
+                    }
                 }
                 
                 selectedImageBoxes
@@ -153,6 +178,7 @@ struct ItemAddView: View {
                             .frame(width: Self.boxWidth / 5, height: Self.boxWidth / 5)
                     }
                     .offset(x: Self.boxWidth / 2, y: -Self.boxWidth / 2)
+                    .disabled(editMode)
                 }
         }
     }
@@ -161,7 +187,8 @@ struct ItemAddView: View {
         Button {
             if validateItem() {
                 Task {
-                    await addItem()
+                    // TODO: 수정 기능 구현
+                    editMode ? print("수정합니다") : await addItem()
                 }
             }
         } label: {
@@ -255,7 +282,7 @@ struct ItemAddView: View {
     }
 }
 
-private extension ItemAddView {
+private extension ItemFormView {
     
     enum Field: Int, CaseIterable, Hashable {
         
@@ -310,6 +337,6 @@ private extension ItemAddView {
 
 struct ItemAddView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemAddView(isActive: .constant(true), shouldRefreshList: .constant(false))
+        ItemFormView(isActive: .constant(true), shouldRefreshList: .constant(false))
     }
 }
