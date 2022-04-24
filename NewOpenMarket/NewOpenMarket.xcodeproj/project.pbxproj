@@ -156,14 +156,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		C13BA1B927FF2D2100E07107 /* RequestModel */ = {
-			isa = PBXGroup;
-			children = (
-				C13BA1BA27FF2DB500E07107 /* ItemForRequest.swift */,
-			);
-			path = RequestModel;
-			sourceTree = "<group>";
-		};
 		C13BA1CC2800A62700E07107 /* SmallUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,10 +216,10 @@
 			children = (
 				C1F5A85227FD8D7600AEDF67 /* ItemsPage.swift */,
 				C1F5A84B27FD784E00AEDF67 /* Item.swift */,
+				C13BA1BA27FF2DB500E07107 /* ItemForRequest.swift */,
 				C1F5A85827FD943B00AEDF67 /* ImageForResponse.swift */,
 				C1F5A85627FD93DA00AEDF67 /* Vendor.swift */,
 				C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */,
-				C13BA1B927FF2D2100E07107 /* RequestModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
