@@ -116,7 +116,7 @@ extension APIRequest {
             throw APIError.invalidServerResponse
         }
         
-        guard (200...201).contains(httpResponse.statusCode) else {
+        guard (200...299).contains(httpResponse.statusCode) else {
             print("⚠️ Status Code -> \(httpResponse.statusCode)")
             throw APIError.invalidServerResponse
         }
