@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ItemDetailView: View {
     
+    @State private var isEditable: Bool = false
+    @State private var itemSecret: String?
     let itemDetail: Item
     
     private static let placeholderText = "로딩 실패"
@@ -32,10 +34,21 @@ struct ItemDetailView: View {
         .font(.title2)
         .navigationTitle("\(itemDetail.name)")
         .toolbar {
-            Button {
-                print("수정/삭제 버튼 눌림!")
-            } label: {
-                Image(systemName: "square.and.pencil")
+            if isEditable {
+                Button {
+                    print("수정/삭제 버튼 눌림!")
+                } label: {
+                    Image(systemName: "square.and.pencil")
+                }
+            }
+        }
+        .onAppear {
+            Task {
+                // ItemSecret 을 찾을 수 있으면, 본인이 업로더이므로, 상품 수정 버튼이 활성화
+                if let itemSecretData = try? await API.FindItemSecret(itemID: itemDetail.id).asyncExecute() {
+                    isEditable = true
+                    itemSecret = String(data: itemSecretData, encoding: .utf8)
+                }
             }
         }
     }
