@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ItemDetailView: View {
     
+    @State var itemDetail: Item
+    @Binding var isActive: Bool
+    @Binding var shouldRefreshList: Bool
     @State private var isEditable: Bool = false
     @State private var isShowingSheet: Bool = false
     @State private var isShowingAlert: Bool = false
     @State private var isEditingItem: Bool = false
     @State private var itemSecret: String?
-    @Binding var isActive: Bool
-    @Binding var shouldRefreshList: Bool
-    let itemDetail: Item
     
     private static let placeholderText = "로딩 실패"
     
@@ -69,14 +69,8 @@ struct ItemDetailView: View {
         } message: {
             Text("상품이 삭제됐어요")
         }
-        .fullScreenCover(isPresented: $isEditingItem, onDismiss: {
-            // 모달 내려갈 때 액션
-            // ItemDetailView 내용을 갱신해야 겠는데...?
-            // 근데 그럴거면 아예, 구조체를 다시 구성해야 할텐데?
-            // 쉬운 루트 -> List 로 내보내고 리프레시
-            // 어려운 루트 -> ItemDetailView 리프레시
-        }, content: {
-            ItemFormView(isActive: $isEditingItem, editableItem: itemDetail, shouldRefreshList: $shouldRefreshList)
+        .fullScreenCover(isPresented: $isEditingItem, content: {
+            ItemFormView(isActive: $isEditingItem, editableItem: $itemDetail, shouldRefreshList: $shouldRefreshList)
         })
     }
     

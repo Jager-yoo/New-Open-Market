@@ -49,7 +49,7 @@ struct ItemsListView: View {
             // 인스턴스 생성을 최소화할 수 있지만, View 구조체 자체가 새롭게 갱신되는 경우에는 다시 생성된다. (toolbar 도 마찬가지)
             NavigationLink(isActive: $goingDetail) {
                 if let preparedItemDetail = preparedItemDetail {
-                    ItemDetailView(isActive: $goingDetail, shouldRefreshList: $shouldRefreshList, itemDetail: preparedItemDetail)
+                    ItemDetailView(itemDetail: preparedItemDetail, isActive: $goingDetail, shouldRefreshList: $shouldRefreshList)
                         .onDisappear {
                             Task {
                                 if shouldRefreshList {

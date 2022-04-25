@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ItemFormView: View {
     
+    var boundItem: Binding<Item>?
     @Binding var isActive: Bool
     @Binding var shouldRefreshList: Bool
     @FocusState private var isFocused: Field?
@@ -34,26 +35,27 @@ struct ItemFormView: View {
     private static let boxWidth: CGFloat = 100
     private static let boxCornerRadius: CGFloat = 10
     
-    init(isActive: Binding<Bool>, editableItem: Item? = nil, shouldRefreshList: Binding<Bool>) {
+    init(isActive: Binding<Bool>, editableItem: Binding<Item>? = nil, shouldRefreshList: Binding<Bool>) {
         self._isActive = isActive
         self._shouldRefreshList = shouldRefreshList
         
-        guard let editableItem = editableItem, let uneditableImages = editableItem.images else {
+        guard let editableItem = editableItem, let uneditableImages = editableItem.wrappedValue.images else {
             editMode = false
             return
         }
         
         // 여기부터는 [상품 수정] 목적으로 사용할 경우
         editMode = true
+        boundItem = editableItem
         
         let uneditableImagesData = uneditableImages.compactMap { try? Data(contentsOf: $0.thumbnailURL) }
         _images = State(wrappedValue: uneditableImagesData.compactMap { UIImage(data: $0) })
-        _itemName = State(wrappedValue: editableItem.name)
-        _itemPrice = State(wrappedValue: editableItem.price.asString)
-        _itemCurrency = State(wrappedValue: editableItem.currency)
-        _itemDiscount = State(wrappedValue: editableItem.discountedPrice.asString)
-        _itemStock = State(wrappedValue: editableItem.stock.description)
-        _itemDescriptions = State(wrappedValue: editableItem.description ?? "")
+        _itemName = State(wrappedValue: editableItem.wrappedValue.name)
+        _itemPrice = State(wrappedValue: editableItem.wrappedValue.price.asString)
+        _itemCurrency = State(wrappedValue: editableItem.wrappedValue.currency)
+        _itemDiscount = State(wrappedValue: editableItem.wrappedValue.discountedPrice.asString)
+        _itemStock = State(wrappedValue: editableItem.wrappedValue.stock.description)
+        _itemDescriptions = State(wrappedValue: editableItem.wrappedValue.description ?? "")
     }
     
     var body: some View {
@@ -115,7 +117,7 @@ struct ItemFormView: View {
             }
         }
         .overlay {
-            FullCoverProgressUI(task: $isSubmitting)
+            FullCoverProgressUI(task: $isSubmitting, message: editMode ? "수정 중" : "등록 중")
         }
     }
     
@@ -187,8 +189,7 @@ struct ItemFormView: View {
         Button {
             if validateItem() {
                 Task {
-                    // TODO: 수정 기능 구현
-                    editMode ? print("수정합니다") : await addItem()
+                    editMode ? await editItem() : await addItem()
                 }
             }
         } label: {
@@ -196,11 +197,11 @@ struct ItemFormView: View {
         }
         .alert("알림", isPresented: $isShowingAlert, presenting: itemAlerts) { alert in
             Button {
-                if alert == .addItemSuccess {
+                if alert == .addItemSuccess || alert == .editItemSuccess {
                     isActive = false
                 }
             } label: {
-                Text(alert == .addItemSuccess ? "좋아요" : "알겠어요")
+                Text(alert == .addItemSuccess || alert == .editItemSuccess ? "좋아요" : "알겠어요")
             }
         } message: { alert in
             Text(alert.message)
@@ -244,13 +245,48 @@ struct ItemFormView: View {
     private func addItem() async {
         do {
             isSubmitting = true
-            _ = try await API.AddItem(images: images, name: itemName, descriptions: itemDescriptions, currency: itemCurrency, price: itemPrice, discount: itemDiscount, stock: itemStock).asyncExecute()
+            _ = try await API.AddItem(
+                images: images,
+                name: itemName,
+                descriptions: itemDescriptions,
+                currency: itemCurrency,
+                price: itemPrice,
+                discount: itemDiscount,
+                stock: itemStock
+            ).asyncExecute()
             itemAlerts = .addItemSuccess
             shouldRefreshList = true // ListView 에 성공 여부 알림
             isSubmitting = false
         } catch {
             print("⚠️ AddItem 통신 중 에러 발생! -> \(error)")
             itemAlerts = .addItemFail
+            isSubmitting = false
+        }
+    }
+    
+    private func editItem() async {
+        guard let editableItem = boundItem else {
+            return
+        }
+        
+        do {
+            isSubmitting = true
+            let editedItem = try await API.EditItem(
+                itemID: editableItem.id,
+                name: itemName,
+                descriptions: itemDescriptions,
+                currency: itemCurrency,
+                price: itemPrice,
+                discount: itemDiscount,
+                stock: itemStock
+            ).asyncExecute()
+            itemAlerts = .editItemSuccess
+            shouldRefreshList = true
+            isSubmitting = false
+            boundItem?.wrappedValue = editedItem // 모달 뒤에 있는 ItemDetailView 수정
+        } catch {
+            print("⚠️ EditItem 통신 중 에러 발생! -> \(error)")
+            itemAlerts = .editItemFail
             isSubmitting = false
         }
     }
@@ -311,6 +347,8 @@ private extension ItemFormView {
         case invalidDescriptions
         case addItemFail
         case addItemSuccess
+        case editItemFail
+        case editItemSuccess
         
         var message: String {
             switch self {
@@ -330,6 +368,10 @@ private extension ItemFormView {
                 return "상품 등록에 실패했습니다 🥲"
             case .addItemSuccess:
                 return "상품이 성공적으로 등록됐습니다 🥰"
+            case .editItemFail:
+                return "상품 수정에 실패했습니다 🥲"
+            case .editItemSuccess:
+                return "상품이 성공적으로 수정됐습니다 🥰"
             }
         }
     }
