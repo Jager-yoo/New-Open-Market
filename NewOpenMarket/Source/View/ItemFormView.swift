@@ -187,6 +187,7 @@ struct ItemFormView: View {
     
     private var submitButton: some View {
         Button {
+            isFocused = nil
             if validateItem() {
                 Task {
                     editMode ? await editItem() : await addItem()
