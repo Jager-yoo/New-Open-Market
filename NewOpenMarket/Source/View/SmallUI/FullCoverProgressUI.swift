@@ -10,6 +10,7 @@ import SwiftUI
 struct FullCoverProgressUI: View {
     
     @Binding var task: Bool
+    let message: String
     
     var body: some View {
         if task {
@@ -17,7 +18,7 @@ struct FullCoverProgressUI: View {
                 Color(uiColor: .secondarySystemBackground)
                     .opacity(0.5)
                     .ignoresSafeArea()
-                ProgressView("등록 중")
+                ProgressView(message)
                     .scaleEffect(1.5)
             }
         }
@@ -26,6 +27,6 @@ struct FullCoverProgressUI: View {
 
 struct FullCoverProgressUI_Previews: PreviewProvider {
     static var previews: some View {
-        FullCoverProgressUI(task: .constant(true))
+        FullCoverProgressUI(task: .constant(true), message: "등록 중")
     }
 }
