@@ -30,9 +30,9 @@ struct JSONManager {
         return decodedType
     }
     
-    func encode<T: Encodable>(from data: T) throws -> Data {
+    func encode<T: Encodable>(from object: T) throws -> Data {
         // If there’s a problem encoding the value you supply, this method throws an error based on the type of problem.
-        let encodedData = try Self.encoder.encode(data)
+        let encodedData = try Self.encoder.encode(object)
         return encodedData
     }
 }
