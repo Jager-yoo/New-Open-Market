@@ -1,6 +1,7 @@
 disabled_rules:
  - line_length
  - trailing_whitespace
+ - type_body_length
 
 included:
  - Source

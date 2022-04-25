@@ -303,7 +303,7 @@ struct ItemFormView: View {
             itemAlerts = .invalidPrice
             isFocused = .price
             return false
-        } else if Double(itemDiscount) ?? .zero > Double(itemPrice)! {
+        } else if Double(itemDiscount) ?? .zero > Double(itemPrice) ?? .zero {
             itemAlerts = .invalidDiscount
             itemDiscount = ""
             isFocused = .discount

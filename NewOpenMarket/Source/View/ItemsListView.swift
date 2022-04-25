@@ -99,7 +99,6 @@ struct ItemsListView: View {
                     Task {
                         print("♻️ 리프레시 작동!")
                         await refreshItemsList()
-                        // FIXME: 어떻게 하면 스크롤 관성을 멈출 수 있을까?
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")
