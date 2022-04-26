@@ -10,14 +10,15 @@ import SwiftUI
 struct PageStyleImageViewer: View {
     
     let itemImages: [ImageForResponse]?
-    let width: CGFloat
     
     var body: some View {
         TabView {
             if let itemImages = itemImages {
                 ForEach(itemImages) { image in
                     AsyncImage(url: image.url) { eachImage in
-                        eachImage.resizable()
+                        eachImage
+                            .resizable()
+                            .scaledToFill() // !!!: 여기에 scaledToFill 걸어주면, height 늘릴 때에도 비율이 유지됨. PageStyle 에서도 문제 없음!
                     } placeholder: {
                         ProgressView()
                     }
@@ -37,7 +38,6 @@ struct PageStyleImageViewer: View {
                     }
             }
         }
-        .frame(width: width, height: width)
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
