@@ -33,6 +33,7 @@
 		C1CBED5A2807450E00F783E2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1CBED592807450E00F783E2 /* .swiftlint.yml */; };
 		C1CBED5C2807651F00F783E2 /* PageStyleImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CBED5B2807651F00F783E2 /* PageStyleImageViewer.swift */; };
 		C1E2C8712817165F00442337 /* API+EditItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E2C8702817165F00442337 /* API+EditItem.swift */; };
+		C1E2C8752818993D00442337 /* SwipeBackGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E2C8742818993D00442337 /* SwipeBackGesture.swift */; };
 		C1F0946B28106E3A004BC28C /* FullCoverProgressUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F0946A28106E3A004BC28C /* FullCoverProgressUI.swift */; };
 		C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */; };
 		C1F5A83C27FD70CB00AEDF67 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F5A83B27FD70CB00AEDF67 /* MainView.swift */; };
@@ -84,6 +85,7 @@
 		C1CBED592807450E00F783E2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1CBED5B2807651F00F783E2 /* PageStyleImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageStyleImageViewer.swift; sourceTree = "<group>"; };
 		C1E2C8702817165F00442337 /* API+EditItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+EditItem.swift"; sourceTree = "<group>"; };
+		C1E2C8742818993D00442337 /* SwipeBackGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBackGesture.swift; sourceTree = "<group>"; };
 		C1F0946A28106E3A004BC28C /* FullCoverProgressUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCoverProgressUI.swift; sourceTree = "<group>"; };
 		C1F5A83627FD70CB00AEDF67 /* NewOpenMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewOpenMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F5A83927FD70CB00AEDF67 /* NewOpenMarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOpenMarketApp.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				C18DF9512815E7B40064AECF /* Double+stringFormat.swift */,
 				C173E56A28108960004C7F9F /* Data+append.swift */,
+				C1E2C8742818993D00442337 /* SwipeBackGesture.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				C1CBED5C2807651F00F783E2 /* PageStyleImageViewer.swift in Sources */,
 				C1F5A83A27FD70CB00AEDF67 /* NewOpenMarketApp.swift in Sources */,
 				C18DF9522815E7B40064AECF /* Double+stringFormat.swift in Sources */,
+				C1E2C8752818993D00442337 /* SwipeBackGesture.swift in Sources */,
 				C13BA1AA27FEF1A300E07107 /* API.swift in Sources */,
 				C1E2C8712817165F00442337 /* API+EditItem.swift in Sources */,
 				C13BA1A627FECE6100E07107 /* APIError.swift in Sources */,
