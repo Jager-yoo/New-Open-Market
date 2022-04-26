@@ -18,11 +18,22 @@ struct ItemDetailView: View {
     @State private var isEditingItem: Bool = false
     @State private var itemSecret: String?
     
+    private static let screenWidth: CGFloat = UIScreen.main.bounds.width
+    private static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
     private static let placeholderText = "로딩 실패"
     
     var body: some View {
         ScrollView {
-            PageStyleImageViewerUI(itemImages: itemDetail.images)
+            GeometryReader { geometry in
+                let offsetFromTop = geometry.frame(in: .global).minY
+                let gap = offsetFromTop - (Self.statusBarHeight + 44) // 모든 device 에서 NavigationBar 높이가 전부 44pt 일까? (가정)
+                
+                // sticky image
+                PageStyleImageViewer(itemImages: itemDetail.images)
+                    .frame(width: Self.screenWidth, height: Self.screenWidth + (gap > 0 ? gap : 0))
+                    .offset(y: (gap > 0 ? -gap : 0))
+            }
+            .frame(minHeight: Self.screenWidth)
             
             VStack(alignment: .leading, spacing: 10) {
                 Text("(상품 번호 : \(itemDetail.id.description))")
