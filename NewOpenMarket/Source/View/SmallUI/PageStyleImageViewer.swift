@@ -1,5 +1,5 @@
 //
-//  PageStyleImageViewerUI.swift
+//  PageStyleImageViewer.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/14.
@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct PageStyleImageViewerUI: View {
+struct PageStyleImageViewer: View {
     
     let itemImages: [ImageForResponse]?
-    
-    private static let screenWidth = UIScreen.main.bounds.width
+    let width: CGFloat
     
     var body: some View {
         TabView {
@@ -38,7 +37,7 @@ struct PageStyleImageViewerUI: View {
                     }
             }
         }
-        .frame(width: Self.screenWidth, height: Self.screenWidth)
+        .frame(width: width, height: width)
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
