@@ -12,7 +12,6 @@ struct ItemsListView: View {
     @State private var currentPage: Int = 1
     @State private var hasNextPage: Bool = false
     @State private var items: [Item] = []
-    @State private var listMode: Bool = true
     @State private var delayingRefresh: Bool = false
     @State private var goingDetail: Bool = false
     @State private var preparedItemDetail: Item?
@@ -85,15 +84,6 @@ struct ItemsListView: View {
             ItemFormView(isActive: $isAddingItem, shouldRefreshList: $shouldRefreshList)
         })
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                Picker("", selection: $listMode) {
-                    Image(systemName: "rectangle.grid.1x2").tag(true)
-                    Image(systemName: "rectangle.grid.2x2").tag(false)
-                }
-                .pickerStyle(.segmented)
-                .frame(width: 180)
-            }
-            
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     Task {

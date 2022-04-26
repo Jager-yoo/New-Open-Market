@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @State private var isServerOn: Bool = true
+    @State private var isSetting: Bool = false
     
     var body: some View {
         NavigationView {
@@ -23,16 +24,22 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        print("설정 버튼 눌림!")
+                        isSetting = true
                     } label: {
                         Image(systemName: "gearshape")
                     }
                 }
             }
+            .navigationTitle("스유 마켓 🥕")
             .navigationBarTitleDisplayMode(.inline)
         }
         .task {
             await checkServerStatus()
+        }
+        .sheet(isPresented: $isSetting) {
+            // TODO: 다크 모드, 햅틱 구현하기
+            Text("여기에서 다크 모드/햅틱을 켜고 끌 수 있습니다.")
+                .font(.largeTitle)
         }
     }
     

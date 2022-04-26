@@ -19,7 +19,7 @@ struct ItemDetailView: View {
     @State private var itemSecret: String?
     
     private static let screenWidth: CGFloat = UIScreen.main.bounds.width
-    private static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+    private static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height // FIXME: deprecated 되지 않은 버전으로 찾기!
     private static let placeholderText = "로딩 실패"
     
     var body: some View {
@@ -49,12 +49,23 @@ struct ItemDetailView: View {
         }
         .font(.title2)
         .navigationTitle("\(itemDetail.name)")
+        .navigationBarBackButtonHidden(true)
         .toolbar {
-            if isEditable {
+            ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    isShowingSheet = true
+                    isActive = false
                 } label: {
-                    Image(systemName: "square.and.pencil")
+                    Image(systemName: "arrow.left")
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if isEditable {
+                    Button {
+                        isShowingSheet = true
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                    }
                 }
             }
         }
