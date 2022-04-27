@@ -11,6 +11,7 @@ struct MainView: View {
     
     @State private var isServerOn: Bool = true
     @State private var isSetting: Bool = false
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
     var body: some View {
         NavigationView {
@@ -37,9 +38,9 @@ struct MainView: View {
             await checkServerStatus()
         }
         .sheet(isPresented: $isSetting) {
-            // TODO: 다크 모드, 햅틱 구현하기
-            Text("여기에서 다크 모드/햅틱을 켜고 끌 수 있습니다.")
-                .font(.largeTitle)
+            // TODO: 햅틱 구현하기
+            SettingsView(isActive: $isSetting)
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C11B04C32819BDA0008D1C92 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B04C22819BDA0008D1C92 /* SettingsView.swift */; };
 		C13BA19527FDDC4900E07107 /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA19427FDDC4900E07107 /* JSONParsingTests.swift */; };
 		C13BA1A227FEC3CD00E07107 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA19E27FEB81500E07107 /* APIRequest.swift */; };
 		C13BA1A327FEC3D000E07107 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BA1A027FEC38700E07107 /* HTTPMethod.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C11B04C22819BDA0008D1C92 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C13BA19427FDDC4900E07107 /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
 		C13BA19E27FEB81500E07107 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		C13BA1A027FEC38700E07107 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				C13BA1BE27FF44DE00E07107 /* ItemsListView.swift */,
 				C13BA1C428002A2200E07107 /* ItemDetailView.swift */,
 				C1476A08280953A7007561CD /* ItemFormView.swift */,
+				C11B04C22819BDA0008D1C92 /* SettingsView.swift */,
 				C1E2C87628191A9C00442337 /* Shared */,
 			);
 			path = View;
@@ -386,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11B04C32819BDA0008D1C92 /* SettingsView.swift in Sources */,
 				C1E2C88128191A9C00442337 /* ItemPriceUI.swift in Sources */,
 				C1E2C88328191A9C00442337 /* TextEditorCustom.swift in Sources */,
 				C13BA1C528002A2200E07107 /* ItemDetailView.swift in Sources */,
