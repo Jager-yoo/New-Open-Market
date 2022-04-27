@@ -1,5 +1,5 @@
 //
-//  ErrorUI.swift
+//  ErrorView.swift
 //  NewOpenMarket
 //
 //  Created by 유재호 on 2022/04/10.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ErrorUI: View {
+struct ErrorView: View {
     
     var body: some View {
         VStack(spacing: 50) {
@@ -26,6 +26,6 @@ struct ErrorUI: View {
 
 struct ErrorUI_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorUI()
+        ErrorView()
     }
 }

@@ -58,7 +58,7 @@ struct ItemsListView: View {
                             }
                         }
                 } else {
-                    ErrorUI()
+                    ErrorView()
                 }
             } label: {
                 EmptyView()

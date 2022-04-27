@@ -117,7 +117,7 @@ struct ItemFormView: View {
             }
         }
         .overlay {
-            FullCoverProgressUI(task: $isSubmitting, message: editMode ? "수정 중" : "등록 중")
+            FullCoverProgressView(task: $isSubmitting, message: editMode ? "수정 중" : "등록 중")
         }
     }
     
