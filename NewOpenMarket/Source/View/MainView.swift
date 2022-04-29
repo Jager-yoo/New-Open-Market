@@ -38,7 +38,6 @@ struct MainView: View {
             await checkServerStatus()
         }
         .sheet(isPresented: $isSetting) {
-            // TODO: 햅틱 구현하기
             SettingsView(isActive: $isSetting)
                 .preferredColorScheme(isDarkMode ? .dark : .light)
         }
