@@ -29,6 +29,7 @@
 		C19732BC28109DC1003A127C /* API+FindItemSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19732BB28109DC1003A127C /* API+FindItemSecret.swift */; };
 		C1CBED5A2807450E00F783E2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C1CBED592807450E00F783E2 /* .swiftlint.yml */; };
 		C1E13C3A281C44D2009CA78D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E13C39281C44D2009CA78D /* HapticManager.swift */; };
+		C1E13C3C281C7EC6009CA78D /* UIImage+cropping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E13C3B281C7EC6009CA78D /* UIImage+cropping.swift */; };
 		C1E2C8712817165F00442337 /* API+EditItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E2C8702817165F00442337 /* API+EditItem.swift */; };
 		C1E2C8752818993D00442337 /* SwipeBackGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E2C8742818993D00442337 /* SwipeBackGesture.swift */; };
 		C1E2C87E28191A9C00442337 /* FullCoverProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E2C87728191A9C00442337 /* FullCoverProgressView.swift */; };
@@ -83,6 +84,7 @@
 		C19732BB28109DC1003A127C /* API+FindItemSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+FindItemSecret.swift"; sourceTree = "<group>"; };
 		C1CBED592807450E00F783E2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1E13C39281C44D2009CA78D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		C1E13C3B281C7EC6009CA78D /* UIImage+cropping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+cropping.swift"; sourceTree = "<group>"; };
 		C1E2C8702817165F00442337 /* API+EditItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+EditItem.swift"; sourceTree = "<group>"; };
 		C1E2C8742818993D00442337 /* SwipeBackGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBackGesture.swift; sourceTree = "<group>"; };
 		C1E2C87728191A9C00442337 /* FullCoverProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullCoverProgressView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				C18DF9512815E7B40064AECF /* Double+stringFormat.swift */,
 				C173E56A28108960004C7F9F /* Data+append.swift */,
+				C1E13C3B281C7EC6009CA78D /* UIImage+cropping.swift */,
 				C1E2C8742818993D00442337 /* SwipeBackGesture.swift */,
 			);
 			path = Extension;
@@ -397,6 +400,7 @@
 				C1E2C88328191A9C00442337 /* TextEditorCustom.swift in Sources */,
 				C13BA1C528002A2200E07107 /* ItemDetailView.swift in Sources */,
 				C1F5A85927FD943B00AEDF67 /* ImageForResponse.swift in Sources */,
+				C1E13C3C281C7EC6009CA78D /* UIImage+cropping.swift in Sources */,
 				C1476A0B28097119007561CD /* ImagePicker.swift in Sources */,
 				C173E56B28108960004C7F9F /* Data+append.swift in Sources */,
 				C1E2C87E28191A9C00442337 /* FullCoverProgressView.swift in Sources */,
