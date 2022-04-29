@@ -24,9 +24,7 @@ struct ItemFormView: View {
     @State private var isSubmitting: Bool = false
     @State private var isShowingAlert: Bool = false
     @State private var itemAlerts: ItemAlert? {
-        didSet {
-            isShowingAlert = true // itemAlerts 를 할당하면 바로 Alert 자동으로 띄움
-        }
+        didSet { isShowingAlert = true } // itemAlerts 를 할당하면 바로 Alert 자동으로 띄움
     }
     let editMode: Bool
     
@@ -101,6 +99,7 @@ struct ItemFormView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
                         isActive = false
+                        HapticManager.shared.selection()
                     } label: {
                         Image(systemName: "xmark")
                     }
@@ -131,6 +130,7 @@ struct ItemFormView: View {
                         } else {
                             itemAlerts = .imagesCountLimit
                         }
+                        HapticManager.shared.selection()
                     } label: {
                         addImageBox
                     }
@@ -174,6 +174,7 @@ struct ItemFormView: View {
                 .overlay {
                     Button {
                         images.remove(at: index)
+                        HapticManager.shared.selection()
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .resizable()
@@ -193,6 +194,7 @@ struct ItemFormView: View {
                     editMode ? await editItem() : await addItem()
                 }
             }
+            HapticManager.shared.selection()
         } label: {
             Text("완료")
         }

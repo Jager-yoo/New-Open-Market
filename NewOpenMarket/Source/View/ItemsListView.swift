@@ -28,6 +28,7 @@ struct ItemsListView: View {
                     Button {
                         Task {
                             await fetchDetail(itemID: item.id)
+                            HapticManager.shared.selection()
                         }
                     } label: {
                         ItemsListRowUI(item: item.wrappedValue)
@@ -68,6 +69,7 @@ struct ItemsListView: View {
         .overlay(alignment: .bottomTrailing) {
             Button {
                 isAddingItem = true
+                HapticManager.shared.selection()
             } label: {
                 addItemButton
             }
@@ -89,6 +91,7 @@ struct ItemsListView: View {
                     Task {
                         print("♻️ 리프레시 작동!")
                         await refreshItemsList()
+                        HapticManager.shared.selection()
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")
@@ -119,7 +122,6 @@ struct ItemsListView: View {
             items.append(contentsOf: itemsPage.items)
             print("📃 \(itemsPage.pageNo)번째 페이지 append 완료!")
         } catch {
-            // Alert 띄우기
             print("⚠️ ItemsPage 통신 중 에러 발생! -> \(error.localizedDescription)")
             return
         }
@@ -131,7 +133,6 @@ struct ItemsListView: View {
             preparedItemDetail = try await API.FetchItemDetail(itemID: itemID).asyncExecute()
             goingDetail = true
         } catch {
-            // Alert 띄우기
             print("⚠️ ItemDetail 통신 중 에러 발생! -> \(error.localizedDescription)")
             return
         }

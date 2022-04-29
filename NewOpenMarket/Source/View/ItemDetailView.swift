@@ -54,6 +54,7 @@ struct ItemDetailView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     isActive = false
+                    HapticManager.shared.selection()
                 } label: {
                     Image(systemName: "arrow.left")
                 }
@@ -63,6 +64,7 @@ struct ItemDetailView: View {
                 if isEditable {
                     Button {
                         isShowingSheet = true
+                        HapticManager.shared.selection()
                     } label: {
                         Image(systemName: "square.and.pencil")
                     }

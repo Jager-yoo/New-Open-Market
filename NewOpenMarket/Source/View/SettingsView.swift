@@ -33,6 +33,7 @@ struct SettingsView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
                         isActive = false
+                        HapticManager.shared.selection()
                     } label: {
                         Image(systemName: "xmark")
                     }
