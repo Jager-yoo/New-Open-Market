@@ -9,14 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var isServerOn: Bool = true
-    @State private var isSetting: Bool = false
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    @StateObject private var viewModel = MainViewModel()
     
     var body: some View {
         NavigationView {
             Group {
-                if isServerOn {
+                if viewModel.isServerOn {
                     ItemsListView()
                 } else {
                     ErrorView()
@@ -25,7 +23,7 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        isSetting = true
+                        viewModel.isSetting = true
                         HapticManager.shared.selection()
                     } label: {
                         Image(systemName: "gearshape")
@@ -36,21 +34,11 @@ struct MainView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .task {
-            await checkServerStatus()
+            await viewModel.checkServerStatus()
         }
-        .sheet(isPresented: $isSetting) {
-            SettingsView(isActive: $isSetting)
-                .preferredColorScheme(isDarkMode ? .dark : .light)
-        }
-    }
-    
-    private func checkServerStatus() async {
-        do {
-            let message = try await API.HealthChecker().asyncExecute()
-            isServerOn = (message == "OK")
-        } catch {
-            print("⚠️ HealthChecker 통신 중 에러 발생! -> \(error.localizedDescription)")
-            isServerOn = false
+        .sheet(isPresented: $viewModel.isSetting) {
+            SettingsView(isActive: $viewModel.isSetting)
+                .preferredColorScheme(viewModel.isDarkMode ? .dark : .light)
         }
     }
 }
