@@ -7,7 +7,7 @@
 
 - SwiftUI (iOS 15.0)
 - MVVM 패턴
-- RESTful API
+- 프로토콜 지향 네트워크 레이어
 - `async-await` 적용한 비동기 메서드 & 테스트
 - PHPickerViewController (iOS 14.0+)
 - 무한 스크롤
@@ -23,4 +23,4 @@
 
 # 📡 네트워크 레이어 구조 (클래스 다이어그램)
 
-<img width="1660" alt="스유마켓 Network Layer Class Diagram" src="https://user-images.githubusercontent.com/71127966/166121407-e4a8ae34-def5-4c1f-a9fd-591c41630f4e.png">
+<img width="1708" alt="스유마켓 Network Layer Class Diagram" src="https://user-images.githubusercontent.com/71127966/166131694-e874884d-21a9-4ecd-80a6-8a23c9762b4d.png">
