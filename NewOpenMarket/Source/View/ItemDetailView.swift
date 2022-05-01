@@ -9,51 +9,44 @@ import SwiftUI
 
 struct ItemDetailView: View {
     
-    @State var itemDetail: Item
-    @Binding var isActive: Bool
-    @Binding var shouldRefreshList: Bool
-    @State private var isEditable: Bool = false
-    @State private var isShowingSheet: Bool = false
-    @State private var isShowingAlert: Bool = false
-    @State private var isEditingItem: Bool = false
-    @State private var itemSecret: String?
+    @StateObject var viewModel: ItemDetailViewModel
     
-    private static let screenWidth: CGFloat = UIScreen.main.bounds.width
-    private static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height // FIXME: deprecated 되지 않은 버전으로 찾기!
-    private static let placeholderText = "로딩 실패"
+    init(itemDetail: Item, isActive: Binding<Bool>, shouldRefreshList: Binding<Bool>) {
+        _viewModel = StateObject(wrappedValue: ItemDetailViewModel(itemDetail: itemDetail, isActive: isActive, shouldRefreshList: shouldRefreshList))
+    }
     
     var body: some View {
         ScrollView {
             GeometryReader { geometry in
                 let offsetFromTop = geometry.frame(in: .global).minY
-                let gap = offsetFromTop - (Self.statusBarHeight + 44) // 모든 device 에서 NavigationBar 높이가 전부 44pt 일까? (가정)
+                let gap = offsetFromTop - (viewModel.statusBarHeight + 44) // 모든 device 에서 NavigationBar 높이가 전부 44pt 일까? (가정)
                 
                 // sticky image
-                PageStyleImageViewer(itemImages: itemDetail.images)
-                    .frame(width: Self.screenWidth, height: Self.screenWidth + (gap > 0 ? gap : 0))
+                PageStyleImageViewer(itemImages: viewModel.itemDetail.images)
+                    .frame(width: viewModel.screenWidth, height: viewModel.screenWidth + (gap > 0 ? gap : 0))
                     .offset(y: (gap > 0 ? -gap : 0))
             }
-            .frame(minHeight: Self.screenWidth)
+            .frame(minHeight: viewModel.screenWidth)
             
             VStack(alignment: .leading, spacing: 10) {
-                Text("(상품 번호 : \(itemDetail.id.description))")
+                Text("(상품 번호 : \(viewModel.itemDetail.id.description))")
                     .foregroundColor(.secondary)
-                ItemStockUI(itemStock: itemDetail.stock)
-                ItemPriceUI(item: itemDetail)
-                Text("게시자 : \(itemDetail.vendor?.name ?? Self.placeholderText)")
-                Text("업로드 날짜 : \(itemDetail.createdAt.asDateOnly)")
+                ItemStockUI(itemStock: viewModel.itemDetail.stock)
+                ItemPriceUI(item: viewModel.itemDetail)
+                Text("게시자 : \(viewModel.itemDetail.vendor?.name ?? viewModel.placeholderText)")
+                Text("업로드 날짜 : \(viewModel.itemDetail.createdAt.asDateOnly)")
                 Divider()
-                Text(itemDetail.description ?? Self.placeholderText)
+                Text(viewModel.itemDetail.description ?? viewModel.placeholderText)
             }
             .padding()
         }
         .font(.title2)
-        .navigationTitle("\(itemDetail.name)")
+        .navigationTitle("\(viewModel.itemDetail.name)")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    isActive = false
+                    viewModel.isActive = false
                     HapticManager.shared.selection()
                 } label: {
                     Image(systemName: "arrow.left")
@@ -61,9 +54,9 @@ struct ItemDetailView: View {
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
-                if isEditable {
+                if viewModel.isEditable {
                     Button {
-                        isShowingSheet = true
+                        viewModel.isShowingSheet = true
                         HapticManager.shared.selection()
                     } label: {
                         Image(systemName: "square.and.pencil")
@@ -74,58 +67,45 @@ struct ItemDetailView: View {
         .onAppear {
             Task {
                 // ItemSecret 을 찾을 수 있으면, 본인이 업로더이므로, 상품 수정 버튼이 활성화
-                if let itemSecretData = try? await API.FindItemSecret(itemID: itemDetail.id).asyncExecute() {
-                    isEditable = true
-                    itemSecret = String(data: itemSecretData, encoding: .utf8)
-                }
+                await viewModel.findItemSecret()
             }
         }
-        .confirmationDialog("", isPresented: $isShowingSheet) {
+        .confirmationDialog("", isPresented: $viewModel.isShowingSheet) {
             sheetButtons
         }
-        .alert("알림", isPresented: $isShowingAlert) {
+        .alert("알림", isPresented: $viewModel.isShowingAlert) {
             Button {
-                isActive = false
-                shouldRefreshList = true
+                viewModel.isActive = false
+                viewModel.shouldRefreshList = true
             } label: {
                 Text("리스트로 돌아가요")
             }
         } message: {
             Text("상품이 삭제됐어요")
         }
-        .fullScreenCover(isPresented: $isEditingItem, content: {
-            ItemFormView(isActive: $isEditingItem, editableItem: $itemDetail, shouldRefreshList: $shouldRefreshList)
+        .fullScreenCover(isPresented: $viewModel.isEditingItem, content: {
+            ItemFormView(isActive: $viewModel.isEditingItem, editableItem: $viewModel.itemDetail, shouldRefreshList: $viewModel.shouldRefreshList)
         })
     }
     
     private var sheetButtons: some View {
         Group {
             Button {
-                isEditingItem = true
+                viewModel.isEditingItem = true
             } label: {
                 Text("상품 수정")
             }
             
             Button(role: .destructive) {
                 Task {
-                    guard let itemSecret = itemSecret else {
-                        return
-                    }
-                    
-                    let deleteResponse = try await API.DeleteItem(itemID: itemDetail.id, itemSecret: itemSecret).asyncExecute()
-                    
-                    guard deleteResponse.id == itemDetail.id else {
-                        return
-                    }
-                    
-                    isShowingAlert = true
+                    await viewModel.deleteItem()
                 }
             } label: {
                 Text("상품 삭제")
             }
             
             Button(role: .cancel) {
-                isShowingSheet = false
+                viewModel.isShowingSheet = false
             } label: {
                 Text("취소")
             }
