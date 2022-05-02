@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ItemDetailView: View {
     
-    @StateObject var viewModel: ItemDetailViewModel
+    @StateObject private var viewModel: ItemDetailViewModel
     
     init(itemDetail: Item, isActive: Binding<Bool>, shouldRefreshList: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: ItemDetailViewModel(itemDetail: itemDetail, isActive: isActive, shouldRefreshList: shouldRefreshList))

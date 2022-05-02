@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ItemsListView: View {
     
-    @StateObject var viewModel = ItemsListViewModel()
+    @StateObject private var viewModel = ItemsListViewModel()
     
     var body: some View {
         ScrollView {

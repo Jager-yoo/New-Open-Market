@@ -9,21 +9,23 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @Binding var isActive: Bool
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
-    @AppStorage("isHapticOn") private var isHapticOn: Bool = true
+    @StateObject private var viewModel: SettingsViewModel
+    
+    init(isActive: Binding<Bool>) {
+        _viewModel = StateObject(wrappedValue: SettingsViewModel(isActive: isActive))
+    }
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    Toggle(isDarkMode ? "다크 모드 켜짐" : "다크 모드 꺼짐", isOn: $isDarkMode)
+                    Toggle(viewModel.isDarkMode ? "다크 모드 켜짐" : "다크 모드 꺼짐", isOn: $viewModel.isDarkMode)
                 } header: {
                     Text("디스플레이")
                 }
                 
                 Section {
-                    Toggle(isHapticOn ? "진동 켜짐" : "진동 꺼짐", isOn: $isHapticOn)
+                    Toggle(viewModel.isHapticOn ? "진동 켜짐" : "진동 꺼짐", isOn: $viewModel.isHapticOn)
                 } header: {
                     Text("햅틱 피드백")
                 }
@@ -32,8 +34,7 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
-                        isActive = false
-                        HapticManager.shared.selection()
+                        viewModel.dismissSelf()
                     } label: {
                         Image(systemName: "xmark")
                     }
