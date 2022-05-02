@@ -33,7 +33,9 @@ struct ImagePicker: UIViewControllerRepresentable {
             providers.forEach { provider in
                 provider.loadObject(ofClass: UIImage.self) { image, error in
                     guard let convertedAsUIImage = image as? UIImage, error == nil else { return }
-                    self.parent.selectedImages.append(convertedAsUIImage)
+                    DispatchQueue.main.async {
+                        self.parent.selectedImages.append(convertedAsUIImage)
+                    }
                 }
             }
         }
