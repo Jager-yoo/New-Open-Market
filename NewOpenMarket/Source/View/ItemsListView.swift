@@ -18,7 +18,6 @@ struct ItemsListView: View {
                     Button {
                         Task {
                             await viewModel.fetchDetail(itemID: item.id)
-                            HapticManager.shared.selection()
                         }
                     } label: {
                         ItemsListRowUI(item: item.wrappedValue)
@@ -55,8 +54,7 @@ struct ItemsListView: View {
         }
         .overlay(alignment: .bottomTrailing) {
             Button {
-                viewModel.isAddingItem = true
-                HapticManager.shared.selection()
+                viewModel.showItemFormView()
             } label: {
                 addItemButton
             }
@@ -74,9 +72,7 @@ struct ItemsListView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     Task {
-                        print("♻️ 리프레시 작동!")
                         await viewModel.refreshItemsList()
-                        HapticManager.shared.selection()
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")

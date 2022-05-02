@@ -39,6 +39,7 @@ final class ItemsListViewModel: ObservableObject {
     func fetchDetail(itemID: Int) async {
         do {
             print("📟 fetchDetail -> id : \(itemID) 다운로드!")
+            HapticManager.shared.selection()
             let fetchedItemDetail = try await API.FetchItemDetail(itemID: itemID).asyncExecute()
             DispatchQueue.main.async {
                 self.fetchedItemDetail = fetchedItemDetail
@@ -63,6 +64,8 @@ final class ItemsListViewModel: ObservableObject {
     }
     
     func refreshItemsList() async {
+        print("♻️ 리프레시 작동!")
+        HapticManager.shared.selection()
         resetItemsList()
         delayingRefresh = true
         await fetchFirstItemsPage()
@@ -78,6 +81,11 @@ final class ItemsListViewModel: ObservableObject {
                 self.shouldRefreshList = false
             }
         }
+    }
+    
+    func showItemFormView() {
+        isAddingItem = true
+        HapticManager.shared.selection()
     }
     
     private func resetItemsList() {

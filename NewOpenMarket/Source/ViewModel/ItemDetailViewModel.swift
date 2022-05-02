@@ -13,7 +13,7 @@ final class ItemDetailViewModel: ObservableObject {
     @Binding var shouldRefreshList: Bool
     @Published var itemDetail: Item
     @Published var isEditable: Bool = false
-    @Published var isShowingSheet: Bool = false
+    @Published var isShowingDialog: Bool = false
     @Published var isShowingAlert: Bool = false
     @Published var isEditingItem: Bool = false
     @Published var itemSecret: String?
@@ -54,5 +54,15 @@ final class ItemDetailViewModel: ObservableObject {
             self.isShowingAlert = true
             self.shouldRefreshList = true
         }
+    }
+    
+    func showDialog() {
+        isShowingDialog = true
+        HapticManager.shared.selection()
+    }
+    
+    func dismissSelf() {
+        isActive = false
+        HapticManager.shared.selection()
     }
 }

@@ -202,7 +202,7 @@ final class ItemFormViewModel: ObservableObject {
         }
     }
     
-    func dismissModal() {
+    func dismissSelf() {
         isActive = false
         HapticManager.shared.selection()
     }

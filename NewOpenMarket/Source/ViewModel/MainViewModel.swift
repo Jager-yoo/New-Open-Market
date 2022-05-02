@@ -26,4 +26,9 @@ final class MainViewModel: ObservableObject {
             }
         }
     }
+    
+    func showSettingsView() {
+        isSetting = true
+        HapticManager.shared.selection()
+    }
 }

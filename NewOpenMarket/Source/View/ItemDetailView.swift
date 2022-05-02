@@ -46,8 +46,7 @@ struct ItemDetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    viewModel.isActive = false
-                    HapticManager.shared.selection()
+                    viewModel.dismissSelf()
                 } label: {
                     Image(systemName: "arrow.left")
                 }
@@ -56,8 +55,7 @@ struct ItemDetailView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 if viewModel.isEditable {
                     Button {
-                        viewModel.isShowingSheet = true
-                        HapticManager.shared.selection()
+                        viewModel.showDialog()
                     } label: {
                         Image(systemName: "square.and.pencil")
                     }
@@ -70,8 +68,8 @@ struct ItemDetailView: View {
                 await viewModel.findItemSecret()
             }
         }
-        .confirmationDialog("", isPresented: $viewModel.isShowingSheet) {
-            sheetButtons
+        .confirmationDialog("", isPresented: $viewModel.isShowingDialog) {
+            dialogButtons
         }
         .alert("알림", isPresented: $viewModel.isShowingAlert) {
             Button {
@@ -87,7 +85,7 @@ struct ItemDetailView: View {
         })
     }
     
-    private var sheetButtons: some View {
+    private var dialogButtons: some View {
         Group {
             Button {
                 viewModel.isEditingItem = true
@@ -104,7 +102,7 @@ struct ItemDetailView: View {
             }
             
             Button(role: .cancel) {
-                viewModel.isShowingSheet = false
+                viewModel.isShowingDialog = false
             } label: {
                 Text("취소")
             }

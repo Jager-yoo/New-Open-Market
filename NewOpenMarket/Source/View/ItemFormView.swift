@@ -31,7 +31,7 @@ struct ItemFormView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
-                        viewModel.dismissModal()
+                        viewModel.dismissSelf()
                     } label: {
                         Image(systemName: "xmark")
                     }

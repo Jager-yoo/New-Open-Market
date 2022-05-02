@@ -23,8 +23,7 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.isSetting = true
-                        HapticManager.shared.selection()
+                        viewModel.showSettingsView()
                     } label: {
                         Image(systemName: "gearshape")
                     }
