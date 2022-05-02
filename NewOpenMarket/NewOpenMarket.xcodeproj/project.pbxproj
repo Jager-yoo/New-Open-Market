@@ -190,16 +190,62 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		C1E13C3D281F0268009CA78D /* ViewModel */ = {
+		C1E13C4828201533009CA78D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C1E13C4928201547009CA78D /* MainView */,
+				C1E13C4A2820155F009CA78D /* ItemsListView */,
+				C1E13C4B2820157A009CA78D /* ItemDetailView */,
+				C1E13C4C2820159A009CA78D /* ItemFormView */,
+				C1E13C4D282015D2009CA78D /* SettingsView */,
+				C1E2C87628191A9C00442337 /* Shared */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C1E13C4928201547009CA78D /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				C1F5A83B27FD70CB00AEDF67 /* MainView.swift */,
 				C1E13C3E281F07D2009CA78D /* MainViewModel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		C1E13C4A2820155F009CA78D /* ItemsListView */ = {
+			isa = PBXGroup;
+			children = (
+				C13BA1BE27FF44DE00E07107 /* ItemsListView.swift */,
 				C1E13C40281F1366009CA78D /* ItemsListViewModel.swift */,
+			);
+			path = ItemsListView;
+			sourceTree = "<group>";
+		};
+		C1E13C4B2820157A009CA78D /* ItemDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				C13BA1C428002A2200E07107 /* ItemDetailView.swift */,
 				C1E13C42281F19B6009CA78D /* ItemDetailViewModel.swift */,
+			);
+			path = ItemDetailView;
+			sourceTree = "<group>";
+		};
+		C1E13C4C2820159A009CA78D /* ItemFormView */ = {
+			isa = PBXGroup;
+			children = (
+				C1476A08280953A7007561CD /* ItemFormView.swift */,
 				C1E13C44281FC877009CA78D /* ItemFormViewModel.swift */,
+			);
+			path = ItemFormView;
+			sourceTree = "<group>";
+		};
+		C1E13C4D282015D2009CA78D /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				C11B04C22819BDA0008D1C92 /* SettingsView.swift */,
 				C1E13C4628200EE4009CA78D /* SettingsViewModel.swift */,
 			);
-			path = ViewModel;
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
 		C1E2C87628191A9C00442337 /* Shared */ = {
@@ -214,7 +260,7 @@
 				C1E2C87D28191A9C00442337 /* ErrorView.swift */,
 			);
 			name = Shared;
-			path = Source/View/Shared;
+			path = Source/Presentation/Shared;
 			sourceTree = SOURCE_ROOT;
 		};
 		C1F5A82D27FD70CB00AEDF67 = {
@@ -241,8 +287,7 @@
 			children = (
 				C13BA19927FDF99200E07107 /* App */,
 				C13BA19D27FEB7FE00E07107 /* Network */,
-				C1F5A84A27FD77A200AEDF67 /* View */,
-				C1E13C3D281F0268009CA78D /* ViewModel */,
+				C1E13C4828201533009CA78D /* Presentation */,
 				C1F5A84927FD779C00AEDF67 /* Model */,
 				C1F5A88627FDC76600AEDF67 /* Utility */,
 				C173E569281088ED004C7F9F /* Extension */,
@@ -262,19 +307,6 @@
 				C1F5A84D27FD7C5D00AEDF67 /* Currency.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		C1F5A84A27FD77A200AEDF67 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C1F5A83B27FD70CB00AEDF67 /* MainView.swift */,
-				C13BA1BE27FF44DE00E07107 /* ItemsListView.swift */,
-				C13BA1C428002A2200E07107 /* ItemDetailView.swift */,
-				C1476A08280953A7007561CD /* ItemFormView.swift */,
-				C11B04C22819BDA0008D1C92 /* SettingsView.swift */,
-				C1E2C87628191A9C00442337 /* Shared */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		C1F5A85F27FD986E00AEDF67 /* UnitTests */ = {
