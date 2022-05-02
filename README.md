@@ -24,3 +24,27 @@
 # 📡 네트워크 레이어 구조 (클래스 다이어그램)
 
 <img width="1708" alt="스유마켓 Network Layer Class Diagram" src="https://user-images.githubusercontent.com/71127966/166131694-e874884d-21a9-4ecd-80a6-8a23c9762b4d.png">
+
+<br>
+
+# 📂 디렉토리 구조
+
+```
+NewOpenMarket
+├── Source
+│   ├── App
+│   ├── Network
+│   │   └── API
+│   ├── Presentation
+│   │   ├── MainView
+│   │   ├── ItemsListView
+│   │   ├── ItemDetailView
+│   │   ├── ItemFormView
+│   │   ├── SettingsView
+│   │   └── Shared
+│   ├── Model
+│   ├── Utility
+│   ├── Extension
+│   └── Resource
+└── UnitTests
+```
