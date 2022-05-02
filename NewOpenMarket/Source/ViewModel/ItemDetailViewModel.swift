@@ -9,14 +9,14 @@ import SwiftUI
 
 final class ItemDetailViewModel: ObservableObject {
     
+    @Binding var isActive: Bool
+    @Binding var shouldRefreshList: Bool
     @Published var itemDetail: Item
     @Published var isEditable: Bool = false
     @Published var isShowingSheet: Bool = false
     @Published var isShowingAlert: Bool = false
     @Published var isEditingItem: Bool = false
     @Published var itemSecret: String?
-    @Binding var isActive: Bool
-    @Binding var shouldRefreshList: Bool
     
     let screenWidth: CGFloat = UIScreen.main.bounds.width
     let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height // FIXME: deprecated 되지 않은 버전으로 찾기!
@@ -50,6 +50,9 @@ final class ItemDetailViewModel: ObservableObject {
             return
         }
         
-        isShowingAlert = true
+        DispatchQueue.main.async {
+            self.isShowingAlert = true
+            self.shouldRefreshList = true
+        }
     }
 }

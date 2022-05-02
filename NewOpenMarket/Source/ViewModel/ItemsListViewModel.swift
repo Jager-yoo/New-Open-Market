@@ -74,7 +74,9 @@ final class ItemsListViewModel: ObservableObject {
     func conditionalRefreshItemsList() async {
         if shouldRefreshList {
             await refreshItemsList()
-            shouldRefreshList = false
+            DispatchQueue.main.async {
+                self.shouldRefreshList = false
+            }
         }
     }
     

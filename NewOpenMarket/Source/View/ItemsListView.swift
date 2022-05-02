@@ -42,7 +42,7 @@ struct ItemsListView: View {
                     ItemDetailView(itemDetail: fetchedItemDetail, isActive: $viewModel.goingDetail, shouldRefreshList: $viewModel.shouldRefreshList)
                         .onDisappear {
                             Task {
-                                viewModel.conditionalRefreshItemsList
+                                await viewModel.conditionalRefreshItemsList()
                             }
                         }
                 } else {
@@ -62,12 +62,13 @@ struct ItemsListView: View {
             }
             .padding(25)
         }
-        .fullScreenCover(isPresented: $viewModel.isAddingItem, onDismiss: {
-            Task {
-                viewModel.conditionalRefreshItemsList
-            }
-        }, content: {
+        .fullScreenCover(isPresented: $viewModel.isAddingItem, content: {
             ItemFormView(isActive: $viewModel.isAddingItem, shouldRefreshList: $viewModel.shouldRefreshList)
+                .onDisappear {
+                    Task {
+                        await viewModel.conditionalRefreshItemsList()
+                    }
+                }
         })
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

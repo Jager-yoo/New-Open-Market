@@ -76,7 +76,6 @@ struct ItemDetailView: View {
         .alert("알림", isPresented: $viewModel.isShowingAlert) {
             Button {
                 viewModel.isActive = false
-                viewModel.shouldRefreshList = true
             } label: {
                 Text("리스트로 돌아가요")
             }
