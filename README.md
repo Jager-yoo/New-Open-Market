@@ -61,7 +61,7 @@ NewOpenMarket
 |키보드 애드온|상품 등록|
 |:-:|:-:|
 |<img src="https://user-images.githubusercontent.com/71127966/166940301-70a32662-0b2b-446c-b690-a646589df5e1.gif" width="300">|<img src="https://user-images.githubusercontent.com/71127966/166940315-38f3f073-82a9-4381-b3f8-a05ce560c43c.gif" width="300">|
-|textField 사이를 이동할 수 있는<br>버튼을 키보드 위에 구현했습니다.<br>우측엔 키보드를 dismiss 버튼을 뒀습니다.|데이터를 검증한 뒤, 서버에 상품을 등록합니다.<br>Alert 를 확인하면 ListView 로 돌아가서<br>자동으로 리프레시합니다.|
+|textField 사이를 이동할 수 있는<br>버튼을 키보드 위에 구현했습니다.<br>우측엔 키보드 dismiss 버튼을 뒀습니다.|데이터를 검증한 뒤, 서버에 상품을 등록합니다.<br>Alert 를 확인하면 ListView 로 돌아가서<br>자동으로 리프레시합니다.|
 
 |Page Style 이미지 뷰어|상품 수정|
 |:-:|:-:|
