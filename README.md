@@ -1,14 +1,14 @@
 # 🥕 스유 마켓
-> 야곰 아카데미 구성원들과 함께 관리하는 오픈 마켓 앱
+> 이커머스 스타일의 토이 프로젝트
 
 <br>
 
 # ✨ 핵심 키워드
 
 - SwiftUI (iOS 15.0)
-- MVVM 패턴
+- MVVM 패턴 with Combine
 - 프로토콜 지향 네트워크 레이어
-- `async-await` 적용한 비동기 메서드 & 테스트
+- `async-await` 적용한 비동기 메서드 & 유닛 테스트
 - PHPickerViewController (iOS 14.0+)
 - 무한 스크롤
 - SwiftLint (via Homebrew)
